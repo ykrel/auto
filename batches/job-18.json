@@ -1,0 +1,744 @@
+[
+ {
+  "itemCode": "ELB.K.0013",
+  "nameTr": "Seçil Pazen Kısa Elbise Çıtır Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Hardal",
+   "Haki",
+   "Mor",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "S",
+   "XL",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0014",
+  "nameTr": "Seçil Pazen Kısa Elbise Bahar Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Mor",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "S",
+   "L",
+   "XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0015",
+  "nameTr": "Seçil Pazen Uzun Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Hardal",
+   "Siyah",
+   "Mor",
+   "Petrol",
+   "Kiremit",
+   "Bordo",
+   "Saks",
+   "Haki",
+   "Kırmızı"
+  ],
+  "sizes": [
+   "L",
+   "M",
+   "XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0035",
+  "nameTr": "Seçil Pazen Uzun Elbise Bahar Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Mor",
+   "Hardal",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "L",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0039",
+  "nameTr": "Seçil Pazen Uzun Elbise Çıtır Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Mor",
+   "Haki",
+   "Beyaz",
+   "Hardal",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "S",
+   "XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0046",
+  "nameTr": "Taş Baskı Uzun Kol Elbise Şal Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "M",
+   "2XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0047",
+  "nameTr": "Baskılı Kısa Kol Elbise Çınar Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve",
+   "Mor",
+   "Siyah",
+   "Beyaz",
+   "Lacivert",
+   "Bordo",
+   "Turkuaz",
+   "Yeşil"
+  ],
+  "sizes": [
+   "2XL",
+   "M",
+   "XL",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0048",
+  "nameTr": "Baskılı Uzun Kol Elbise Çınar Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Bordo",
+   "Yeşil",
+   "Siyah",
+   "Mor",
+   "Lacivert"
+  ],
+  "sizes": [
+   "2XL",
+   "XL",
+   "M",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0050",
+  "nameTr": "Baskılı Uzun Kol Elbise Serpme Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Taş",
+   "Yeşil",
+   "Lacivert",
+   "Turkuaz",
+   "Bordo",
+   "Siyah",
+   "Petrol"
+  ],
+  "sizes": [
+   "L",
+   "2XL",
+   "XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0051",
+  "nameTr": "Baskılı Kısa Kol Elbise Serpme Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Taş",
+   "Turkuaz",
+   "Haki",
+   "Bordo",
+   "Petrol",
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "2XL",
+   "XL",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0062",
+  "nameTr": "Taş Baskı Uzun Kol Elbise Çıtır Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah"
+  ],
+  "sizes": [
+   "XL",
+   "2XL",
+   "M",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "ELB.K.0070",
+  "nameTr": "Baskılı Büyük Beden Uzun Kol Elbise Çınar Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2019,
+  "bestsellerRank": null,
+  "colors": [
+   "Bordo",
+   "Mor",
+   "Siyah",
+   "Yeşil"
+  ],
+  "sizes": [
+   "3XL",
+   "4XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0081",
+  "nameTr": "Selen Pazen Elbise Çıtır Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "S",
+   "L",
+   "XS",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0082",
+  "nameTr": "Selen Pazen Elbise Çini Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Saks",
+   "Haki",
+   "Kırmızı"
+  ],
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XS"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0084",
+  "nameTr": "Melek Büyük Beden Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Beyaz",
+   "Bordo",
+   "Mor",
+   "Krem",
+   "Lacivert",
+   "Siyah",
+   "Petrol"
+  ],
+  "sizes": [
+   "4XL",
+   "6XL",
+   "5XL",
+   "3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "ELB.K.0092",
+  "nameTr": "Seçil Pazen Uzun Elbise Çini Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Yeşil",
+   "Kırmızı"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "S",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0096",
+  "nameTr": "Gonca Elbise Tomurcuk Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Koyu Mor",
+   "Yeşil",
+   "Beyaz",
+   "Siyah",
+   "Turuncu"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0097",
+  "nameTr": "Gonca Elbise Gelincik Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Turkuaz",
+   "Yeşil",
+   "Saks",
+   "Mor",
+   "Siyah"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0101",
+  "nameTr": "Peçvörk Uzun Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı"
+  ],
+  "sizes": [
+   "2XL",
+   "L",
+   "S",
+   "XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0105",
+  "nameTr": "Yağmur Elbise Tomurcuk Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Turkuaz",
+   "Siyah",
+   "Koyu Mor",
+   "Turuncu"
+  ],
+  "sizes": [
+   "XL",
+   "L",
+   "M",
+   "S",
+   "2XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0115",
+  "nameTr": "Emel Uzun Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Turkuaz",
+   "Kırmızı",
+   "Siyah",
+   "Beyaz"
+  ],
+  "sizes": [
+   "XL",
+   "2XL",
+   "L",
+   "S",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0132",
+  "nameTr": "Sudenaz Pazen Uzun Elbise Çiçek Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Yeşil",
+   "Lacivert"
+  ],
+  "sizes": [
+   "L",
+   "3XL",
+   "XL",
+   "M",
+   "2XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0133",
+  "nameTr": "Sudenaz Pazen Kısa Elbise Çiçek Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Lacivert",
+   "Yeşil"
+  ],
+  "sizes": [
+   "XL",
+   "S",
+   "M",
+   "3XL",
+   "2XL",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0149",
+  "nameTr": "Güliş Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Petrol",
+   "Lacivert",
+   "Bordo",
+   "Siyah"
+  ],
+  "sizes": [
+   "S",
+   "L",
+   "M",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "ELB.K.0150",
+  "nameTr": "Mahur Pazen Uzun Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Petrol",
+   "Bordo",
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ }
+]

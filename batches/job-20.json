@@ -1,0 +1,517 @@
+[
+ {
+  "itemCode": "SAL10",
+  "nameTr": "Baskılı Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL11",
+  "nameTr": "Nakışlı Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": 49,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL12",
+  "nameTr": "Müslin Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL13",
+  "nameTr": "Vual Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL6",
+  "nameTr": "Ebruli Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL7",
+  "nameTr": "Çiğdem Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL9",
+  "nameTr": "İran İpeği Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL.K.0001",
+  "nameTr": "Şile Bezi Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2019,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL.K.0002",
+  "nameTr": "Umre Başörtüsü",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Krem"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "otherCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "SAL.K.0003",
+  "nameTr": "Düz Vual Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2019,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL.K.0005",
+  "nameTr": "Batikli Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Açık Yeşil",
+   "Sari",
+   "Turuncu-Mavi",
+   "Renkli",
+   "Turkuaz",
+   "Turuncu-Yeşil",
+   "Fuşya",
+   "Pembe",
+   "Yeşil",
+   "Turuncu",
+   "Mürdüm",
+   "Yağ Yeşili",
+   "Kiremit",
+   "Hardal",
+   "Haki",
+   "Kırmızı",
+   "Fıstık Yeşili",
+   "Mor-Turuncu",
+   "Pembe-Mavi",
+   "Mavi",
+   "Camel"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "otherCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "SAL.K.0006",
+  "nameTr": "Garnili Şal",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Turkuaz"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL.K.0007",
+  "nameTr": "Püsküllü Fular",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Renkli"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SAL.K.0008",
+  "nameTr": "Pazen Bandana",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SBK.UN.001",
+  "nameTr": "Şile Bezi Kumaş 2 mt.",
+  "department": "Unisex",
+  "category": "Fabric",
+  "hierarchy2": "Şile Bezi Kumaş",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "SRT.K.0001",
+  "nameTr": "Şile Bezi Şort",
+  "department": "Women",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Yeşil",
+   "Vizon",
+   "Beyaz",
+   "Petrol",
+   "Mor",
+   "Kırmızı",
+   "Lacivert",
+   "Turkuaz",
+   "Bordo",
+   "Siyah",
+   "Buz Mavi"
+  ],
+  "sizes": [
+   "50",
+   "36",
+   "52",
+   "42",
+   "48",
+   "38",
+   "40",
+   "46",
+   "44"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "T10001",
+  "nameTr": "Zübeyde Triko Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Mercan",
+   "Metalik Gri",
+   "İndigo",
+   "Krem",
+   "Siyah"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "T10002",
+  "nameTr": "Yadigar Triko Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Gri",
+   "İndigo",
+   "Yeşil",
+   "Kiremit"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "T10003",
+  "nameTr": "Vahide Triko Hırka",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Haki",
+   "Füme",
+   "Siyah",
+   "Vizon"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "T10005",
+  "nameTr": "Ümran Triko Hırka",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "İndigo",
+   "Krem",
+   "Vizon",
+   "Koyu Mürdüm",
+   "Siyah"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "T10006",
+  "nameTr": "Şölen Triko Hırka",
+  "department": "Women",
+  "category": "Cardigans",
+  "hierarchy2": "Hırka",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "İndigo",
+   "Vizon",
+   "Yeşil",
+   "Kırmızı"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "T10007",
+  "nameTr": "Şehrazat Triko Hırka",
+  "department": "Women",
+  "category": "Cardigans",
+  "hierarchy2": "Hırka",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Kırmızı",
+   "Haki",
+   "Füme",
+   "Kiremit"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "T10008",
+  "nameTr": "Sanem Triko Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Vizon",
+   "Beyaz"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "T10009",
+  "nameTr": "Parla Triko Hırka",
+  "department": "Women",
+  "category": "Cardigans",
+  "hierarchy2": "Hırka",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Vizon",
+   "Kırmızı",
+   "Füme",
+   "Siyah"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "otherCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "T10010",
+  "nameTr": "Özden Triko Bluz",
+  "department": "Women",
+  "category": "Cardigans",
+  "hierarchy2": "Hırka",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "İndigo",
+   "Krem",
+   "Mercan",
+   "Gül Kurusu"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ }
+]

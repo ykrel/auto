@@ -1,0 +1,660 @@
+[
+ {
+  "itemCode": "281.04",
+  "nameTr": "Otantik Kısa Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Beyaz"
+  ],
+  "sizes": [
+   "XL",
+   "M",
+   "S",
+   "2XL",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "281.05",
+  "nameTr": "Midas Kısa Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Beyaz",
+   "Siyah"
+  ],
+  "sizes": [
+   "S",
+   "XL",
+   "L",
+   "M",
+   "2XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "282.03",
+  "nameTr": "Midas Uzun Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Siyah",
+   "Beyaz"
+  ],
+  "sizes": [
+   "XL",
+   "L",
+   "M",
+   "S",
+   "2XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "300.02",
+  "nameTr": "Baskılı Çocuk Bornoz Balık Desen",
+  "department": "Kids",
+  "category": "Towels",
+  "hierarchy2": "Havlu",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "7-8 yaş",
+   "4-5 Yaş",
+   "5-6 yaş"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "311.01",
+  "nameTr": "Seda Kısa Kol Kamuflaj Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil"
+  ],
+  "sizes": [
+   "2XL",
+   "XL",
+   "3XL",
+   "M",
+   "L",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "312.02",
+  "nameTr": "Akyaka Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Krem"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "M",
+   "S",
+   "XS"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "313.04",
+  "nameTr": "Atlas Yelek",
+  "department": "Women",
+  "category": "Vests",
+  "hierarchy2": "Yelek",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Mürdüm",
+   "Lacivert",
+   "Bordo",
+   "Gri"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "321.04",
+  "nameTr": "Melda Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Soyut Siyah",
+   "Etnik Turkuaz",
+   "Yeşil",
+   "Soyut Çimen Yşl",
+   "Soyut Nil Yeşili",
+   "Etnik Siyah",
+   "Soyut Mor",
+   "Etnik Saks/Syh",
+   "Etnik Turuncu"
+  ],
+  "sizes": [
+   "S",
+   "3XL",
+   "2XL",
+   "L",
+   "M",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "321.05",
+  "nameTr": "Almeda Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Soyut Mor",
+   "Soyut Siyah",
+   "Soyut Çimen Yşl",
+   "Soyut Nil Yeşili"
+  ],
+  "sizes": [
+   "L/XL",
+   "2XL-3XL",
+   "S/M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "322.01",
+  "nameTr": "Baskılı Elbise Uzun Kol Zambak Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Taş",
+   "Bordo",
+   "Petrol",
+   "Siyah",
+   "Mor",
+   "Beyaz",
+   "Haki",
+   "Lacivert",
+   "Turkuaz"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "2XL",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "322.03",
+  "nameTr": "Taş Baskı Uzun Kol Elbise Yoğun Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah"
+  ],
+  "sizes": [
+   "2XL",
+   "L",
+   "XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "322.04",
+  "nameTr": "Baskılı Büyük Beden Uzun Kol Elbise Zambak Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2019,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Petrol",
+   "Yeşil",
+   "Mor",
+   "Bordo",
+   "Haki",
+   "Lacivert"
+  ],
+  "sizes": [
+   "5XL",
+   "4XL",
+   "3XL",
+   "6XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "322.07",
+  "nameTr": "Atlantis Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Gri",
+   "Bordo",
+   "Lacivert",
+   "Mürdüm"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "322.08",
+  "nameTr": "Athena Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Lacivert",
+   "Gri",
+   "Mürdüm",
+   "Bordo"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "322.09",
+  "nameTr": "Hayat Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Mürdüm",
+   "Gri",
+   "Lacivert",
+   "Bordo"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "waistCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "322.10",
+  "nameTr": "Eylül Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Bordo",
+   "Mürdüm",
+   "Lacivert",
+   "Gri"
+  ],
+  "sizes": [
+   "L/XL",
+   "2XL-3XL",
+   "S/M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "322.11",
+  "nameTr": "Karsu Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Lacivert",
+   "Mürdüm",
+   "Bordo",
+   "Gri"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "322.12",
+  "nameTr": "Atlas Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Mürdüm",
+   "Gri",
+   "Bordo",
+   "Lacivert"
+  ],
+  "sizes": [
+   "L/XL",
+   "2XL-3XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "otherCm",
+   "waistCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "323.01",
+  "nameTr": "Baskılı Kısa Kol Elbise Zambak Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Bordo",
+   "Siyah",
+   "Mor",
+   "Petrol",
+   "Haki",
+   "Taş",
+   "Lacivert",
+   "Turkuaz"
+  ],
+  "sizes": [
+   "L",
+   "2XL",
+   "M",
+   "XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "323.02",
+  "nameTr": "Filiz Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": null,
+  "colors": [
+   "Pembe",
+   "Mor",
+   "Saks"
+  ],
+  "sizes": [
+   "M",
+   "S",
+   "2XL",
+   "XL",
+   "3XL",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "323.07",
+  "nameTr": "Hitit Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Şal Renkli",
+   "Sarmaşık Renkli",
+   "Baklava Renkli",
+   "V Renkli",
+   "Eti Renkli",
+   "Şal Siyah",
+   "Baklava Siyah",
+   "Eti Siyah",
+   "Geyik Siyah",
+   "Saray Siyah",
+   "V Desen Yeşil",
+   "V Desen Mor",
+   "Yaprak Siyah",
+   "V Siyah",
+   "Geyik Renkli",
+   "Yaprak Renkli",
+   "Sarmaşık Siyah",
+   "Saray Renkli"
+  ],
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "324.03",
+  "nameTr": "Suzan Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Soyut Siyah",
+   "Etnik Turkuaz",
+   "Etnik Turuncu",
+   "Soyut Mor",
+   "Etnik Siyah",
+   "Etnik Saks/Syh",
+   "Soyut Nil Yeşili",
+   "Soyut Çimen Yşl"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "330.01",
+  "nameTr": "Fileli Taş Baskı Etek V Desen",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2019,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "330.01-G",
+  "nameTr": "Fileli Taş Baskı Etek Güneş Desen",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "330.04",
+  "nameTr": "Akyaka Etek",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Krem"
+  ],
+  "sizes": [
+   "L",
+   "S",
+   "XS",
+   "XL",
+   "M"
+  ],
+  "measuredFields": []
+ }
+]

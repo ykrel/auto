@@ -1,0 +1,662 @@
+[
+ {
+  "itemCode": "724.02",
+  "nameTr": "Emel Çocuk Elbise",
+  "department": "Kids",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Siyah",
+   "Mor",
+   "Kırmızı",
+   "Beyaz",
+   "Bordo",
+   "Pembe",
+   "Petrol",
+   "Lila",
+   "Mint Yeşili",
+   "Turkuaz",
+   "Mercan",
+   "Gül Kurusu",
+   "Yeşil"
+  ],
+  "sizes": [
+   "2-3 Yaş",
+   "9-10 Yaş",
+   "5-6 yaş",
+   "7-8 yaş",
+   "4-5 Yaş"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "730.08",
+  "nameTr": "Sinem Şort Etek",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Taş",
+   "Haki",
+   "Krem",
+   "Buz Mavi",
+   "Siyah",
+   "Kahve"
+  ],
+  "sizes": [
+   "XS",
+   "L",
+   "S",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "730.10",
+  "nameTr": "Gökşen Etek",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Fıstık Yeşili",
+   "Beyaz",
+   "Hardal",
+   "Siyah",
+   "Bordo"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "730.11",
+  "nameTr": "Lavinya Nakışlı Etek",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Fıstık Yeşili",
+   "Petrol",
+   "Siyah",
+   "Beyaz",
+   "Hardal",
+   "Yeşil"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "730.12",
+  "nameTr": "Salkım Etek",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Petrol",
+   "Beyaz",
+   "Siyah",
+   "Mor"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "730.14",
+  "nameTr": "Nihal Etek",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": 48,
+  "colors": [
+   "Haki",
+   "Petrol",
+   "Siyah",
+   "Beyaz",
+   "Krem",
+   "Lacivert",
+   "Bordo"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "730.15",
+  "nameTr": "Canan Etek",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Fıstık Yeşili",
+   "Mercan",
+   "Petrol",
+   "Siyah",
+   "Mor",
+   "Beyaz",
+   "Haki"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "740.08",
+  "nameTr": "Peçvörk Şalvar",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": null,
+  "colors": [
+   "Tek renk"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "740.12",
+  "nameTr": "Gabardin Lastikli Şort",
+  "department": "Men",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve",
+   "Petrol",
+   "Haki",
+   "Beyaz",
+   "Vizon",
+   "Lacivert",
+   "Gri",
+   "Taş",
+   "Krem"
+  ],
+  "sizes": [
+   "2XL",
+   "3XL",
+   "S",
+   "L",
+   "M",
+   "XL"
+  ],
+  "measuredFields": [
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "740.16",
+  "nameTr": "Ege Şort",
+  "department": "Men",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Krem",
+   "Siyah",
+   "Beyaz",
+   "Lacivert",
+   "Vizon"
+  ],
+  "sizes": [
+   "40",
+   "42",
+   "56",
+   "48",
+   "44",
+   "46",
+   "52",
+   "50",
+   "54"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "740.18",
+  "nameTr": "Ege Kısa Şort",
+  "department": "Men",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Lacivert",
+   "Siyah",
+   "Beyaz"
+  ],
+  "sizes": [
+   "46",
+   "44",
+   "42",
+   "50",
+   "40",
+   "48",
+   "52"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "740.19",
+  "nameTr": "Ege Kargo Cep Şort",
+  "department": "Men",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Vizon",
+   "Krem",
+   "Haki",
+   "Lacivert",
+   "Beyaz"
+  ],
+  "sizes": [
+   "52",
+   "56",
+   "54",
+   "46",
+   "40",
+   "44",
+   "42",
+   "48",
+   "50"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "740.21",
+  "nameTr": "Hazan Şort",
+  "department": "Women",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "XL",
+   "M",
+   "S",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "740.22",
+  "nameTr": "Fulya Keten Şort",
+  "department": "Women",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Beyaz",
+   "Turuncu",
+   "Turkuaz"
+  ],
+  "sizes": [
+   "M",
+   "S",
+   "L",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "740.23",
+  "nameTr": "Bitez Keten Şort",
+  "department": "Women",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Beyaz",
+   "Krem"
+  ],
+  "sizes": [
+   "L",
+   "S",
+   "M",
+   "XS"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "740.24",
+  "nameTr": "Gabardin Erkek Pantolon",
+  "department": "Men",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Siyah",
+   "Camel",
+   "Haki",
+   "Lacivert"
+  ],
+  "sizes": [
+   "50",
+   "40",
+   "46",
+   "42",
+   "44",
+   "38",
+   "52",
+   "48",
+   "54",
+   "56"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "740.26",
+  "nameTr": "Ezgi Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "740.28",
+  "nameTr": "Flamlı Pantolon",
+  "department": "Men",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": 36,
+  "colors": [
+   "Siyah",
+   "Lacivert",
+   "Haki",
+   "Taş",
+   "Beyaz"
+  ],
+  "sizes": [
+   "38",
+   "56",
+   "52",
+   "50",
+   "40",
+   "42",
+   "48",
+   "46",
+   "44",
+   "54"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "740.29",
+  "nameTr": "Hülya Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "M",
+   "3XL",
+   "S",
+   "2XL",
+   "L",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "740.30",
+  "nameTr": "Keten Lastikli Pantolon",
+  "department": "Unisex",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "M",
+   "S",
+   "2XL",
+   "L",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "740.31",
+  "nameTr": "Keten Lastikli Şort",
+  "department": "Men",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "2XL",
+   "S",
+   "L",
+   "M",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "752.04",
+  "nameTr": "Belma Keten Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "XL",
+   "M",
+   "2XL",
+   "S",
+   "L",
+   "3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "752.05",
+  "nameTr": "Sahil Kadın Gömlek",
+  "department": "Women",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz"
+  ],
+  "sizes": [
+   "2XL",
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "822.04",
+  "nameTr": "Seçil Pazen Kısa Elbise Gül Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "L",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "822.05",
+  "nameTr": "Seçil Pazen Uzun Elbise Gül Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "S",
+   "XL"
+  ],
+  "measuredFields": []
+ }
+]

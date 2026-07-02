@@ -1,0 +1,676 @@
+[
+ {
+  "itemCode": "112.10",
+  "nameTr": "Talya Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Krem",
+   "Bordo",
+   "Yeşil",
+   "Mor",
+   "Petrol"
+  ],
+  "sizes": [
+   "L",
+   "3XL",
+   "S",
+   "2XL",
+   "M",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "112.23",
+  "nameTr": "Rodos Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Mercan",
+   "Siyah",
+   "Sari",
+   "Turkuaz",
+   "İndigo",
+   "Beyaz",
+   "Haki"
+  ],
+  "sizes": [
+   "L",
+   "S",
+   "XL",
+   "2XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "112.24",
+  "nameTr": "Hale Gömlek",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "otherCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "112.25",
+  "nameTr": "Bluz Astarı",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": 12,
+  "colors": [
+   "Krem",
+   "Beyaz",
+   "Siyah"
+  ],
+  "sizes": [
+   "XL",
+   "3XL",
+   "M",
+   "S",
+   "2XL",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "112.26",
+  "nameTr": "V Yaka Cepli Uzun Kol Atlet",
+  "department": "Men",
+  "category": "Tanks",
+  "hierarchy2": "Atlet",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Krem",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "S",
+   "2XL",
+   "4XL",
+   "XL",
+   "3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "122.22",
+  "nameTr": "Hicran Büyük Beden Ferace",
+  "department": "Women",
+  "category": "Abayas",
+  "hierarchy2": "Ferace",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Mürdüm",
+   "Petrol",
+   "Siyah",
+   "Beyaz"
+  ],
+  "sizes": [
+   "4XL",
+   "5XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "122.23",
+  "nameTr": "Uzun Kol Elbise Astarı",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": 5,
+  "colors": [
+   "Siyah",
+   "Krem",
+   "Beyaz"
+  ],
+  "sizes": [
+   "L",
+   "M",
+   "S",
+   "2XL",
+   "XL",
+   "3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "122.24",
+  "nameTr": "Mihrimah Abaya",
+  "department": "Women",
+  "category": "Abayas",
+  "hierarchy2": "Abaya",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Beyaz",
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "122.25",
+  "nameTr": "Gülfem Ferace",
+  "department": "Women",
+  "category": "Abayas",
+  "hierarchy2": "Ferace",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Lacivert",
+   "Beyaz"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL",
+   "4XL/5XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "122.26",
+  "nameTr": "Mahinur Abaya",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Mor",
+   "Petrol",
+   "Siyah",
+   "Lacivert"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "122.27",
+  "nameTr": "Dicle Uzun Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Lacivert",
+   "Petrol",
+   "Krem",
+   "Beyaz"
+  ],
+  "sizes": [
+   "S/M",
+   "4XL/5XL",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "122.28",
+  "nameTr": "Neşe Elbise",
+  "department": "Women",
+  "category": "Abayas",
+  "hierarchy2": "Ferace",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Petrol",
+   "Krem",
+   "Beyaz",
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "4XL/5XL",
+   "S/M",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "122.29",
+  "nameTr": "Ala Elbise",
+  "department": "Women",
+  "category": "Abayas",
+  "hierarchy2": "Ferace",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": 72,
+  "colors": [
+   "Petrol",
+   "Krem",
+   "Siyah",
+   "Mor",
+   "Bordo",
+   "Beyaz"
+  ],
+  "sizes": [
+   "4XL/5XL",
+   "S/M",
+   "L/XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "122.30",
+  "nameTr": "Mihrimah Ferace",
+  "department": "Women",
+  "category": "Abayas",
+  "hierarchy2": "Ferace",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Beyaz",
+   "Kırmızı",
+   "Lacivert"
+  ],
+  "sizes": [
+   "L/XL",
+   "2XL-3XL",
+   "4XL/5XL",
+   "S/M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "123.02",
+  "nameTr": "Üçgen Katlı Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": 22,
+  "colors": [
+   "Mor",
+   "Turkuaz",
+   "Siyah",
+   "Bordo",
+   "Lacivert",
+   "Krem",
+   "Beyaz",
+   "Petrol",
+   "Kırmızı",
+   "Yeşil"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "S",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "123.08",
+  "nameTr": "Şule Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Bordo",
+   "Siyah",
+   "Beyaz",
+   "Petrol",
+   "Lacivert"
+  ],
+  "sizes": [
+   "XL",
+   "M",
+   "2XL",
+   "3XL",
+   "S",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "123.09",
+  "nameTr": "Mihrimah Kolsuz Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Siyah",
+   "Lacivert",
+   "Beyaz"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "124.01",
+  "nameTr": "Uzun Elbise Astarı",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": 4,
+  "colors": [
+   "Krem",
+   "Siyah",
+   "Beyaz"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "2XL",
+   "L",
+   "3XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "124.03",
+  "nameTr": "Kısa Elbise İç Astarı",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2019,
+  "bestsellerRank": 14,
+  "colors": [
+   "Siyah",
+   "Krem",
+   "Beyaz"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "2XL",
+   "M",
+   "3XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "124.07",
+  "nameTr": "Sima Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Siyah",
+   "Mor",
+   "Beyaz",
+   "Petrol",
+   "Bordo",
+   "Lacivert",
+   "Krem",
+   "Kırmızı"
+  ],
+  "sizes": [
+   "L",
+   "XS",
+   "M",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "124.10",
+  "nameTr": "Tılsım Kolsuz Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Bordo Çizgili",
+   "Mavi Çizgili",
+   "Krem Çizgili",
+   "Siyah Çizgili"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "S/M",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "124.11",
+  "nameTr": "Askılı Uzun Elbise Astarı",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Krem"
+  ],
+  "sizes": [
+   "S",
+   "2XL",
+   "XL",
+   "M",
+   "3XL",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "130.03",
+  "nameTr": "Uzun Etek Astarı",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": 2,
+  "colors": [
+   "Siyah",
+   "Krem",
+   "Beyaz"
+  ],
+  "sizes": [
+   "S",
+   "3XL",
+   "XL",
+   "L",
+   "2XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "130.06",
+  "nameTr": "Kısa Etek Astarı",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2019,
+  "bestsellerRank": 7,
+  "colors": [
+   "Siyah",
+   "Krem",
+   "Beyaz"
+  ],
+  "sizes": [
+   "S",
+   "XL",
+   "2XL",
+   "L",
+   "M",
+   "3XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "waistCm"
+  ]
+ },
+ {
+  "itemCode": "130.08",
+  "nameTr": "Ada Şort Etek",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Camel",
+   "Siyah",
+   "Bordo",
+   "Taş",
+   "Beyaz",
+   "Turkuaz",
+   "Lacivert"
+  ],
+  "sizes": [
+   "L",
+   "XS",
+   "S",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ }
+]

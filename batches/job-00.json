@@ -1,0 +1,570 @@
+[
+ {
+  "itemCode": "100.01",
+  "nameTr": "Peştamal",
+  "department": "Unisex",
+  "category": "Towels",
+  "hierarchy2": "Havlu",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2019,
+  "bestsellerRank": null,
+  "colors": [
+   "Mor",
+   "Siyah",
+   "Gri",
+   "Sari",
+   "Turkuaz",
+   "Beyaz",
+   "Su Yeşili",
+   "Pudra",
+   "Bordo",
+   "Turuncu",
+   "Lacivert",
+   "Mavi",
+   "Yeşil",
+   "Renkli",
+   "Kahve",
+   "Pembe",
+   "Kırmızı",
+   "Krem"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "otherCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "100.02",
+  "nameTr": "Sahil Panço",
+  "department": "Women",
+  "category": "Ponchos",
+  "hierarchy2": "Panço",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Mavi",
+   "Renkli",
+   "Pembe"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "100.04",
+  "nameTr": "Çocuk Bornoz",
+  "department": "Kids",
+  "category": "Towels",
+  "hierarchy2": "Havlu",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "7-8 yaş",
+   "3-4 Yaş",
+   "4-5 Yaş",
+   "5-6 yaş"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "100.05",
+  "nameTr": "Sahil Çanta",
+  "department": "Women",
+  "category": "Bags",
+  "hierarchy2": "Çantalar",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "100.06",
+  "nameTr": "Bahardalı Çanta",
+  "department": "Women",
+  "category": "Bags",
+  "hierarchy2": "Çantalar",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "100.07",
+  "nameTr": "Doğa Çanta",
+  "department": "Women",
+  "category": "Bags",
+  "hierarchy2": "Çantalar",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "100.08",
+  "nameTr": "Neon Çanta",
+  "department": "Women",
+  "category": "Bags",
+  "hierarchy2": "Çantalar",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "100.09",
+  "nameTr": "Neon Panço",
+  "department": "Women",
+  "category": "Ponchos",
+  "hierarchy2": "Panço",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "100.10",
+  "nameTr": "Saçaklı Çanta",
+  "department": "Women",
+  "category": "Bags",
+  "hierarchy2": "Çantalar",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "11.01",
+  "nameTr": "Eliş Bodrum Sandalet 4809",
+  "department": "Women",
+  "category": "Shoes",
+  "hierarchy2": "Ayakkabı",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve"
+  ],
+  "sizes": [
+   "39",
+   "38",
+   "37",
+   "40",
+   "36"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "11.02",
+  "nameTr": "Eliş Bodrum Sandalet 4822",
+  "department": "Women",
+  "category": "Shoes",
+  "hierarchy2": "Ayakkabı",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve",
+   "Renkli"
+  ],
+  "sizes": [
+   "38",
+   "39",
+   "36",
+   "40",
+   "37"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "11.03",
+  "nameTr": "Eliş Bodrum Sandalet 4826",
+  "department": "Women",
+  "category": "Shoes",
+  "hierarchy2": "Ayakkabı",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve"
+  ],
+  "sizes": [
+   "39",
+   "37",
+   "40",
+   "36",
+   "38"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "11.04",
+  "nameTr": "Eliş Bodrum Sandalet 4860",
+  "department": "Women",
+  "category": "Shoes",
+  "hierarchy2": "Ayakkabı",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve"
+  ],
+  "sizes": [
+   "40",
+   "36",
+   "39",
+   "38",
+   "37"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "11.05",
+  "nameTr": "Eliş Bodrum Sandalet 4872",
+  "department": "Women",
+  "category": "Shoes",
+  "hierarchy2": "Ayakkabı",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve"
+  ],
+  "sizes": [
+   "36",
+   "38",
+   "40",
+   "39",
+   "37"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "11.06",
+  "nameTr": "Eliş Bodrum Sandalet 4835",
+  "department": "Women",
+  "category": "Shoes",
+  "hierarchy2": "Ayakkabı",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve"
+  ],
+  "sizes": [
+   "37",
+   "39",
+   "36",
+   "40",
+   "38"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "11.07",
+  "nameTr": "Eliş Bodrum Sandalet 4853",
+  "department": "Women",
+  "category": "Shoes",
+  "hierarchy2": "Ayakkabı",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve"
+  ],
+  "sizes": [
+   "40",
+   "38",
+   "39",
+   "36",
+   "37"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "11.08",
+  "nameTr": "Eliş Bodrum Sandalet 4817",
+  "department": "Women",
+  "category": "Shoes",
+  "hierarchy2": "Ayakkabı",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve"
+  ],
+  "sizes": [
+   "37",
+   "36",
+   "38",
+   "39",
+   "40"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "111.03",
+  "nameTr": "Ecem Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Pembe",
+   "Su Yeşili",
+   "Buz Mavi",
+   "Taş",
+   "Lila",
+   "Sari"
+  ],
+  "sizes": [
+   "XS",
+   "L",
+   "S",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "111.04",
+  "nameTr": "Kilim Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Tek renk"
+  ],
+  "sizes": [
+   "3XL",
+   "L",
+   "2XL",
+   "XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "111.06",
+  "nameTr": "Dicle Kısa Kol Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Petrol",
+   "Beyaz",
+   "Krem",
+   "Lacivert"
+  ],
+  "sizes": [
+   "4XL/5XL",
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "111.21",
+  "nameTr": "V Yaka Cepli Kısa Kol Atlet",
+  "department": "Men",
+  "category": "Tanks",
+  "hierarchy2": "Atlet",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Krem",
+   "Siyah"
+  ],
+  "sizes": [
+   "3XL",
+   "S",
+   "L",
+   "4XL",
+   "M",
+   "2XL",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "111.22",
+  "nameTr": "V Yaka Kısa Kol Atlet",
+  "department": "Men",
+  "category": "Tanks",
+  "hierarchy2": "Atlet",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Krem",
+   "Beyaz"
+  ],
+  "sizes": [
+   "L",
+   "S",
+   "XL",
+   "4XL",
+   "2XL",
+   "3XL",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "112.04",
+  "nameTr": "Rodos Bluz Büyük Beden",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "İndigo",
+   "Haki",
+   "Beyaz",
+   "Mercan",
+   "Sari"
+  ],
+  "sizes": [
+   "3XL",
+   "4XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "112.08",
+  "nameTr": "İç Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Krem"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "S",
+   "L",
+   "2XL",
+   "3XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "112.09",
+  "nameTr": "Peyker Gömlek",
+  "department": "Women",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "İndigo",
+   "Sari",
+   "Haki",
+   "Beyaz",
+   "Mercan"
+  ],
+  "sizes": [
+   "3XL",
+   "M",
+   "L",
+   "2XL",
+   "S",
+   "XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "otherCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ }
+]

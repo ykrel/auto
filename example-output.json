@@ -1,0 +1,135 @@
+{
+  "T39452-2": {
+    "tr": "Bordo, haki, lacivert ve füme: Elvan triko eteğin dört rengi de sonbaharın alçalan ışığına göre seçilmiş gibi. %100 pamuk iplikle örülen yüzeyi yumuşak ve esnek, gün boyu formunu koruyor.\n\nStandart tek beden olması stok planlamasını sadeleştiriyor; ölçü tablosunda bel, kalça ve boy değerleri hazır verildiği için alıcılar seriyi kolayca değerlendirebiliyor.",
+    "en": {
+      "name": "Elvan Knit Skirt",
+      "desc": "Knitted for the months when daylight thins, the Elvan skirt comes in burgundy, khaki, navy and smoke grey, deep shades that read well under shop lighting and outdoors alike. The yarn is pure Turkish cotton, soft with a dry, matte hand.\n\nOne standard size covers the range, which keeps ordering simple; waist, hip and length measurements are listed for reference."
+    },
+    "de": {
+      "name": "Strickrock Elvan",
+      "desc": "Gestrickt aus türkischer Baumwolle, fällt der Rock Elvan weich und behält dennoch seine Form. Die vier Farben Bordeaux, Khaki, Marineblau und Rauchgrau wirken wie für das gedämpfte Licht der kalten Monate ausgesucht.\n\nElvan läuft in einer Einheitsgröße, was die Bestandsplanung deutlich vereinfacht. Taille, Hüfte und Länge sind in der Maßtabelle hinterlegt, sodass Einkäufer die Passform gut einschätzen können."
+    },
+    "fr": {
+      "name": "Jupe Elvan en maille",
+      "desc": "Une seule taille, quatre couleurs d'automne: la jupe Elvan se décline en bordeaux, kaki, bleu marine et gris fumé. Tricotée en coton turc, sa maille souple accroche joliment la lumière basse de saison.\n\nLe modèle unique simplifie le réassort, et les mesures de taille, de hanches et de longueur figurent au guide des tailles pour rassurer vos clientes."
+    },
+    "es": {
+      "name": "Falda de punto Elvan",
+      "desc": "Para los meses fríos, la falda Elvan apuesta por colores que ganan profundidad con poca luz: burdeos, caqui, azul marino y gris humo. Está tejida en punto de algodón turco, suave y con buena caída.\n\nSe sirve en talla única, lo que reduce el riesgo de tallas sueltas en tienda; la tabla de medidas incluye cintura, cadera y largo."
+    }
+  },
+  "TNK.K.0001": {
+    "tr": "İnterlok kumaşın çift katlı örgüsü Adile tuniğe dolgun, mat bir yüzey kazandırıyor; ten üzerinde yumuşak, kış ışığında sade duruyor. Yeşil ve gri seçenekleri birbirini tamamlayan sakin bir ikili.\n\nS'den XL'e dört beden olarak üretiliyor. Pantolon ve tayt üzerine rahatça giyilen boyu sayesinde soğuk aylarda raflarda kendine kolay yer bulan bir model.",
+    "en": {
+      "name": "Adile Interlock Tunic",
+      "desc": "Green and grey, two quiet colourways with the matte depth interlock cotton takes on in winter light. The Adile tunic is cut long enough to layer over leggings or slim trousers, and the dense double-knit fabric holds its shape wash after wash.\n\nSizes run S through XL. A sensible cold-season basic for shops whose customers ask for natural fibres first."
+    },
+    "de": {
+      "name": "Interlock-Tunika Adile",
+      "desc": "Die Tunika Adile ist aus Interlock gearbeitet, einem doppelt gestrickten Baumwollstoff mit glatter, matter Oberfläche. In Grün und Grau gehalten, passt sie zu fast allem, was schon auf der Fläche hängt.\n\nErhältlich in S bis XL. Ein ruhiges Basisteil für die kalte Saison, das sich über Leggings ebenso trägt wie zur schmalen Hose."
+    },
+    "fr": {
+      "name": "Tunique Adile en interlock",
+      "desc": "Double épaisseur de maille fine: l'interlock donne à la tunique Adile un tombé net et une surface mate qui adoucit la lumière d'hiver. Deux coloris sobres, vert et gris, faciles à assortir.\n\nProposée du S au XL, elle se porte sur un legging ou un pantalon étroit. Une pièce calme qui complète bien un rayon coton pour la saison froide."
+    },
+    "es": {
+      "name": "Túnica Adile de interlock",
+      "desc": "Tejida en interlock de algodón, la túnica Adile tiene cuerpo: una superficie mate y densa, sin transparencias, que cae recta sobre leggings o pantalón ajustado. Llega en dos tonos serenos, verde y gris.\n\nDel S al XL, es una prenda tranquila para la temporada fría, fácil de colocar junto a casi cualquier gama de color."
+    }
+  },
+  "TNK.K.0002": {
+    "tr": "Yumuşak tüylü pazen, kış sabahlarının kısa ışığına göre dokunmuş bir kumaş; Nuray tunik bu kumaştan dikiliyor, deseni siyah ve haki olmak üzere iki koyu zemin üzerine basılıyor.\n\nS/M, L/XL ve 2XL-3XL şeklinde ikili bedenlerle çalışıyor; üç kalem altı klasik bedeni karşıladığı için küçük butiklerde stok yükünü belirgin biçimde azaltıyor.",
+    "en": {
+      "name": "Nuray Printed Flannel Tunic",
+      "desc": "A printed flannel for the darkest weeks of the year. Nuray comes on two deep grounds, black and khaki, and the brushed cotton surface traps warmth without weight.\n\nThe tunic runs in dual sizes, S/M, L/XL and 2XL-3XL, so three units on the rail cover six conventional sizes. Useful maths for a small shop in the cold season."
+    },
+    "de": {
+      "name": "Bedruckte Flanell-Tunika Nuray",
+      "desc": "Weich angeraut und warm: Flanell aus reiner Baumwolle macht die Nuray zur Tunika für die kürzesten Tage des Jahres. Das Druckmuster liegt auf zwei dunklen Grundtönen, Schwarz und Khaki.\n\nGefertigt wird sie in Doppelgrößen, S/M, L/XL und 2XL-3XL. Drei Größen decken damit das gängige Spektrum ab, was Lagerhaltung und Nachbestellung spürbar verschlankt."
+    },
+    "fr": {
+      "name": "Tunique Nuray imprimée en flanelle",
+      "desc": "Quand la lumière baisse, la flanelle prend le relais: la tunique Nuray est coupée dans un coton gratté, chaud et souple, imprimé sur fond noir ou kaki.\n\nElle est déclinée en tailles doubles, S/M, L/XL et 2XL-3XL. Trois références suffisent donc à habiller la plupart des clientes, un vrai avantage pour les petites surfaces de vente."
+    },
+    "es": {
+      "name": "Túnica Nuray estampada de franela",
+      "desc": "El estampado de la túnica Nuray se apoya en dos fondos oscuros, negro y caqui, que le dan contraste en los meses de menos luz. La franela de algodón, suave y ligeramente cepillada, abriga sin pesar.\n\nSu tallaje doble, S/M, L/XL y 2XL-3XL, cubre seis tallas con solo tres referencias, una cuenta que favorece a las tiendas pequeñas."
+    }
+  },
+  "TST.E.0001": {
+    "tr": "Etnik uzun kol t-shirt, erkek reyonu için sade bir parça; %100 Türk pamuğundan üretiliyor ve siyah, krem, beyaz, lacivert dört renkte geliyor. Uzun kolu serin akşamlarda ve güneşten korunmak istendiğinde tercih ediliyor.\n\nS–2XL aralığında beş beden çalışıyor. Aynı ismin kısa kollu modeliyle yan yana asıldığında raf bütünlüğü kuran bir ikili.",
+    "en": {
+      "name": "Etnik Long Sleeve T-Shirt",
+      "desc": "A long sleeve in a summer line earns its place at either end of the day — early ferries, cool terraces after sunset. The Etnik tee is pure Turkish cotton and comes in black, cream, white and navy.\n\nSizes run S to 2XL across five steps. Shops often pair it with the short-sleeve version of the same design to keep the shelf coherent."
+    },
+    "de": {
+      "name": "Langarm-T-Shirt Etnik",
+      "desc": "Langarm im Sommerprogramm: für kühle Morgenstunden am Wasser und Abende, wenn das Licht weich wird. Das T-Shirt Etnik besteht aus reiner türkischer Baumwolle und kommt in Schwarz, Creme, Weiß und Marineblau.\n\nDie Größen reichen von S bis 2XL. Zusammen mit der Kurzarmversion desselben Modells ergibt sich ein stimmiges Duo für die Herrenfläche."
+    },
+    "fr": {
+      "name": "T-shirt Etnik à manches longues",
+      "desc": "Certains clients cherchent la manche longue même en été; le t-shirt Etnik leur répond en coton turc léger, décliné en noir, crème, blanc et bleu marine, pour les matins frais comme pour les soirées qui s'étirent.\n\nCinq tailles, du S au 2XL. Une pièce discrète qui tourne bien auprès d'une clientèle masculine fidèle aux fibres naturelles."
+    },
+    "es": {
+      "name": "Camiseta Etnik de manga larga",
+      "desc": "La camiseta Etnik lleva la manga larga al verano: algodón turco ligero para las primeras horas frescas y para cuando el sol empieza a caer. Cuatro colores de base, negro, crema, blanco y azul marino.\n\nDe la S a la 2XL, cinco tallas. Junto a su versión de manga corta forma un dúo coherente en el expositor masculino."
+    }
+  },
+  "TST.E.0002": {
+    "tr": "Adını denizcilerden alan Bahriyeli kısa kol t-shirt, renklerini de oradan seçiyor: lacivert, beyaz, krem ve siyah. %100 Türk pamuğundan kumaşı öğlen sıcağında ferah tutuyor, yıkandıkça yumuşuyor.\n\nS'den 2XL'e beş beden halinde üretiliyor; yaz boyunca sık yenilenen temel raflar için düşünülmüş, tek başına da satan bir model.",
+    "en": {
+      "name": "Bahriyeli Short Sleeve T-Shirt",
+      "desc": "Bahriyeli is Turkish for sailor, and the palette follows suit: navy, white, cream and black, colours that hold up in glaring seaside light. The short-sleeve cut in pure Turkish cotton makes it the line's warm-weather workhorse.\n\nFive sizes, S through 2XL. As a summer volume piece it asks little of the buyer — one fabric in four dependable colours."
+    },
+    "de": {
+      "name": "Kurzarm-T-Shirt Bahriyeli",
+      "desc": "Marineblau, Weiß, Creme und Schwarz, wie ein Hafen am Mittag: Bahriyeli heißt auf Türkisch Matrose, und die Farbpalette dieses kurzärmligen T-Shirts aus türkischer Baumwolle nimmt den Namen beim Wort.\n\nMit fünf Größen von S bis 2XL ist es als Mengenartikel für den Sommer gedacht und lässt sich unkompliziert nachbestellen, wenn die Saison anzieht."
+    },
+    "fr": {
+      "name": "T-shirt Bahriyeli à manches courtes",
+      "desc": "Manches courtes pour tourner tout l'été: Bahriyeli, le marin en turc, décline le coton turc en bleu marine, blanc, crème et noir, des tons qui rappellent les ports en plein soleil.\n\nCinq tailles du S au 2XL en font une pièce de fond de rayon, facile à réassortir en pleine saison."
+    },
+    "es": {
+      "name": "Camiseta Bahriyeli de manga corta",
+      "desc": "Hay algo de cubierta de barco en esta camiseta: Bahriyeli significa marinero en turco, y sus colores, azul marino, blanco, crema y negro, resisten bien la luz dura del mediodía. El algodón turco, en corte de manga corta, respira en pleno calor.\n\nCon cinco tallas de la S a la 2XL, funciona como básico de volumen para el verano."
+    }
+  },
+  "TST.E.0003": {
+    "tr": "Beyaz ile krem yazın ışığını taşıyor, lacivert ile siyah zemini kuruyor: Etnik kısa kol t-shirt dört renkli, sade bir sıcak hava parçası. Kumaşı %100 Türk pamuğu; hafif, teni serin tutuyor.\n\nDört renk ve S–2XL arası beş beden, toplamda düzenli bir yirmi kalem ediyor; sipariş tablosunu sade tutmak isteyen alıcılar için pratik bir model.",
+    "en": {
+      "name": "Etnik Short Sleeve T-Shirt",
+      "desc": "The Etnik short sleeve is the warm-weather core of its line: a Turkish cotton tee in white, cream, navy and black. Light colours for full sun, dark ones for the evening crowd.\n\nFour colours across five sizes, S to 2XL, make a tidy twenty-piece order grid — simple to buy, simple to reorder mid-season."
+    },
+    "de": {
+      "name": "Kurzarm-T-Shirt Etnik",
+      "desc": "Für Kunden, die im Hochsommer schlicht Baumwolle wollen: Das Kurzarm-T-Shirt Etnik gibt es in Weiß, Creme, Marineblau und Schwarz, die hellen Töne für die Sonne, die dunklen für den Abend.\n\nVier Farben mal fünf Größen von S bis 2XL ergeben ein übersichtliches Bestellraster von zwanzig Positionen, das sich zur Saisonmitte leicht auffüllen lässt."
+    },
+    "fr": {
+      "name": "T-shirt Etnik à manches courtes",
+      "desc": "En plein été, sous un soleil qui écrase tout, les quatre teintes du t-shirt Etnik gardent leur netteté: blanc, crème, bleu marine et noir. Le coton turc, léger et respirant, fait le reste.\n\nQuatre couleurs sur cinq tailles, du S au 2XL: une grille de commande de vingt lignes, lisible et vite réassortie."
+    },
+    "es": {
+      "name": "Camiseta Etnik de manga corta",
+      "desc": "Algodón turco ligero, de los que se agradecen en pleno calor: la Etnik de manga corta llega en blanco, crema, azul marino y negro, dos tonos que reflejan la luz y dos que la absorben.\n\nCuatro colores por cinco tallas, de la S a la 2XL: veinte referencias ordenadas, fáciles de pedir y de reponer a mitad de temporada."
+    }
+  },
+  "TST.E.0005": {
+    "tr": "Güneş battıktan sonra iskelede hava serinlediğinde uzun kol öne çıkıyor. Bahriyeli'nin bu versiyonu, kısa kollusunun dört rengini aynen koruyor: lacivert, siyah, krem ve beyaz. %100 Türk pamuğu kumaş, mevsim geçişlerinde tek başına, yazın hafif bir üst kat olarak giyiliyor.\n\nS–2XL aralığında beş beden üretiliyor; yaz akşamları serin geçen pazarlarda sezonu sonbahara doğru uzatıyor.",
+    "en": {
+      "name": "Bahriyeli Long Sleeve T-Shirt",
+      "desc": "For the shoulder weeks either side of high summer, a long sleeve in the sailor palette: navy, black, cream and white. Pure Turkish cotton keeps the Bahriyeli light enough to wear once the evening breeze picks up.\n\nSizes run S to 2XL. In northern European markets, where summer evenings stay cool, it is often the more practical of the two Bahriyeli cuts."
+    },
+    "de": {
+      "name": "Langarm-T-Shirt Bahriyeli",
+      "desc": "Wenn abends der Wind vom Wasser kommt, reicht Kurzarm nicht mehr: Das langärmlige Bahriyeli schließt die Lücke, in Marineblau, Schwarz, Creme und Weiß aus türkischer Baumwolle.\n\nEs läuft in fünf Größen von S bis 2XL. In kühleren Sommerregionen ist es oft die praktischere der beiden Bahriyeli-Varianten und verlängert die Saison bis in den Herbst."
+    },
+    "fr": {
+      "name": "T-shirt Bahriyeli à manches longues",
+      "desc": "Second volet du duo Bahriyeli, la version à manches longues reprend les mêmes coloris marins: bleu marine, noir, crème et blanc. En coton turc, elle accompagne les soirées où la lumière s'attarde mais où l'air fraîchit.\n\nTailles du S au 2XL. Un bon complément de fin d'été, quand les manches courtes ralentissent."
+    },
+    "es": {
+      "name": "Camiseta Bahriyeli de manga larga",
+      "desc": "Cuando cae la tarde y refresca junto al agua, entra en juego la manga larga de Bahriyeli: algodón turco en azul marino, negro, crema y blanco, la misma paleta marinera de su versión corta.\n\nVa de la S a la 2XL. En mercados de veranos frescos suele ser el corte más práctico de los dos."
+    }
+  }
+}

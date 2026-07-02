@@ -1,0 +1,735 @@
+[
+ {
+  "itemCode": "552.06",
+  "nameTr": "Hafsa Uzun Kol Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": 62,
+  "colors": [
+   "Kırmızı",
+   "Siyah",
+   "Vizon",
+   "İndigo",
+   "Haki",
+   "Beyaz"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "L/XL",
+   "S/M",
+   "4XL/5XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "552.07",
+  "nameTr": "Sedanur Büyük Beden Müslin Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Vizon",
+   "İndigo",
+   "Haki",
+   "Siyah",
+   "Gri"
+  ],
+  "sizes": [
+   "5XL",
+   "4XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "552.08",
+  "nameTr": "Yaren Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Vizon",
+   "Gri",
+   "Taş",
+   "Kırık Beyaz"
+  ],
+  "sizes": [
+   "4XL/5XL",
+   "2XL-3XL",
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "571.01",
+  "nameTr": "Müslin Kısa Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 8,
+  "colors": [
+   "Siyah",
+   "Buz Mavi",
+   "Haki",
+   "İndigo",
+   "Vizon",
+   "Beyaz",
+   "Gri"
+  ],
+  "sizes": [
+   "XL",
+   "3XL",
+   "S",
+   "L",
+   "2XL",
+   "M"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "572.01",
+  "nameTr": "Hakim Yaka Müslin Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 11,
+  "colors": [
+   "Buz Mavi",
+   "Beyaz",
+   "Vizon",
+   "Siyah",
+   "Pudra",
+   "Gri",
+   "İndigo",
+   "Haki"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "3XL",
+   "2XL",
+   "M",
+   "S"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "572.02",
+  "nameTr": "Müslin Uzun Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": 13,
+  "colors": [
+   "İndigo",
+   "Buz Mavi",
+   "Haki",
+   "Vizon",
+   "Beyaz",
+   "Gri",
+   "Siyah"
+  ],
+  "sizes": [
+   "3XL",
+   "S",
+   "XL",
+   "L",
+   "2XL",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "572.03",
+  "nameTr": "Multi Müslin Uzun Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Haki",
+   "Bordo",
+   "Beyaz",
+   "Kahve",
+   "Vizon",
+   "İndigo"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "XL",
+   "S",
+   "2XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "572.04",
+  "nameTr": "Umre Müslin Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Gri",
+   "Kırık Beyaz",
+   "Vizon",
+   "Taş"
+  ],
+  "sizes": [
+   "2XL",
+   "3XL",
+   "XL",
+   "S",
+   "L",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "572.05",
+  "nameTr": "Umre Uzun Müslin Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırık Beyaz",
+   "Gri",
+   "Taş",
+   "Vizon"
+  ],
+  "sizes": [
+   "3XL",
+   "XL",
+   "S",
+   "M",
+   "2XL",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "581.01",
+  "nameTr": "Ribanalı Müslin Tshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 10,
+  "colors": [
+   "Buz Mavi",
+   "Haki",
+   "Vizon",
+   "Siyah",
+   "Beyaz",
+   "Gri",
+   "İndigo"
+  ],
+  "sizes": [
+   "S",
+   "XL",
+   "3XL",
+   "2XL",
+   "M",
+   "L"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "581.02",
+  "nameTr": "Batı Çocuk T-Shirt",
+  "department": "Kids",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": 71,
+  "colors": [
+   "Vizon",
+   "İndigo",
+   "Siyah",
+   "Beyaz",
+   "Haki",
+   "Buz Mavi",
+   "Gri"
+  ],
+  "sizes": [
+   "9-10 Yaş",
+   "5-6 yaş",
+   "4-5 Yaş",
+   "13-14 Yaş",
+   "2-3 Yaş",
+   "7-8 yaş",
+   "11-12 Yaş"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "581.03",
+  "nameTr": "Foça Kısa Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Vizon",
+   "Beyaz",
+   "Siyah",
+   "Buz Mavi"
+  ],
+  "sizes": [
+   "S",
+   "L",
+   "2XL",
+   "M",
+   "XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "581.04",
+  "nameTr": "Halikarnas Kısa Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Haki",
+   "Vizon",
+   "Buz Mavi",
+   "Beyaz"
+  ],
+  "sizes": [
+   "S",
+   "L",
+   "XL",
+   "M",
+   "2XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "581.08",
+  "nameTr": "Polo Yaka Müslin Kısa Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": 30,
+  "colors": [
+   "Kırık Beyaz",
+   "Buz Mavi",
+   "Siyah",
+   "Bej",
+   "Yağ Yeşili",
+   "Beyaz",
+   "İndigo"
+  ],
+  "sizes": [
+   "XL",
+   "3XL",
+   "S",
+   "L",
+   "M",
+   "2XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "581.09",
+  "nameTr": "Hakim Yaka Kısa Kol Müslin Sweatshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırık Beyaz",
+   "Bej",
+   "Beyaz",
+   "Zeytin Yeşili",
+   "Buz Mavi",
+   "Siyah",
+   "Yağ Yeşili",
+   "İndigo"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "L",
+   "3XL",
+   "S",
+   "2XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "581.10",
+  "nameTr": "Bora Kısa Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Açık Mavi",
+   "Gri",
+   "Açık Haki",
+   "Bej"
+  ],
+  "sizes": [
+   "XL",
+   "L",
+   "M",
+   "S",
+   "4XL",
+   "3XL",
+   "2XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "582.01",
+  "nameTr": "Kapüşonlu Müslin Sweatshirt",
+  "department": "Unisex",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 26,
+  "colors": [
+   "Haki",
+   "Siyah",
+   "Gri",
+   "Vizon",
+   "Pudra",
+   "İndigo",
+   "Beyaz",
+   "Buz Mavi"
+  ],
+  "sizes": [
+   "XL",
+   "3XL",
+   "S",
+   "M",
+   "L",
+   "2XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "582.03",
+  "nameTr": "Halikarnas Uzun Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Vizon",
+   "Haki",
+   "Beyaz",
+   "Buz Mavi"
+  ],
+  "sizes": [
+   "XL",
+   "S",
+   "M",
+   "2XL",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "582.04",
+  "nameTr": "Foça Uzun Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Haki",
+   "Buz Mavi",
+   "Vizon"
+  ],
+  "sizes": [
+   "2XL",
+   "M",
+   "XL",
+   "S",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "582.05",
+  "nameTr": "Multi Müslin Sweatshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Vizon",
+   "Haki",
+   "İndigo",
+   "Bordo"
+  ],
+  "sizes": [
+   "M",
+   "2XL",
+   "XL",
+   "L",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "582.06",
+  "nameTr": "Doruk Uzun Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "İndigo",
+   "Beyaz",
+   "Haki",
+   "Buz Mavi",
+   "Siyah"
+  ],
+  "sizes": [
+   "3XL",
+   "XL",
+   "S",
+   "2XL",
+   "M",
+   "L"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "582.07",
+  "nameTr": "Hakim Yaka Uzun Kol Müslin Sweatshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": 40,
+  "colors": [
+   "İndigo",
+   "Beyaz",
+   "Buz Mavi",
+   "Kırık Beyaz",
+   "Zeytin Yeşili",
+   "Yağ Yeşili",
+   "Siyah",
+   "Bej"
+  ],
+  "sizes": [
+   "3XL",
+   "2XL",
+   "M",
+   "XL",
+   "L",
+   "S"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "582.08",
+  "nameTr": "İbiza Uzun Kol T-Shirt",
+  "department": "Unisex",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırık Beyaz",
+   "Hardal",
+   "Buz Mavi",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "2XL",
+   "3XL",
+   "XL",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "582.09",
+  "nameTr": "Multi Hakim Yaka Müslin Sweatshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "İndigo",
+   "Kahve",
+   "Vizon",
+   "Haki",
+   "Siyah"
+  ],
+  "sizes": [
+   "XS",
+   "S",
+   "L",
+   "XL",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "582.12",
+  "nameTr": "Bora Uzun Kol T-Shirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Açık Haki",
+   "Gri",
+   "Bej",
+   "Açık Mavi"
+  ],
+  "sizes": [
+   "L",
+   "M",
+   "S",
+   "2XL",
+   "3XL",
+   "4XL",
+   "XL"
+  ],
+  "measuredFields": []
+ }
+]

@@ -1,0 +1,124 @@
+[
+ {
+  "itemCode": "T36942",
+  "nameTr": "Bera Triko Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Haki",
+   "Füme"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "otherCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "T38152-1",
+  "nameTr": "Çisel Triko Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "İndigo",
+   "Füme"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "otherCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "T38152-2",
+  "nameTr": "Çisel Triko Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Füme",
+   "İndigo"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "T38442",
+  "nameTr": "Ecrin Triko Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Füme",
+   "Kırmızı",
+   "Kahve",
+   "İndigo",
+   "Haki",
+   "Bordo"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "T39452-1",
+  "nameTr": "Elvan Triko Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Bordo",
+   "Füme",
+   "Lacivert"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ }
+]

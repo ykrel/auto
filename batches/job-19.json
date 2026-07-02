@@ -1,0 +1,711 @@
+[
+ {
+  "itemCode": "ELB.KC.005",
+  "nameTr": "Burçak Çocuk Uzun Kol Elbise",
+  "department": "Kids",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Mor",
+   "Krem",
+   "Lacivert",
+   "Beyaz"
+  ],
+  "sizes": [
+   "11-12 Yaş",
+   "9-10 Yaş",
+   "4-5 Yaş",
+   "2-3 Yaş",
+   "13-14 Yaş",
+   "7-8 yaş",
+   "5-6 yaş"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.KC.007",
+  "nameTr": "Asya Yakalı Pazen Çocuk Elbise Çiçek Desen",
+  "department": "Kids",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Lacivert",
+   "Siyah",
+   "Yeşil"
+  ],
+  "sizes": [
+   "5-6 yaş",
+   "7-8 yaş",
+   "2-3 Yaş",
+   "4-5 Yaş",
+   "9-10 Yaş"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "waistCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.KC.008",
+  "nameTr": "Alya Pazen Çocuk Elbise Çıtır Desen",
+  "department": "Kids",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Yeşil",
+   "Hardal",
+   "Beyaz",
+   "Mor"
+  ],
+  "sizes": [
+   "9-10 Yaş",
+   "7-8 yaş",
+   "2-3 Yaş",
+   "11-12 Yaş",
+   "5-6 yaş",
+   "4-5 Yaş"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.KC.009",
+  "nameTr": "Mahur Pazen Çocuk Elbise",
+  "department": "Kids",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Lacivert",
+   "Bordo",
+   "Siyah",
+   "Petrol"
+  ],
+  "sizes": [
+   "5-6 yaş",
+   "9-10 Yaş",
+   "2-3 Yaş",
+   "4-5 Yaş",
+   "7-8 yaş"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ETK.K.0006",
+  "nameTr": "Salopet Pazen Kısa Etek Çıtır Desen",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Saks",
+   "Haki",
+   "Hardal",
+   "Mor"
+  ],
+  "sizes": [
+   "XS",
+   "M",
+   "S",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "ETK.K.0009",
+  "nameTr": "Buse Kısa Etek Tomurcuk Desen",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Turuncu",
+   "Kırmızı",
+   "Saks Kareli",
+   "Koyu Mor",
+   "Turkuaz",
+   "Yeşil",
+   "Beyaz"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "ETK.K.0010",
+  "nameTr": "Buse Uzun Etek Tomurcuk Desen",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Koyu Mor",
+   "Turuncu",
+   "Turkuaz",
+   "Mor",
+   "Yeşil",
+   "Beyaz"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "ETK.K.0011",
+  "nameTr": "Buse Uzun Etek Gelincik Desen",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Saks",
+   "Siyah",
+   "Turkuaz",
+   "Kırmızı"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "ETK.KC.002",
+  "nameTr": "Miray Pazen Çocuk Salopet Etek Çıtır Desen",
+  "department": "Kids",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Mor",
+   "Yeşil",
+   "Beyaz",
+   "Hardal"
+  ],
+  "sizes": [
+   "7-8 yaş",
+   "5-6 yaş",
+   "2-3 Yaş",
+   "4-5 Yaş",
+   "9-10 Yaş"
+  ],
+  "measuredFields": [
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "FRC.K.0002",
+  "nameTr": "Nisa Pazen Ferace",
+  "department": "Women",
+  "category": "Abayas",
+  "hierarchy2": "Ferace",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Hardal",
+   "Saks",
+   "Mor",
+   "Siyah",
+   "Lacivert",
+   "Kırmızı",
+   "Haki"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "L",
+   "S",
+   "2XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "FRC.K.0004",
+  "nameTr": "Nakışlı Ferace",
+  "department": "Women",
+  "category": "Abayas",
+  "hierarchy2": "Ferace",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Bordo",
+   "Mor",
+   "Beyaz",
+   "Krem",
+   "Lacivert",
+   "Siyah",
+   "Petrol",
+   "Yeşil"
+  ],
+  "sizes": [
+   "L",
+   "S",
+   "XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "Fular4",
+  "nameTr": "Müslin Fular",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Hardal",
+   "Deniz Yıldızı Desen",
+   "Renkli",
+   "Beyaz",
+   "Kahve",
+   "Buz Mavi",
+   "Yağ Yeşili",
+   "Siyah",
+   "Yıldız",
+   "İndigo",
+   "Gri",
+   "Haki",
+   "Pudra",
+   "Vizon"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "Fular5",
+  "nameTr": "Vual Fular",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Mimoza Siyah",
+   "Mimoza Bordo",
+   "Mimoza Lacivert",
+   "Mimoza Turuncu",
+   "Çiçek Yeşil",
+   "Çiçek Siyah",
+   "Mimoza Yeşil",
+   "Mimoza Krem"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "GML.E.0001",
+  "nameTr": "Hakim Yaka Büyük Beden Kısa Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Mavi",
+   "Beyaz",
+   "Siyah",
+   "Taş",
+   "Krem"
+  ],
+  "sizes": [
+   "6XL",
+   "4XL",
+   "5XL",
+   "3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "GML.EC.001",
+  "nameTr": "Kısa Kol Çocuk Gömlek",
+  "department": "Kids",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Koyu Bordo",
+   "Su Yeşili",
+   "Mavi",
+   "Kırmızı Krem Ekose",
+   "Petrol",
+   "Kırmızı",
+   "Koyu Petrol",
+   "Beyaz",
+   "Açık Haki",
+   "Turkuaz",
+   "Mint Kareli",
+   "Siyah"
+  ],
+  "sizes": [
+   "5-6 yaş",
+   "9-10 Yaş",
+   "7-8 yaş",
+   "2-3 Yaş",
+   "4-5 Yaş"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "HVL.UC.001",
+  "nameTr": "Baskılı Çocuk Bornoz Flamingo Desen",
+  "department": "Kids",
+  "category": "Towels",
+  "hierarchy2": "Havlu",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "7-8 yaş",
+   "5-6 yaş",
+   "4-5 Yaş"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "HVL.UC.002",
+  "nameTr": "Baskılı Çocuk Bornoz Güneş Desen",
+  "department": "Kids",
+  "category": "Towels",
+  "hierarchy2": "Havlu",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "4-5 Yaş",
+   "7-8 yaş",
+   "5-6 yaş"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "HVL.UN.003",
+  "nameTr": "Baskılı Bornoz Flamingo Desen",
+  "department": "Unisex",
+  "category": "Towels",
+  "hierarchy2": "Havlu",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "L",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "KLY.K.0001",
+  "nameTr": "Oyalı Fular",
+  "department": "Women",
+  "category": "Necklaces",
+  "hierarchy2": "Kolye",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Fuşya",
+   "Pudra",
+   "Karma",
+   "Pembe",
+   "Yeşil",
+   "Kırmızı",
+   "Krem",
+   "Çimen Yeşili",
+   "Hardal",
+   "Turkuaz",
+   "Beyaz"
+  ],
+  "sizes": [
+   "STANDART",
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "KLY.K.0002",
+  "nameTr": "Boncuk Kolye",
+  "department": "Women",
+  "category": "Necklaces",
+  "hierarchy2": "Kolye",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "Kolye",
+  "nameTr": "Oyalı Kolye",
+  "department": "Women",
+  "category": "Necklaces",
+  "hierarchy2": "Kolye",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "PNT.K.0001",
+  "nameTr": "İrem Baskılı Pazen Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Siyah",
+   "Beyaz"
+  ],
+  "sizes": [
+   "M",
+   "S",
+   "XL",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "PNT.K.0004",
+  "nameTr": "İlkay Baskılı Pazen Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Haki"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "M",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "PNT.K.0006",
+  "nameTr": "Kemerli Pazen Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Hardal",
+   "Lacivert",
+   "Siyah",
+   "Kırmızı",
+   "Haki",
+   "Saks"
+  ],
+  "sizes": [
+   "38",
+   "36",
+   "48",
+   "40",
+   "44",
+   "42",
+   "46"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "PNT.UN.002",
+  "nameTr": "Şile Bezi Pantolon",
+  "department": "Unisex",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": 44,
+  "colors": [
+   "Turkuaz",
+   "İndigo",
+   "Siyah",
+   "Beyaz",
+   "Mor",
+   "Lacivert",
+   "Vizon",
+   "Petrol",
+   "Kırmızı",
+   "Krem",
+   "Yeşil",
+   "Bordo"
+  ],
+  "sizes": [
+   "52",
+   "44",
+   "48",
+   "46",
+   "42",
+   "38",
+   "40",
+   "50",
+   "36"
+  ],
+  "measuredFields": []
+ }
+]

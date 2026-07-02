@@ -1,0 +1,722 @@
+[
+ {
+  "itemCode": "524.09",
+  "nameTr": "Maria Askılı Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Haki",
+   "Yağ Yeşili"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "530.01",
+  "nameTr": "Benan Kısa Etek",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Haki",
+   "Beyaz",
+   "Siyah",
+   "İndigo",
+   "Gri",
+   "Turuncu",
+   "Hardal"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "530.02",
+  "nameTr": "Benan Uzun Etek",
+  "department": "Women",
+  "category": "Skirts",
+  "hierarchy2": "Etek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Gri",
+   "Hardal",
+   "Haki",
+   "İndigo",
+   "Beyaz",
+   "Zeytin Yeşili",
+   "Siyah"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.02",
+  "nameTr": "İnci Şort",
+  "department": "Women",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 25,
+  "colors": [
+   "Siyah",
+   "İndigo",
+   "Kırmızı",
+   "Turuncu",
+   "Buz Mavi",
+   "Haki",
+   "Vizon",
+   "Zeytin Yeşili",
+   "Gri",
+   "Pudra",
+   "Beyaz"
+  ],
+  "sizes": [
+   "M",
+   "2XL",
+   "S",
+   "L",
+   "3XL",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.04",
+  "nameTr": "İzel Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 35,
+  "colors": [
+   "Kırmızı",
+   "İndigo",
+   "Haki",
+   "Beyaz",
+   "Siyah",
+   "Vizon",
+   "Gri"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "540.06",
+  "nameTr": "Müslin Pantolon",
+  "department": "Unisex",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 3,
+  "colors": [
+   "İndigo",
+   "Vizon",
+   "Beyaz",
+   "Haki",
+   "Pudra",
+   "Hardal",
+   "Buz Mavi",
+   "Kırmızı",
+   "Turuncu",
+   "Pembe",
+   "Gri",
+   "Zeytin Yeşili",
+   "Siyah"
+  ],
+  "sizes": [
+   "4XL",
+   "2XL",
+   "L",
+   "3XL",
+   "XL",
+   "S",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "540.08",
+  "nameTr": "Müslin Havuç Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 31,
+  "colors": [
+   "Siyah",
+   "Gri",
+   "Hardal",
+   "Yağ Yeşili",
+   "Vizon",
+   "İndigo",
+   "Beyaz",
+   "Haki"
+  ],
+  "sizes": [
+   "2XL",
+   "S",
+   "L",
+   "XS",
+   "XL",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.09",
+  "nameTr": "Nirvana Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Yağ Yeşili",
+   "Siyah",
+   "Beyaz",
+   "Gri"
+  ],
+  "sizes": [
+   "M",
+   "S",
+   "XL",
+   "L",
+   "2XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.10",
+  "nameTr": "Günışığı Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Hardal",
+   "Haki",
+   "Vizon"
+  ],
+  "sizes": [
+   "S",
+   "2XL",
+   "XL",
+   "XS",
+   "M",
+   "3XL",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.11",
+  "nameTr": "Sardunya Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Gri",
+   "Vizon",
+   "Haki",
+   "İndigo",
+   "Beyaz"
+  ],
+  "sizes": [
+   "M",
+   "3XL",
+   "XS",
+   "XL",
+   "2XL",
+   "S",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.12",
+  "nameTr": "Batı Çocuk Şort",
+  "department": "Kids",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "İndigo",
+   "Yağ Yeşili",
+   "Beyaz",
+   "Gri",
+   "Hardal",
+   "Haki",
+   "Siyah",
+   "Buz Mavi"
+  ],
+  "sizes": [
+   "7-8 yaş",
+   "13-14 Yaş",
+   "11-12 Yaş",
+   "5-6 yaş",
+   "2-3 Yaş",
+   "9-10 Yaş",
+   "4-5 Yaş"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.13",
+  "nameTr": "Batı Çocuk Şalvar",
+  "department": "Kids",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Buz Mavi",
+   "Siyah",
+   "Beyaz",
+   "Gri",
+   "İndigo"
+  ],
+  "sizes": [
+   "9-10 Yaş",
+   "5-6 yaş",
+   "4-5 Yaş",
+   "7-8 yaş",
+   "2-3 Yaş"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.17",
+  "nameTr": "Filiz Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Bordo",
+   "Haki",
+   "Siyah",
+   "İndigo",
+   "Vizon"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "540.18",
+  "nameTr": "Müslin Kısa Şort",
+  "department": "Women",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Açık Haki",
+   "Pembe",
+   "Lila",
+   "Beyaz"
+  ],
+  "sizes": [
+   "L",
+   "M",
+   "S",
+   "XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "540.20",
+  "nameTr": "Müslin Çocuk Pantolon",
+  "department": "Kids",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Gri",
+   "Kırmızı",
+   "Beyaz",
+   "Siyah",
+   "Buz Mavi",
+   "İndigo"
+  ],
+  "sizes": [
+   "4-5 Yaş",
+   "7-8 yaş",
+   "2-3 Yaş",
+   "9-10 Yaş",
+   "5-6 yaş",
+   "11-12 Yaş"
+  ],
+  "measuredFields": [
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "540.26",
+  "nameTr": "Duru Şort",
+  "department": "Women",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Turuncu",
+   "Kırık Beyaz",
+   "Buz Mavi",
+   "Zeytin Yeşili",
+   "Pembe"
+  ],
+  "sizes": [
+   "XS",
+   "S",
+   "L",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "540.27",
+  "nameTr": "Çizgili Müslin Pantolon",
+  "department": "Unisex",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Çizgili Siyah",
+   "Gri",
+   "Çizgili Kahve",
+   "Çizgili Krem"
+  ],
+  "sizes": [
+   "L",
+   "2XL",
+   "XL",
+   "S",
+   "M",
+   "3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.28",
+  "nameTr": "Multi Müslin Şort",
+  "department": "Men",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve",
+   "Bordo",
+   "Siyah",
+   "İndigo",
+   "Gri",
+   "Beyaz",
+   "Vizon",
+   "Haki"
+  ],
+  "sizes": [
+   "3XL",
+   "2XL",
+   "L",
+   "XL",
+   "S",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.29",
+  "nameTr": "Multi Müslin Pantolon",
+  "department": "Men",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Kahve",
+   "Bordo",
+   "Gri",
+   "İndigo",
+   "Haki",
+   "Beyaz",
+   "Vizon",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "2XL",
+   "3XL",
+   "XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "540.30",
+  "nameTr": "İnci Uzun Şort",
+  "department": "Women",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Haki",
+   "Siyah",
+   "Gri",
+   "İndigo",
+   "Vizon"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "3XL",
+   "S",
+   "L",
+   "2XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "540.32",
+  "nameTr": "Müslin Şalvar Pantolon",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Vizon",
+   "Kırık Beyaz",
+   "Gri",
+   "Taş"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "L/XL",
+   "S/M",
+   "4XL/5XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "552.02",
+  "nameTr": "Deste Müslin Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Vizon",
+   "İndigo",
+   "Beyaz",
+   "Siyah",
+   "Haki"
+  ],
+  "sizes": [
+   "2XL",
+   "L",
+   "3XL",
+   "M",
+   "XL",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "552.03",
+  "nameTr": "Sedanur Müslin Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": 60,
+  "colors": [
+   "Beyaz",
+   "İndigo",
+   "Haki",
+   "Gri",
+   "Siyah",
+   "Vizon"
+  ],
+  "sizes": [
+   "M",
+   "3XL",
+   "S",
+   "2XL",
+   "XL",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "552.04",
+  "nameTr": "Gizem Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Vizon",
+   "Siyah",
+   "Beyaz",
+   "İndigo",
+   "Haki"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "S/M",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "otherCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "552.05",
+  "nameTr": "Ezgi Kaftan",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ }
+]

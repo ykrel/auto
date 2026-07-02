@@ -1,0 +1,927 @@
+[
+ {
+  "itemCode": "140.30",
+  "nameTr": "Şile Bezi Erkek Şort",
+  "department": "Women",
+  "category": "Shorts",
+  "hierarchy2": "Şort",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Kamuflaj",
+   "Gri",
+   "Camel",
+   "Mint Yeşili",
+   "Krem",
+   "Buz Mavi"
+  ],
+  "sizes": [
+   "2XL",
+   "S",
+   "L",
+   "XL",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "140.31",
+  "nameTr": "Pantolon Astarı",
+  "department": "Women",
+  "category": "Trousers",
+  "hierarchy2": "Pantolon",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": 1,
+  "colors": [
+   "Siyah",
+   "Beyaz",
+   "Krem"
+  ],
+  "sizes": [
+   "3XL",
+   "L",
+   "2XL",
+   "M",
+   "XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "otherCm",
+   "waistCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "151.01",
+  "nameTr": "Yakalı Uzun Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Haki",
+   "Yeşil",
+   "İndigo",
+   "Turkuaz",
+   "Buz Mavi",
+   "Kot Mavi",
+   "Gri",
+   "Siyah",
+   "Sari",
+   "Mercan"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "XL",
+   "3XL",
+   "S",
+   "2XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "152.02",
+  "nameTr": "Edanur Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": null,
+  "colors": [
+   "Mor",
+   "Petrol",
+   "Siyah",
+   "Krem",
+   "Yeşil",
+   "Lacivert",
+   "Beyaz",
+   "Bordo"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "3XL",
+   "M",
+   "2XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "152.03",
+  "nameTr": "Kadın Hakim Yaka Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Bordo",
+   "Beyaz",
+   "Yeşil",
+   "Siyah",
+   "Lacivert",
+   "Krem",
+   "Petrol",
+   "Mor",
+   "Kırmızı Lacivert Ekose",
+   "Lacivert Ekose",
+   "Pembe Ekose",
+   "Saks Ekose",
+   "Krem Çizgili",
+   "Haki",
+   "Mavi"
+  ],
+  "sizes": [
+   "3XL",
+   "M",
+   "XL",
+   "2XL",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "152.05",
+  "nameTr": "Erva Uzun Kol Gömlek",
+  "department": "Women",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah Çizgili",
+   "Mavi Çizgili",
+   "Bordo Çizgili",
+   "Krem Çizgili"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "S/M",
+   "L/XL",
+   "4XL/5XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "152.06",
+  "nameTr": "Dicle Tunik",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Lacivert",
+   "Petrol",
+   "Siyah",
+   "Beyaz"
+  ],
+  "sizes": [
+   "4XL/5XL",
+   "2XL-3XL",
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "152.07",
+  "nameTr": "Sevim Elbise",
+  "department": "Women",
+  "category": "Tunics",
+  "hierarchy2": "Tunik",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Bordo",
+   "Mor",
+   "Krem",
+   "Petrol"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "4XL/5XL",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "171.01",
+  "nameTr": "Kısa Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": 6,
+  "colors": [
+   "Petrol",
+   "Haki",
+   "Siyah",
+   "Mavi Beyaz Çizgili",
+   "Mor Ekose",
+   "Mint Kareli",
+   "Beyaz Siyah Çizgili",
+   "Koyu Petrol",
+   "Kırmızı Siyah Çizgili",
+   "Turkuaz",
+   "Mavi",
+   "Renkli",
+   "Kırmızı",
+   "Pembe Ekose",
+   "Turuncu Lacivert Pötikare",
+   "Lila Ekose",
+   "Füme Ekose",
+   "Siyah Beyaz Çizgili",
+   "Krem",
+   "Saks Ekose",
+   "Siyah Krem Çizgili",
+   "Yeşil Çizgili",
+   "Krem Ekose",
+   "Saks Beyaz Kareli",
+   "Koyu Bordo",
+   "Saks",
+   "Kırmızı Lacivert Kareli",
+   "Su Yeşili",
+   "Buz Mavi",
+   "Beyaz",
+   "Kırmızı Krem Ekose",
+   "Taş",
+   "Gri Ekose",
+   "Mor Kareli",
+   "Bordo Krem Çizgili",
+   "Krem Mavi Çizgili",
+   "Mavi Beyaz Kareli",
+   "Siyah Çizgili",
+   "Lacivert Ekose",
+   "Ekru Gri Çizgili",
+   "Siyah Gri Ekose",
+   "Kırmızı Lacivert Ekose",
+   "Krem Kareli",
+   "Yeşil Ekose"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "S",
+   "XL",
+   "2XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "171.02",
+  "nameTr": "Hakim Yaka Kısa Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Beyaz",
+   "Mavi",
+   "Taş",
+   "Ekru Gri Çizgili",
+   "Buz Mavi",
+   "Mavi Beyaz Çizgili",
+   "Krem",
+   "Yeşil Çizgili"
+  ],
+  "sizes": [
+   "L",
+   "2XL",
+   "M",
+   "S",
+   "XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "171.04",
+  "nameTr": "Bodrum Kısa Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": 19,
+  "colors": [
+   "Krem",
+   "Açık Turkuaz",
+   "Saks",
+   "Haki",
+   "Kırmızı",
+   "Sarı",
+   "Turkuaz",
+   "Koyu Bordo",
+   "Beyaz",
+   "Koyu Petrol",
+   "Petrol",
+   "Su Yeşili",
+   "Açık Mavi",
+   "Siyah"
+  ],
+  "sizes": [
+   "2XL",
+   "3XL",
+   "M",
+   "L",
+   "S",
+   "XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "171.07",
+  "nameTr": "Büyük Beden Kısa Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": 55,
+  "colors": [
+   "Beyaz Siyah Çizgili",
+   "Açık Haki",
+   "Mor Kareli",
+   "Buz Mavi",
+   "Petrol Ekose",
+   "Gri Beyaz Çizgili",
+   "Kırmızı Kareli",
+   "Turkuaz",
+   "Koyu Petrol",
+   "Koyu Bordo",
+   "Lacivert Ekose",
+   "Mavi Beyaz Çizgili",
+   "Siyah",
+   "Ekru Gri Çizgili",
+   "Siyah Kareli",
+   "Taş",
+   "Su Yeşili",
+   "Krem",
+   "Haki",
+   "Mint Kareli",
+   "Kırmızı Siyah Çizgili",
+   "Beyaz",
+   "Kırmızı Lacivert Ekose",
+   "Yeşil Ekose",
+   "Mavi",
+   "Mavi Gri Çizgili",
+   "Füme Ekose",
+   "Kırmızı Lacivert Kareli",
+   "Siyah Ekose"
+  ],
+  "sizes": [
+   "6XL",
+   "5XL",
+   "3XL",
+   "4XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "171.08",
+  "nameTr": "Köy Bezi Kısa Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Ekru Gri Çizgili",
+   "Krem"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "2XL",
+   "M",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "171.12",
+  "nameTr": "Dar Kalıp Kısa Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": 58,
+  "colors": [
+   "Petrol",
+   "Mavi",
+   "Koyu Petrol",
+   "Krem",
+   "Buz Mavi",
+   "Beyaz",
+   "Taş",
+   "Koyu Bordo",
+   "Kırmızı",
+   "Kırmızı Lacivert Ekose",
+   "Siyah",
+   "Haki"
+  ],
+  "sizes": [
+   "XL",
+   "2XL",
+   "L",
+   "M",
+   "S"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "171.21",
+  "nameTr": "Ada Kısa Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Beyaz",
+   "Açık Mavi",
+   "Petrol",
+   "Haki",
+   "Siyah",
+   "Turkuaz"
+  ],
+  "sizes": [
+   "XL",
+   "S",
+   "2XL",
+   "M",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "171.22",
+  "nameTr": "Bisiklet Yaka Kısa Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Ekru Gri Çizgili",
+   "Kırmızı Lacivert Kareli",
+   "Mavi Beyaz Çizgili",
+   "Gri Ekose",
+   "Beyaz",
+   "Lacivert Kareli",
+   "Saks Ekose"
+  ],
+  "sizes": [
+   "L",
+   "M",
+   "2XL",
+   "XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "172.01",
+  "nameTr": "Uzun Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": 23,
+  "colors": [
+   "Siyah",
+   "Buz Mavi",
+   "Yeşil Ekose",
+   "Mint Kareli",
+   "Mavi Beyaz Çizgili",
+   "Haki",
+   "Turuncu Lacivert Pötikare",
+   "Koyu Petrol",
+   "Krem",
+   "Beyaz Siyah Çizgili",
+   "Saks Ekose",
+   "Ekru Gri Çizgili",
+   "Beyaz",
+   "Kırmızı Lacivert Ekose",
+   "Koyu Bordo",
+   "Taş",
+   "Gri Çizgili",
+   "Mavi"
+  ],
+  "sizes": [
+   "XL",
+   "S",
+   "M",
+   "L",
+   "2XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "172.02",
+  "nameTr": "Hakim Yaka Uzun Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": 57,
+  "colors": [
+   "Haki",
+   "Taş",
+   "Mavi Beyaz Çizgili",
+   "Buz Mavi",
+   "Haki Ekose",
+   "Mavi Kırçıllı",
+   "Krem",
+   "Ekru Gri Çizgili",
+   "Beyaz",
+   "Mavi",
+   "Gri",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "2XL",
+   "XL",
+   "S"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm"
+  ]
+ },
+ {
+  "itemCode": "172.03",
+  "nameTr": "Hakim Yaka Büyük Beden Uzun Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Siyah",
+   "Buz Mavi",
+   "Saks Ekose",
+   "Mavi",
+   "Beyaz",
+   "Taş",
+   "Lacivert Beyaz Kareli"
+  ],
+  "sizes": [
+   "6XL",
+   "3XL",
+   "4XL",
+   "5XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "172.04",
+  "nameTr": "Ada Uzun Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Petrol",
+   "Siyah",
+   "Beyaz",
+   "Açık Mavi",
+   "Turkuaz",
+   "Kırmızı"
+  ],
+  "sizes": [
+   "L",
+   "S",
+   "2XL",
+   "XL",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "172.07",
+  "nameTr": "Uzun Kol Büyük Beden Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Taş",
+   "Saks Ekose",
+   "Mavi",
+   "Buz Mavi",
+   "Krem",
+   "Mor Kareli",
+   "Lacivert Beyaz Kareli",
+   "Siyah"
+  ],
+  "sizes": [
+   "4XL",
+   "3XL",
+   "5XL",
+   "6XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "172.12",
+  "nameTr": "Dar Kalıp Uzun Kol Gömlek",
+  "department": "Men",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Gri Ekose",
+   "Saks Ekose",
+   "Turkuaz",
+   "Krem",
+   "Su Yeşili",
+   "Petrol",
+   "Koyu Petrol",
+   "Füme Beyaz Çizgili",
+   "Pembe Ekose",
+   "Kırmızı",
+   "Haki",
+   "Buz Mavi",
+   "Beyaz",
+   "Kırmızı Siyah Çizgili",
+   "Kırmızı Lacivert Ekose",
+   "Koyu Bordo",
+   "Mavi",
+   "Kırmızı Krem Ekose",
+   "Taş",
+   "Mint Kareli",
+   "Kırmızı Lacivert Kareli"
+  ],
+  "sizes": [
+   "L",
+   "S",
+   "XL",
+   "2XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "181.01",
+  "nameTr": "Bisiklet Yaka Kısa Kol Tshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": 68,
+  "colors": [
+   "Taş",
+   "Petrol",
+   "Krem",
+   "Beyaz",
+   "Mint Kareli",
+   "Koyu Petrol",
+   "Mavi",
+   "Buz Mavi",
+   "Turkuaz",
+   "Ekru Gri Çizgili",
+   "Haki",
+   "Siyah",
+   "Mavi Beyaz Çizgili",
+   "Kırmızı",
+   "Koyu Bordo"
+  ],
+  "sizes": [
+   "XL",
+   "S",
+   "M",
+   "2XL",
+   "L"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "181.02",
+  "nameTr": "Zımbalı Kısa Kol Tshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": 16,
+  "colors": [
+   "Koyu Bordo",
+   "Beyaz",
+   "Mint Kareli",
+   "Koyu Petrol",
+   "Ekru Gri Çizgili",
+   "Siyah",
+   "Buz Mavi",
+   "Turkuaz",
+   "Krem",
+   "Taş",
+   "Kırmızı",
+   "Mavi",
+   "Petrol",
+   "Saks",
+   "Haki",
+   "Mavi Beyaz Çizgili"
+  ],
+  "sizes": [
+   "S",
+   "L",
+   "M",
+   "XL",
+   "2XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "181.03",
+  "nameTr": "Bisiklet Yaka Büyük Beden Kısa Kol Tshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Koyu Petrol",
+   "Taş",
+   "Koyu Bordo",
+   "Krem",
+   "Açık Mavi Ekose",
+   "Yeşil Çizgili",
+   "Kırmızı Krem Ekose",
+   "Haki",
+   "Buz Mavi",
+   "Mavi Beyaz Çizgili",
+   "Siyah",
+   "Ekru Gri Çizgili",
+   "Mavi",
+   "Mavi Beyaz Kareli",
+   "Gri Yeşil Çizgili"
+  ],
+  "sizes": [
+   "4XL",
+   "5XL",
+   "6XL",
+   "3XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ }
+]

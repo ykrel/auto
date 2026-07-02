@@ -1,0 +1,732 @@
+[
+ {
+  "itemCode": "822.51",
+  "nameTr": "Nurcan Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Petrol",
+   "Siyah",
+   "Hardal"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "3XL",
+   "2XL",
+   "S",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.54",
+  "nameTr": "Pelin Pazen Kısa Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Renkli"
+  ],
+  "sizes": [
+   "2XL",
+   "M",
+   "3XL",
+   "XL",
+   "S",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.55",
+  "nameTr": "Eftelya Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Petrol",
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "S",
+   "M",
+   "XL",
+   "3XL",
+   "L",
+   "2XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.60",
+  "nameTr": "Bade Velvetin Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Lacivert",
+   "Siyah",
+   "Yeşil",
+   "Bordo"
+  ],
+  "sizes": [
+   "3XL",
+   "M",
+   "L",
+   "XL",
+   "2XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.61",
+  "nameTr": "Şirin Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Yeşil",
+   "Bordo",
+   "Lacivert"
+  ],
+  "sizes": [
+   "XL",
+   "M",
+   "L",
+   "3XL",
+   "S",
+   "2XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.62",
+  "nameTr": "Ayşegül Velvetin Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Bordo",
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "2XL",
+   "S",
+   "3XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.67",
+  "nameTr": "Güz Velvetin Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Petrol",
+   "Lacivert"
+  ],
+  "sizes": [
+   "XL",
+   "L",
+   "M",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.68",
+  "nameTr": "Bahar Dalı Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Siyah"
+  ],
+  "sizes": [
+   "S",
+   "L",
+   "2XL",
+   "M",
+   "XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.70",
+  "nameTr": "Hercai Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Yeşil",
+   "Hardal"
+  ],
+  "sizes": [
+   "L",
+   "M",
+   "XL",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "822.71",
+  "nameTr": "Kamelya Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Petrol",
+   "Siyah",
+   "Bordo"
+  ],
+  "sizes": [
+   "XL",
+   "S",
+   "M",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.75",
+  "nameTr": "Gülendam Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Lacivert",
+   "Yeşil",
+   "Siyah"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "L",
+   "3XL",
+   "2XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "822.77",
+  "nameTr": "Seçil Pazen Uzun Elbise Papatya Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Bordo"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "L",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.79",
+  "nameTr": "Nergis Pazen Elbise Zambak Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Petrol",
+   "Siyah",
+   "Lacivert"
+  ],
+  "sizes": [
+   "L/XL",
+   "2XL-3XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.80",
+  "nameTr": "Evren Pazen Elbise Çiçek Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Bordo",
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.81",
+  "nameTr": "Firdevs Pazen Elbise Çiçek Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Lacivert",
+   "Yeşil"
+  ],
+  "sizes": [
+   "M",
+   "2XL",
+   "S",
+   "3XL",
+   "L",
+   "XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.82",
+  "nameTr": "Zuhal Pazen Elbise Papatya Desen",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Lacivert",
+   "Yeşil",
+   "Siyah"
+  ],
+  "sizes": [
+   "L",
+   "2XL",
+   "M",
+   "3XL",
+   "XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.83",
+  "nameTr": "Fahriye Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Mor",
+   "Siyah",
+   "Hardal"
+  ],
+  "sizes": [
+   "2XL",
+   "XL",
+   "S",
+   "L",
+   "3XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.84",
+  "nameTr": "Sümeyye Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Lacivert",
+   "Bordo",
+   "Yeşil",
+   "Hardal"
+  ],
+  "sizes": [
+   "L",
+   "2XL",
+   "S",
+   "XL",
+   "3XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.85",
+  "nameTr": "Maide Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Yeşil"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "3XL",
+   "L",
+   "S",
+   "2XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.86",
+  "nameTr": "Nurperi Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Bordo",
+   "Mor",
+   "Siyah",
+   "Yeşil"
+  ],
+  "sizes": [
+   "2XL",
+   "3XL",
+   "M",
+   "XL",
+   "S",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "822.87",
+  "nameTr": "Alara Pazen Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Mor",
+   "Bordo",
+   "Yeşil",
+   "Siyah"
+  ],
+  "sizes": [
+   "L",
+   "S",
+   "3XL",
+   "XL",
+   "M",
+   "2XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "852.22",
+  "nameTr": "Güz Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Bordo",
+   "Petrol"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "852.24",
+  "nameTr": "Ela Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Petrol",
+   "Siyah",
+   "Lacivert",
+   "Haki",
+   "Bordo"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "853.01",
+  "nameTr": "Tuğba Pazen Yelek",
+  "department": "Women",
+  "category": "Vests",
+  "hierarchy2": "Yelek",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Bordo"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "S/M",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "853.03",
+  "nameTr": "Esra Pazen Uzun Yelek",
+  "department": "Women",
+  "category": "Vests",
+  "hierarchy2": "Yelek",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Yeşil",
+   "Lacivert",
+   "Bordo"
+  ],
+  "sizes": [
+   "M",
+   "S",
+   "L",
+   "XL",
+   "3XL",
+   "2XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ }
+]

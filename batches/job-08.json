@@ -1,0 +1,703 @@
+[
+ {
+  "itemCode": "512.01",
+  "nameTr": "Sedef Gömlek",
+  "department": "Women",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 47,
+  "colors": [
+   "Beyaz",
+   "İndigo",
+   "Siyah",
+   "Pudra",
+   "Vizon",
+   "Haki",
+   "Gri",
+   "Buz Mavi"
+  ],
+  "sizes": [
+   "M",
+   "3XL",
+   "XL",
+   "S",
+   "2XL",
+   "L"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "512.05",
+  "nameTr": "Asu Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 46,
+  "colors": [
+   "Gri",
+   "Haki",
+   "Hardal",
+   "Buz Mavi",
+   "Siyah",
+   "Vizon",
+   "Beyaz",
+   "Kırmızı",
+   "İndigo",
+   "Zeytin Yeşili",
+   "Turuncu",
+   "Çizgili",
+   "Pudra"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "512.06",
+  "nameTr": "Günışığı Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Siyah",
+   "Hardal",
+   "Vizon",
+   "Beyaz"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "512.07",
+  "nameTr": "Esved Gömlek",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "İndigo",
+   "Kırmızı",
+   "Bej",
+   "Beyaz",
+   "Haki"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "512.08",
+  "nameTr": "Nirvana Uzun Kol Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Gri",
+   "Yağ Yeşili",
+   "Kırmızı"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "512.09",
+  "nameTr": "Çiçek Uzun Kol Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Yağ Yeşili",
+   "Buz Mavi",
+   "Siyah",
+   "Vizon",
+   "Beyaz"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "4XL/5XL",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "512.10",
+  "nameTr": "Burcu Uzun Kol Gömlek",
+  "department": "Women",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Yağ Yeşili",
+   "İndigo",
+   "Siyah",
+   "Kırmızı",
+   "Turuncu"
+  ],
+  "sizes": [
+   "4XL/5XL",
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "512.11",
+  "nameTr": "Nadya Yarım Kol Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Yağ Yeşili",
+   "İndigo",
+   "Siyah",
+   "Haki",
+   "Turuncu",
+   "Kırmızı",
+   "Beyaz"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "513.01",
+  "nameTr": "Melis Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 17,
+  "colors": [
+   "Turuncu",
+   "Kırmızı",
+   "Beyaz",
+   "Pembe",
+   "Gri",
+   "Zeytin Yeşili",
+   "Haki",
+   "Buz Mavi",
+   "Lila",
+   "Siyah",
+   "Pudra",
+   "Hardal",
+   "İndigo",
+   "Vizon"
+  ],
+  "sizes": [
+   "2XL",
+   "L",
+   "M",
+   "3XL",
+   "S",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "513.02",
+  "nameTr": "Günışığı Yelek",
+  "department": "Women",
+  "category": "Vests",
+  "hierarchy2": "Yelek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Vizon",
+   "Haki",
+   "Siyah",
+   "Hardal",
+   "Beyaz"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "S/M",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "513.03",
+  "nameTr": "Deren Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Yağ Yeşili",
+   "Haki",
+   "Kırmızı",
+   "Turuncu",
+   "Vizon",
+   "Hardal"
+  ],
+  "sizes": [
+   "XS",
+   "M",
+   "S",
+   "L"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "513.04",
+  "nameTr": "Nirvana Yelek",
+  "department": "Women",
+  "category": "Vests",
+  "hierarchy2": "Yelek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Gri",
+   "Yağ Yeşili",
+   "Beyaz",
+   "Siyah",
+   "Kırmızı"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "513.05",
+  "nameTr": "Berrin Kolsuz Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": 51,
+  "colors": [
+   "Kırık Beyaz",
+   "Kırmızı",
+   "Siyah",
+   "Hardal",
+   "Turuncu",
+   "Gri",
+   "Haki"
+  ],
+  "sizes": [
+   "L",
+   "2XL",
+   "XL",
+   "M",
+   "S",
+   "3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "513.06",
+  "nameTr": "Cunda Kolsuz Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Lila",
+   "Kırık Beyaz",
+   "Zeytin Yeşili",
+   "Siyah",
+   "Yağ Yeşili",
+   "Turuncu"
+  ],
+  "sizes": [
+   "S/M",
+   "4XL/5XL",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "521.06",
+  "nameTr": "Gizem Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Vizon",
+   "İndigo",
+   "Haki",
+   "Siyah",
+   "Beyaz"
+  ],
+  "sizes": [
+   "L/XL",
+   "2XL-3XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "521.07",
+  "nameTr": "Yaprak Yarım Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah/Vizon",
+   "Siyah/Beyaz",
+   "Vizon/Haki",
+   "Siyah-Siyah"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL",
+   "4XL/5XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "521.08",
+  "nameTr": "Alize Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": 70,
+  "colors": [
+   "Haki",
+   "Pudra",
+   "Vizon",
+   "Siyah",
+   "Kırık Beyaz"
+  ],
+  "sizes": [
+   "3XL",
+   "2XL",
+   "S",
+   "XL",
+   "M",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "521.09",
+  "nameTr": "Dora Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "İndigo",
+   "Haki",
+   "Kırık Beyaz",
+   "Vizon"
+  ],
+  "sizes": [
+   "2XL",
+   "M",
+   "3XL",
+   "S",
+   "L",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "521.10",
+  "nameTr": "Serap Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah/Beyaz"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "521.11",
+  "nameTr": "Lidya Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Zeytin Yeşili",
+   "Siyah",
+   "Kırık Beyaz",
+   "İndigo",
+   "Bej"
+  ],
+  "sizes": [
+   "L/XL",
+   "4XL/5XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "522.01",
+  "nameTr": "Oylum Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Gri",
+   "Siyah",
+   "Beyaz",
+   "İndigo",
+   "Haki",
+   "Vizon"
+  ],
+  "sizes": [
+   "2XL",
+   "L",
+   "3XL",
+   "XL",
+   "M",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "522.02",
+  "nameTr": "İzel Uzun Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "İndigo",
+   "Haki",
+   "Beyaz",
+   "Vizon"
+  ],
+  "sizes": [
+   "XL",
+   "3XL",
+   "L",
+   "2XL",
+   "M",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "522.03",
+  "nameTr": "Akay Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "İndigo",
+   "Gri",
+   "Siyah",
+   "Haki",
+   "Vizon",
+   "Beyaz"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "S",
+   "2XL",
+   "3XL",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "522.04",
+  "nameTr": "Sezen Ferace",
+  "department": "Women",
+  "category": "Abayas",
+  "hierarchy2": "Ferace",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Vizon",
+   "Gri",
+   "Siyah",
+   "İndigo",
+   "Beyaz"
+  ],
+  "sizes": [
+   "XL",
+   "L",
+   "S",
+   "2XL",
+   "3XL",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "522.05",
+  "nameTr": "İlay Çocuk Elbise",
+  "department": "Kids",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Yağ Yeşili",
+   "Beyaz",
+   "Pudra",
+   "Haki",
+   "İndigo",
+   "Hardal",
+   "Siyah"
+  ],
+  "sizes": [
+   "5-6 yaş",
+   "2-3 Yaş",
+   "9-10 Yaş",
+   "11-12 Yaş",
+   "4-5 Yaş",
+   "7-8 yaş",
+   "13-14 Yaş"
+  ],
+  "measuredFields": []
+ }
+]

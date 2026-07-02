@@ -1,0 +1,811 @@
+[
+ {
+  "itemCode": "582.13",
+  "nameTr": "Altay Uzun Kol Müslin Tshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Vizon",
+   "Beyaz",
+   "Kırık Beyaz",
+   "Siyah",
+   "Gri",
+   "Haki"
+  ],
+  "sizes": [
+   "2XL",
+   "M",
+   "3XL",
+   "L",
+   "S",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "621.02",
+  "nameTr": "Defne Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": 74,
+  "colors": [
+   "Siyah",
+   "Yeşil",
+   "Yesil",
+   "Pembe",
+   "Yeşil Kırçıllı",
+   "Zengin Turkuaz",
+   "Bordo",
+   "Turkuaz",
+   "Kahverengi",
+   "Mimoza Bordo",
+   "Lacivert",
+   "Bordo Siyah Pötikare",
+   "Gri",
+   "Mavi Beyaz",
+   "Açık Yeşil",
+   "Nil Yeşili",
+   "Su Yeşili",
+   "Somon",
+   "Yeşil-Beyaz",
+   "Siyah-Beyaz",
+   "Soyut Siyah",
+   "Mor Kırçıllı",
+   "Siyah Beyaz",
+   "Kırmızı",
+   "Kırmızı Kırçıllı",
+   "Renkli",
+   "Krem",
+   "Bordo Lacivert Çizgili",
+   "Mor",
+   "Mimoza Siyah",
+   "Mimoza Yeşil",
+   "Mimoza Lacivert",
+   "Koyu Yeşil",
+   "Lacivert Camel Damalı",
+   "Buz Mavi",
+   "Hardal",
+   "Bordo-Krem",
+   "Koyu Bordo",
+   "Lila",
+   "Pembe-Beyaz",
+   "Mimoza Krem",
+   "Beyaz",
+   "Mor-Pembe",
+   "Mimoza Turuncu",
+   "Haki",
+   "Fıstık Yesili",
+   "Fuşya"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "621.08",
+  "nameTr": "Side Pareo",
+  "department": "Women",
+  "category": "Vests",
+  "hierarchy2": "Yelek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Turuncu",
+   "Yeşil-Beyaz",
+   "Pembe",
+   "Pembe-Beyaz",
+   "Turkuaz Çizgili",
+   "Mor",
+   "Lacivert",
+   "Gri",
+   "Yesil",
+   "Turkuaz",
+   "Etnik Siyah",
+   "Sarı",
+   "Kırmızı",
+   "Buz Mavi",
+   "Saks",
+   "Yaprak Siyah",
+   "Siyah"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": [
+   "otherCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "624.01",
+  "nameTr": "Afrodit Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": 9,
+  "colors": [
+   "Mavi",
+   "Turkuaz",
+   "Yeşil",
+   "Fuşya",
+   "Menekşe Beyaz",
+   "Lacivert",
+   "Menekşe Mor",
+   "Kırmızı",
+   "Beyaz",
+   "Lale Siyah",
+   "Gri",
+   "Mor-Pembe",
+   "Mor",
+   "Yesil",
+   "Fusya",
+   "Zengin Turkuaz",
+   "Bordo",
+   "Batik Pembe",
+   "Açık Turkuaz",
+   "Siyah-Beyaz",
+   "Haki",
+   "Açık Yeşil",
+   "Lacivert Camel Damalı",
+   "Siyah",
+   "Siyah Leopar",
+   "Menekşe Turuncu",
+   "Lale Hardal",
+   "Bordo Siyah Pötikare",
+   "Sarmaşık Mor",
+   "Toprak",
+   "Etnik Turkuaz",
+   "Şal Saks",
+   "Çiçek Yeşil",
+   "Cam Göbeği",
+   "Lale Beyaz",
+   "Krem",
+   "Sarmaşık Pudra",
+   "Açık Mavi",
+   "Soyut Siyah",
+   "Pembe",
+   "Menekşe Yeşil",
+   "Bordo-Krem",
+   "Füme",
+   "Mürdüm",
+   "Papatya Lacivert",
+   "Etnik Siyah",
+   "Petrol",
+   "Pembe-Beyaz",
+   "Turkuaz Çizgili",
+   "Koyu Hardal",
+   "Su Yeşili",
+   "Sari",
+   "Şal Beyaz",
+   "Mavi Beyaz",
+   "Siyah Kahve",
+   "Vizon",
+   "Saks",
+   "Kahve",
+   "Hardal",
+   "Batik Kahve",
+   "Buz Mavi",
+   "Su Yesili",
+   "Lale Kırmızı",
+   "Renkli",
+   "Şal Hardal",
+   "Menekşe Krem",
+   "Sarmaşık Bordo",
+   "Yeşil-Beyaz",
+   "Yaprak Siyah",
+   "Somon",
+   "Batik Turuncu",
+   "Papatya Turkuaz",
+   "Batik Mor",
+   "Nil Yeşili",
+   "Lale Yeşil",
+   "Lale Krem",
+   "Çiçek Siyah",
+   "Batik Turkuaz",
+   "Menekşe Saks Mavi",
+   "Turuncu",
+   "Şal Lacivert",
+   "Sarmaşık Gri",
+   "Sarı",
+   "Şal Kırmızı",
+   "Sarmaşık Lacivert",
+   "Sarmaşık Turkuaz",
+   "Batik Koyu Kahve",
+   "Saks Kareli",
+   "Siyah Beyaz",
+   "Fıstık Yesili",
+   "Saks Ekose",
+   "Taş",
+   "Lila"
+  ],
+  "sizes": [
+   "STANDART",
+   "Standart"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "624.02",
+  "nameTr": "Afrodit Çocuk Elbise",
+  "department": "Kids",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Pembe",
+   "Mor",
+   "Siyah",
+   "Cam Göbeği",
+   "Koyu Hardal",
+   "Açık Haki",
+   "Hardal",
+   "Gül Kurusu"
+  ],
+  "sizes": [
+   "6-8",
+   "3-5"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "624.04",
+  "nameTr": "Afrodit Kısa Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2022,
+  "bestsellerRank": null,
+  "colors": [
+   "Pembe",
+   "Turkuaz",
+   "Beyaz",
+   "Gri",
+   "Turkuaz Çizgili",
+   "Mor",
+   "Lacivert",
+   "Pembe-Beyaz",
+   "Yeşil-Beyaz",
+   "Saks",
+   "Yesil",
+   "Buz Mavi",
+   "Yaprak Siyah"
+  ],
+  "sizes": [
+   "Standart",
+   "STANDART"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "711.02",
+  "nameTr": "Hülya Kısa Kol Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "712.05",
+  "nameTr": "Avşar Gömlek",
+  "department": "Women",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": 73,
+  "colors": [
+   "Siyah",
+   "Krem",
+   "Taş",
+   "Haki",
+   "Mercan",
+   "Vizon",
+   "Buz Mavi",
+   "Beyaz"
+  ],
+  "sizes": [
+   "L",
+   "XL",
+   "M",
+   "3XL",
+   "2XL",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "712.07",
+  "nameTr": "Ezgi Uzun Kol Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "713.01",
+  "nameTr": "Lavinya Nakışlı Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Hardal",
+   "Yeşil",
+   "Siyah",
+   "Petrol",
+   "Beyaz",
+   "Fıstık Yeşili"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "otherCm"
+  ]
+ },
+ {
+  "itemCode": "713.02",
+  "nameTr": "Lavinya Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Fıstık Yeşili",
+   "Petrol",
+   "Siyah",
+   "Yeşil",
+   "Beyaz",
+   "Hardal"
+  ],
+  "sizes": [
+   "L/XL",
+   "2XL-3XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "otherCm"
+  ]
+ },
+ {
+  "itemCode": "713.03",
+  "nameTr": "Hazan Atlet",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "XL",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "713.05",
+  "nameTr": "Doğa Kolsuz T-Shirt",
+  "department": "Unisex",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "721.15",
+  "nameTr": "İclal Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Mor",
+   "Beyaz",
+   "Bordo",
+   "Petrol",
+   "Krem",
+   "Siyah"
+  ],
+  "sizes": [
+   "L",
+   "M",
+   "XL",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "721.21",
+  "nameTr": "Neslihan Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Bordo",
+   "Siyah",
+   "Fıstık Yeşili",
+   "Beyaz",
+   "Petrol",
+   "Krem"
+  ],
+  "sizes": [
+   "S",
+   "XL",
+   "2XL",
+   "M",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "721.22",
+  "nameTr": "Candan Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Haki",
+   "Beyaz",
+   "Petrol",
+   "Mor"
+  ],
+  "sizes": [
+   "M",
+   "3XL",
+   "L",
+   "S",
+   "2XL",
+   "XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "721.23",
+  "nameTr": "Reyhan Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Beyaz",
+   "Bordo",
+   "Hardal",
+   "Krem",
+   "Haki"
+  ],
+  "sizes": [
+   "M",
+   "L",
+   "2XL",
+   "3XL",
+   "XL",
+   "S"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "721.25",
+  "nameTr": "Leman Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Siyah",
+   "Mercan"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "721.27",
+  "nameTr": "Gülçimen Askılı Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Bordo",
+   "Siyah"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "721.28",
+  "nameTr": "Katre Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Bej",
+   "Haki",
+   "Krem",
+   "Beyaz",
+   "Siyah"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "721.29",
+  "nameTr": "Neslihan Büyük Beden Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Fıstık Yeşili",
+   "Petrol"
+  ],
+  "sizes": [
+   "3XL",
+   "5XL",
+   "4XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "721.30",
+  "nameTr": "Mehtap Büyük Beden Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2025,
+  "bestsellerRank": null,
+  "colors": [
+   "Krem",
+   "Siyah",
+   "Mor",
+   "Yeşil"
+  ],
+  "sizes": [
+   "5XL",
+   "4XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "721.31",
+  "nameTr": "Helin Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Siyah",
+   "Beyaz",
+   "Krem",
+   "Petrol"
+  ],
+  "sizes": [
+   "2XL",
+   "L",
+   "3XL",
+   "XL",
+   "S",
+   "M"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "721.32",
+  "nameTr": "Dilek Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": 66,
+  "colors": [
+   "Haki",
+   "Petrol",
+   "Siyah",
+   "Krem",
+   "Mor",
+   "Hardal"
+  ],
+  "sizes": [
+   "S",
+   "3XL",
+   "M",
+   "L",
+   "2XL",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "721.33",
+  "nameTr": "Belgin Kısa Kol Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Yeşil",
+   "Mor",
+   "Petrol",
+   "Beyaz",
+   "Siyah",
+   "Hardal",
+   "Krem"
+  ],
+  "sizes": [
+   "M",
+   "2XL",
+   "3XL",
+   "S",
+   "L",
+   "XL"
+  ],
+  "measuredFields": []
+ }
+]

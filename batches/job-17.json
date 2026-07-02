@@ -1,0 +1,695 @@
+[
+ {
+  "itemCode": "972.05",
+  "nameTr": "İnka Uzun Kol Gömlek",
+  "department": "Women",
+  "category": "Shirts",
+  "hierarchy2": "Gömlek",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2026,
+  "bestsellerRank": null,
+  "colors": [
+   "Toprak",
+   "Haki",
+   "Hardal"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL",
+   "4XL/5XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "981.01",
+  "nameTr": "Bodrum Kısa Kol Tshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": 15,
+  "colors": [
+   "Su Yeşili",
+   "Haki",
+   "Saks",
+   "Krem",
+   "Beyaz",
+   "Koyu Bordo",
+   "Açık Haki",
+   "Koyu Petrol",
+   "Sarı",
+   "Petrol",
+   "Kırmızı",
+   "Siyah",
+   "Turkuaz",
+   "Açık Turkuaz",
+   "Açık Mavi"
+  ],
+  "sizes": [
+   "M",
+   "2XL",
+   "XL",
+   "S",
+   "3XL",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "982.01",
+  "nameTr": "Bodrum Uzun Kol Tshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2020,
+  "bestsellerRank": 37,
+  "colors": [
+   "Buz Mavi",
+   "Turkuaz",
+   "Siyah",
+   "Petrol",
+   "Saks",
+   "Haki",
+   "İndigo",
+   "Taş",
+   "Sari",
+   "Kahve",
+   "Lila",
+   "Yeşil",
+   "Füme",
+   "Mercan",
+   "Beyaz",
+   "Düz Haki",
+   "Mor",
+   "Kot Mavi",
+   "Gri"
+  ],
+  "sizes": [
+   "S",
+   "2XL",
+   "L",
+   "M",
+   "XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "982.02",
+  "nameTr": "Kapüşonlu Sweatshirt",
+  "department": "Men",
+  "category": "T-Shirts",
+  "hierarchy2": "T-Shirt",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2019,
+  "bestsellerRank": null,
+  "colors": [
+   "Buz Mavi",
+   "Beyaz",
+   "Füme",
+   "Gri",
+   "İndigo",
+   "Petrol",
+   "Kahve",
+   "Bordo",
+   "Haki",
+   "Yeşil",
+   "Siyah",
+   "Turkuaz"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "L",
+   "2XL",
+   "S"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "BANDANA1",
+  "nameTr": "Pazen Bandana Çiçek Desen",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "BANDANA2",
+  "nameTr": "Pazen Bandana Bahar Desen",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "BANDANA3",
+  "nameTr": "Pazen Bandana Çini Desen",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2023,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "BANDANA4",
+  "nameTr": "Pazen Bandana Çıtır Desen",
+  "department": "Women",
+  "category": "Scarves",
+  "hierarchy2": "Şal",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2024,
+  "bestsellerRank": null,
+  "colors": [
+   "Yeşil",
+   "Hardal",
+   "Siyah",
+   "Beyaz"
+  ],
+  "sizes": [
+   "Standart"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "BLZ.K.0011",
+  "nameTr": "Kruvaze Pazen Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Siyah",
+   "Saks",
+   "Beyaz",
+   "Hardal",
+   "Lacivert",
+   "Haki"
+  ],
+  "sizes": [
+   "XL",
+   "L",
+   "S",
+   "M"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "BLZ.K.0016",
+  "nameTr": "Arzu Bluz",
+  "department": "Women",
+  "category": "Blouses",
+  "hierarchy2": "Bluz",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": 21,
+  "colors": [
+   "Turkuaz",
+   "Yeşil",
+   "Petrol",
+   "Mor",
+   "Kırmızı",
+   "Beyaz",
+   "Siyah",
+   "Lacivert",
+   "Bordo",
+   "Krem"
+  ],
+  "sizes": [
+   "L",
+   "M",
+   "3XL",
+   "2XL",
+   "XL",
+   "S"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm"
+  ]
+ },
+ {
+  "itemCode": "CANTA7",
+  "nameTr": "İlke Sırt Çantası",
+  "department": "Women",
+  "category": "Bags",
+  "hierarchy2": "Çantalar",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2018,
+  "bestsellerRank": null,
+  "colors": [],
+  "sizes": [],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "CKT.K.0001",
+  "nameTr": "Eylül Fitilli Kadife Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Gri",
+   "Camel",
+   "Lacivert",
+   "Haki",
+   "Siyah"
+  ],
+  "sizes": [
+   "L/XL",
+   "2XL-3XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0002",
+  "nameTr": "Tamay Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Mürdüm",
+   "Siyah"
+  ],
+  "sizes": [
+   "S",
+   "M",
+   "L",
+   "XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0003",
+  "nameTr": "Kore İnterlok Uzun Ceket Balıksırtı Desen",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "İndigo",
+   "Gri",
+   "Kiremit"
+  ],
+  "sizes": [
+   "XL",
+   "S",
+   "M",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0004",
+  "nameTr": "Hazal Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Safran",
+   "Haki"
+  ],
+  "sizes": [
+   "L/XL",
+   "2XL-3XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0005",
+  "nameTr": "Efsun Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah"
+  ],
+  "sizes": [
+   "2XL-3XL",
+   "S/M",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0006",
+  "nameTr": "Gamze Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Beyaz",
+   "Siyah"
+  ],
+  "sizes": [
+   "S/M",
+   "2XL-3XL",
+   "L/XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0007",
+  "nameTr": "Safari Baskılı Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Haki",
+   "Siyah"
+  ],
+  "sizes": [
+   "L/XL",
+   "S/M",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0008",
+  "nameTr": "Safari Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Beyaz",
+   "Siyah"
+  ],
+  "sizes": [
+   "S/M",
+   "L/XL",
+   "2XL-3XL"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0009",
+  "nameTr": "Hayal Baskılı Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Beyaz",
+   "Saks",
+   "Haki"
+  ],
+  "sizes": [
+   "L/XL",
+   "2XL-3XL",
+   "S/M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0013",
+  "nameTr": "Eylem Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Kırmızı",
+   "Haki",
+   "Saks",
+   "Siyah",
+   "Hardal"
+  ],
+  "sizes": [
+   "M",
+   "XL",
+   "S",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0015",
+  "nameTr": "Selen Pazen Ceket",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Haki",
+   "Beyaz",
+   "Hardal",
+   "Kırmızı",
+   "Saks",
+   "Lacivert",
+   "Siyah"
+  ],
+  "sizes": [
+   "L",
+   "M",
+   "S",
+   "XS"
+  ],
+  "measuredFields": [
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "CKT.K.0016",
+  "nameTr": "Kore İnterlok Uzun Ceket Kar Desen",
+  "department": "Women",
+  "category": "Jackets",
+  "hierarchy2": "Ceket",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "İndigo",
+   "Gri",
+   "Haki"
+  ],
+  "sizes": [
+   "S",
+   "L",
+   "M",
+   "XL"
+  ],
+  "measuredFields": []
+ },
+ {
+  "itemCode": "ELB.E.0001",
+  "nameTr": "Namaz Cübbesi",
+  "department": "Men",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "SS",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Siyah",
+   "Beyaz",
+   "Krem"
+  ],
+  "sizes": [
+   "S",
+   "L",
+   "XL",
+   "M"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ },
+ {
+  "itemCode": "ELB.K.0012",
+  "nameTr": "Seçil Pazen Kısa Elbise",
+  "department": "Women",
+  "category": "Dresses",
+  "hierarchy2": "Elbise",
+  "season": "AW",
+  "fabric": "100% Turkish Cotton",
+  "year": 2021,
+  "bestsellerRank": null,
+  "colors": [
+   "Petrol",
+   "Siyah",
+   "Kırmızı",
+   "Beyaz",
+   "Saks",
+   "Bordo",
+   "Haki",
+   "Lacivert",
+   "Mor",
+   "Hardal"
+  ],
+  "sizes": [
+   "S",
+   "XL",
+   "M",
+   "L"
+  ],
+  "measuredFields": [
+   "hipCm",
+   "chestCm",
+   "heightCm",
+   "sleeveCm",
+   "upperSleeveCm"
+  ]
+ }
+]
