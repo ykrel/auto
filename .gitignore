@@ -1,2 +1,4 @@
 # Local delivery artifact (sent to user directly, not tracked)
 silebezi-desc-results.zip
+# Generated outputs: ignored while agents write them; force-added at delivery
+output/
