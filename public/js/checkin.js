@@ -123,7 +123,8 @@
         title: 'Konum izni reddedilmiş',
         body: 'Tarayıcı bu site için konum iznini reddetmiş, bu yüzden soru sorulmuyor. ' +
           'iPhone (Safari): adres çubuğundaki "aA" simgesi → Web Sitesi Ayarları → Konum → İzin Ver. ' +
-          'Olmazsa: Ayarlar → Gizlilik ve Güvenlik → Konum Servisleri → Safari Web Siteleri → Kullanırken İzin Ver. ' +
+          'iPhone (Chrome): telefonun Ayarlar → Chrome → Konum → "Uygulamayı Kullanırken" seçin, sonra sayfayı yenileyin. ' +
+          'Olmazsa: Ayarlar → Gizlilik ve Güvenlik → Konum Servisleri açık olmalı. ' +
           'Android (Chrome): adres çubuğundaki kilit simgesi → İzinler → Konum → İzin Ver. ' +
           'QR\'ı WhatsApp/Instagram içinde açtıysanız kamerayla okutup normal tarayıcıda açın. ' +
           'Sonra "Tekrar dene"ye basın.'
