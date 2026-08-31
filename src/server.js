@@ -21,7 +21,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const BASE_URL = (process.env.BASE_URL || `http://localhost:${PORT}`).replace(/\/+$/, '');
 // Bu saatten (Europe/Istanbul, HH:MM) once yapilan cikislar "erken cikis" sayilir ve onay kutusu cikar.
+// Cumartesi is yeri erken kapandigi icin esik ayridir.
 const EARLY_EXIT_BEFORE = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE || '') ? process.env.EARLY_EXIT_BEFORE : '18:25';
+const EARLY_EXIT_BEFORE_SAT = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE_SAT || '') ? process.env.EARLY_EXIT_BEFORE_SAT : '16:55';
+
+function earlyExitThreshold(businessDayStr) {
+  const [y, m, d] = businessDayStr.split('-').map(Number);
+  const weekday = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 6 = cumartesi
+  return weekday === 6 ? EARLY_EXIT_BEFORE_SAT : EARLY_EXIT_BEFORE;
+}
 
 app.set('trust proxy', 1);
 app.set('view engine', 'ejs');
@@ -241,12 +249,13 @@ app.post('/api/checkin', rateLimited, (req, res) => {
       .get(info.employee.id, range.start, range.end);
     const inDupWindow = lastRec && Date.now() - new Date(lastRec.ts).getTime() < 2 * 60 * 1000; // service.js ile ayni pencere
     const nowHM = T.fmtTime(new Date());
-    if (lastRec && !inDupWindow && nowHM < EARLY_EXIT_BEFORE && req.body.confirm !== true) {
+    const threshold = earlyExitThreshold(day);
+    if (lastRec && !inDupWindow && nowHM < threshold && req.body.confirm !== true) {
       return res.status(409).json({
         state: 'confirm_required',
         type: 'out',
         nowTime: nowHM,
-        threshold: EARLY_EXIT_BEFORE
+        threshold
       });
     }
   }
