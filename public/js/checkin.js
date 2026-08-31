@@ -90,29 +90,50 @@
   // --- konum ---
   function getPosition() {
     return new Promise(function (resolve) {
-      if (!navigator.geolocation) return resolve(null);
+      if (!navigator.geolocation) return resolve({ coords: null, reason: 'unsupported' });
       var done = false;
       var timer = setTimeout(function () {
-        if (!done) { done = true; resolve(null); }
+        if (!done) { done = true; resolve({ coords: null, reason: 'timeout' }); }
       }, GEO_TIMEOUT + 1500);
       navigator.geolocation.getCurrentPosition(
         function (pos) {
           if (done) return;
           done = true; clearTimeout(timer);
           resolve({
-            lat: pos.coords.latitude,
-            lng: pos.coords.longitude,
-            accuracy: pos.coords.accuracy
+            coords: {
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude,
+              accuracy: pos.coords.accuracy
+            }
           });
         },
-        function () {
+        function (err) {
           if (done) return;
           done = true; clearTimeout(timer);
-          resolve(null);
+          resolve({ coords: null, reason: err && err.code === 1 ? 'denied' : 'unavailable' });
         },
         { enableHighAccuracy: true, timeout: GEO_TIMEOUT, maximumAge: 0 }
       );
     });
+  }
+
+  function geoErrorMessage(reason) {
+    if (reason === 'denied') {
+      return {
+        title: 'Konum izni reddedilmiş',
+        body: 'Tarayıcı bu site için konum iznini reddetmiş, bu yüzden soru sorulmuyor. ' +
+          'iPhone (Safari): adres çubuğundaki "aA" simgesi → Web Sitesi Ayarları → Konum → İzin Ver. ' +
+          'Olmazsa: Ayarlar → Gizlilik ve Güvenlik → Konum Servisleri → Safari Web Siteleri → Kullanırken İzin Ver. ' +
+          'Android (Chrome): adres çubuğundaki kilit simgesi → İzinler → Konum → İzin Ver. ' +
+          'QR\'ı WhatsApp/Instagram içinde açtıysanız kamerayla okutup normal tarayıcıda açın. ' +
+          'Sonra "Tekrar dene"ye basın.'
+      };
+    }
+    return {
+      title: 'Konum alınamadı',
+      body: 'GPS sinyali alınamadı. Telefonunuzun konum servislerinin açık olduğundan emin olun, ' +
+        'mümkünse açık alana geçin ve tekrar deneyin. Giriş-çıkış için konum doğrulaması zorunludur.'
+    };
   }
 
   // --- ekranlar ---
@@ -149,14 +170,11 @@
   // --- akış ---
   function doCheckin(token) {
     setLoading('Konum alınıyor…');
-    getPosition().then(function (coords) {
+    getPosition().then(function (geo) {
+      var coords = geo && geo.coords;
       if (!coords) {
-        message(
-          'Konum alınamadı',
-          'Giriş-çıkış için konum doğrulaması zorunludur. Telefonunuzun konumunu açın, tarayıcıya konum izni verin ve tekrar deneyin.',
-          'err',
-          true
-        );
+        var m = geoErrorMessage(geo && geo.reason);
+        message(m.title, m.body, 'err', true);
         return null;
       }
       setLoading('Kaydediliyor…');
