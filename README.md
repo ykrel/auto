@@ -67,6 +67,24 @@ ADMIN_PASSWORD=gizli-sifre BASE_URL=http://localhost:3000 npm start
 > Not: QR sayfası konum izni ister; tarayıcılar konumu yalnızca **HTTPS** üzerinde verir.
 > Railway domaini zaten HTTPS'tir.
 
+### Deploy sonrası ayarlar (özellikle Pro hesapta)
+
+- **Replica sayısı 1 kalmalı.** Veri tek bir SQLite dosyasında ve tek volume'da tutulur;
+  birden fazla replica aynı dosyayı paylaşamaz, veri bozulur.
+  (*Settings → Deploy → Replicas = 1*)
+- **Region:** *Settings → Deploy → Region* → `europe-west4` (Amsterdam) Türkiye'ye en yakın
+  gecikmeyi verir ve veriler AB'de kalır.
+- **Uyku kapalı olmalı.** Pro planda app sleeping yoktur; Hobby'den geçildiyse
+  *Settings → Serverless / App Sleeping* kapalı olsun — uyanma gecikmesi QR okutmasını yavaşlatır.
+- **Sağlık kontrolü:** `railway.json` içinde `/saglik` tanımlı; deploy sırasında yeni sürüm
+  ancak sağlıklı olunca trafiği devralır.
+- **Yedek:** *Volumes → Backups* bölümünden zamanlanmış snapshot açın (Pro'da mevcut).
+  Ek olarak panelden xlsx raporu indirmek insan tarafından okunur bir yedek sağlar.
+- **Node sürümü** `package.json > engines` ile 22'ye sabitlendi; `better-sqlite3` hazır
+  derlenmiş ikiliyi indirir, derleme adımı gerekmez.
+- Uygulama SIGTERM aldığında SQLite WAL dosyasını kapatıp temiz çıkar; yeniden deploy
+  sırasında veri kaybı olmaz.
+
 ---
 
 ## 3. Lokasyon koordinatı girme ve QR basma

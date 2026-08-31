@@ -247,11 +247,44 @@ app.use((err, req, res, next) => {
   });
 });
 
-if (require.main === module) {
+function start() {
+  if (!process.env.ADMIN_PASSWORD) {
+    if (process.env.NODE_ENV === 'production') {
+      console.error('HATA: ADMIN_PASSWORD tanimli degil. Railway > Variables icinden ekleyin.');
+      process.exit(1);
+    }
+    console.warn('UYARI: ADMIN_PASSWORD tanimli degil, gelistirme sifresi "admin123" kullaniliyor.');
+  }
+  if (!process.env.BASE_URL) {
+    console.warn(`UYARI: BASE_URL tanimli degil, QR kodlari ${BASE_URL} adresini gosterecek.`);
+  }
+
   require('./seed').ensureSeed();
-  app.listen(PORT, '0.0.0.0', () => {
+
+  const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`PDKS calisiyor: http://0.0.0.0:${PORT} (BASE_URL=${BASE_URL})`);
   });
+
+  // Railway yeniden deploy ederken SIGTERM gonderir: WAL'i kapatip temiz cikis yap
+  let closing = false;
+  const shutdown = (signal) => {
+    if (closing) return;
+    closing = true;
+    console.log(`${signal} alindi, kapatiliyor...`);
+    server.close(() => {
+      try {
+        db.pragma('wal_checkpoint(TRUNCATE)');
+        db.close();
+      } catch (err) {
+        console.error('Veritabani kapatilamadi:', err.message);
+      }
+      process.exit(0);
+    });
+    setTimeout(() => process.exit(0), 8000).unref();
+  };
+  ['SIGTERM', 'SIGINT'].forEach((sig) => process.on(sig, () => shutdown(sig)));
 }
+
+if (require.main === module) start();
 
 module.exports = app;
