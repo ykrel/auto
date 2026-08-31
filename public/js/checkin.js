@@ -11,7 +11,7 @@
   function $(id) { return document.getElementById(id); }
 
   function show(id) {
-    ['s-loading', 's-nostorage', 's-register', 's-change', 's-pending', 's-result', 's-message']
+    ['s-loading', 's-nostorage', 's-register', 's-change', 's-pending', 's-result', 's-confirm', 's-message']
       .forEach(function (s) { $(s).classList.toggle('hidden', s !== id); });
   }
 
@@ -147,12 +147,16 @@
     $('result-name').textContent = data.name;
     $('result-location').textContent = data.location;
     var flagBox = $('result-flag');
-    flagBox.classList.toggle('hidden', !data.flagged);
+    var flagText = '';
     if (data.flagged) {
-      flagBox.textContent = data.flag_reason === 'out_of_range'
+      flagText = data.flag_reason === 'out_of_range'
         ? 'Kaydedildi, konum doğrulanamadı (lokasyon dışındasınız).'
         : 'Kaydedildi, konum doğrulanamadı.';
+    } else if (data.late && data.type === 'in') {
+      flagText = '⏰ Geç giriş kaydedildi — mesai başlangıcı ' + (data.shiftStart || '08:30') + '. Lütfen zamanında gelmeye özen gösterin.';
     }
+    flagBox.classList.toggle('hidden', !flagText);
+    if (flagText) flagBox.textContent = flagText;
     $('result-dup').classList.toggle('hidden', !data.duplicate);
     var today = data.today || [];
     $('today-list').textContent = today.length
@@ -169,6 +173,17 @@
   }
 
   // --- akış ---
+  function sendCheckin(token, coords, confirm) {
+    return post('/api/checkin', {
+      token: token,
+      slug: SLUG,
+      lat: coords.lat,
+      lng: coords.lng,
+      accuracy: coords.accuracy,
+      confirm: confirm === true
+    });
+  }
+
   function doCheckin(token) {
     setLoading('Konum alınıyor…');
     getPosition().then(function (geo) {
@@ -179,17 +194,38 @@
         return null;
       }
       setLoading('Kaydediliyor…');
-      return post('/api/checkin', {
-        token: token,
-        slug: SLUG,
-        lat: coords.lat,
-        lng: coords.lng,
-        accuracy: coords.accuracy
+      return sendCheckin(token, coords, false).then(function (res) {
+        return { res: res, coords: coords };
       });
-    }).then(function (res) {
-      if (!res) return;
+    }).then(function (wrap) {
+      if (!wrap) return;
+      var res = wrap.res;
+      var coords = wrap.coords;
       var body = res.body || {};
       if (res.status === 200) return renderResult(body);
+      if (body.state === 'confirm_required') {
+        $('confirm-body').textContent =
+          'Mesai bitiminden önce çıkış yapıyorsunuz (saat ' + (body.nowTime || '') + '). Çıkışı onaylıyor musunuz?';
+        $('confirm-yes').onclick = function () {
+          setLoading('Kaydediliyor…');
+          sendCheckin(token, coords, true).then(function (res2) {
+            var b2 = res2.body || {};
+            if (res2.status === 200) return renderResult(b2);
+            return message('Kayıt alınamadı', b2.error || 'Beklenmeyen bir hata oluştu.', 'err', true);
+          }).catch(function () {
+            message('Bağlantı hatası', 'İnternet bağlantınızı kontrol edip tekrar deneyin.', 'err', true);
+          });
+        };
+        $('confirm-no').onclick = function () {
+          message(
+            'Çıkış yapılmadı',
+            'Erken çıkış onaylanmadığı için kayıt alınmadı. Çıkış yapmak istediğinizde QR kodu tekrar okutmanız yeterli.',
+            'info',
+            false
+          );
+        };
+        return show('s-confirm');
+      }
       if (body.state === 'location_rejected') {
         return message(
           body.reason === 'out_of_range' ? 'İş yerinde değilsiniz' : 'Konum alınamadı',

@@ -20,6 +20,8 @@ const adminRouter = require('./admin');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const BASE_URL = (process.env.BASE_URL || `http://localhost:${PORT}`).replace(/\/+$/, '');
+// Bu saatten (Europe/Istanbul, HH:MM) once yapilan cikislar "erken cikis" sayilir ve onay kutusu cikar.
+const EARLY_EXIT_BEFORE = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE || '') ? process.env.EARLY_EXIT_BEFORE : '18:25';
 
 app.set('trust proxy', 1);
 app.set('view engine', 'ejs');
@@ -229,6 +231,26 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     });
   }
 
+  // Erken cikis onayi: mesai bitiminden once cikis olacaksa once onay istenir.
+  // (Acik kalan sayfanin yeniden yuklenip yanlislikla cikis atmasini da engeller.)
+  {
+    const day = T.todayBusinessDay();
+    const range = T.businessDayRange(day);
+    const lastRec = db
+      .prepare('SELECT * FROM checkins WHERE employee_id = ? AND ts >= ? AND ts < ? ORDER BY ts DESC, id DESC LIMIT 1')
+      .get(info.employee.id, range.start, range.end);
+    const inDupWindow = lastRec && Date.now() - new Date(lastRec.ts).getTime() < 2 * 60 * 1000; // service.js ile ayni pencere
+    const nowHM = T.fmtTime(new Date());
+    if (lastRec && !inDupWindow && nowHM < EARLY_EXIT_BEFORE && req.body.confirm !== true) {
+      return res.status(409).json({
+        state: 'confirm_required',
+        type: 'out',
+        nowTime: nowHM,
+        threshold: EARLY_EXIT_BEFORE
+      });
+    }
+  }
+
   const result = service.recordCheckin({
     employee: info.employee,
     location,
@@ -236,6 +258,10 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     source: 'qr',
     now: new Date()
   });
+
+  // Gec giris bilgisi: mesai baslangicindan sonraki ilk giris
+  const shiftStart = info.employee.shift_start || location.shift_start || '08:30';
+  const late = result.type === 'in' && !result.duplicate && T.fmtTime(new Date(result.ts)) > shiftStart;
 
   const range = T.businessDayRange(result.day);
   const today = db
@@ -248,6 +274,8 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     name: info.employee.name,
     location: location.name,
     today,
+    late,
+    shiftStart,
     ...result
   });
 });
