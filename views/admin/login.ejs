@@ -1,0 +1,14 @@
+<%- include('../partials/head', { title: title }) %>
+<main class="wrap-narrow">
+  <div class="card login-box">
+    <h2>Yönetici Girişi</h2>
+    <% if (error) { %><div class="notice notice-err"><%= error %></div><% } %>
+    <form method="post" action="/admin/giris">
+      <input type="hidden" name="next" value="<%= next %>">
+      <label for="password">Şifre</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required autofocus>
+      <button class="btn btn-block" type="submit">Giriş yap</button>
+    </form>
+  </div>
+</main>
+<%- include('../partials/foot') %>

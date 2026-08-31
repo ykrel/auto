@@ -1,0 +1,277 @@
+/* PDKS personel okutma akışı — sade vanilla JS */
+(function () {
+  'use strict';
+
+  var app = document.getElementById('app');
+  var SLUG = app.getAttribute('data-slug');
+  var LS_KEY = 'pdks_token';
+  var COOKIE = 'pdks_token';
+  var GEO_TIMEOUT = 12000;
+
+  function $(id) { return document.getElementById(id); }
+
+  function show(id) {
+    ['s-loading', 's-nostorage', 's-register', 's-change', 's-pending', 's-result', 's-message']
+      .forEach(function (s) { $(s).classList.toggle('hidden', s !== id); });
+  }
+
+  function setLoading(text) {
+    $('loading-text').textContent = text;
+    show('s-loading');
+  }
+
+  function message(title, body, kind, retry) {
+    $('message-title').textContent = title;
+    $('message-body').textContent = body;
+    $('message-body').className = 'notice notice-' + (kind || 'err');
+    $('message-retry').classList.toggle('hidden', !retry);
+    show('s-message');
+  }
+
+  // --- depolama ---
+  function storageOk() {
+    try {
+      window.localStorage.setItem('pdks_test', '1');
+      window.localStorage.removeItem('pdks_test');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function readCookie(name) {
+    var parts = document.cookie ? document.cookie.split('; ') : [];
+    for (var i = 0; i < parts.length; i++) {
+      var kv = parts[i].split('=');
+      if (kv[0] === name) return decodeURIComponent(kv.slice(1).join('='));
+    }
+    return null;
+  }
+
+  function writeCookie(name, value) {
+    var maxAge = 365 * 24 * 3600;
+    var secure = location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = name + '=' + encodeURIComponent(value) + '; path=/; max-age=' + maxAge + '; SameSite=Lax' + secure;
+  }
+
+  // Cookie ve localStorage birbirinin yedeği: biri silinirse diğerinden geri yüklenir
+  function loadToken() {
+    var fromCookie = readCookie(COOKIE);
+    var fromLs = null;
+    try { fromLs = window.localStorage.getItem(LS_KEY); } catch (e) { fromLs = null; }
+    var token = fromCookie || fromLs;
+    if (token) saveToken(token);
+    return token;
+  }
+
+  function saveToken(token) {
+    try { window.localStorage.setItem(LS_KEY, token); } catch (e) { /* yoksay */ }
+    writeCookie(COOKIE, token);
+  }
+
+  function clearToken() {
+    try { window.localStorage.removeItem(LS_KEY); } catch (e) { /* yoksay */ }
+    document.cookie = COOKIE + '=; path=/; max-age=0; SameSite=Lax';
+  }
+
+  function post(url, data) {
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify(data || {})
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (body) {
+        return { status: res.status, body: body };
+      });
+    });
+  }
+
+  // --- konum ---
+  function getPosition() {
+    return new Promise(function (resolve) {
+      if (!navigator.geolocation) return resolve(null);
+      var done = false;
+      var timer = setTimeout(function () {
+        if (!done) { done = true; resolve(null); }
+      }, GEO_TIMEOUT + 1500);
+      navigator.geolocation.getCurrentPosition(
+        function (pos) {
+          if (done) return;
+          done = true; clearTimeout(timer);
+          resolve({
+            lat: pos.coords.latitude,
+            lng: pos.coords.longitude,
+            accuracy: pos.coords.accuracy
+          });
+        },
+        function () {
+          if (done) return;
+          done = true; clearTimeout(timer);
+          resolve(null);
+        },
+        { enableHighAccuracy: true, timeout: GEO_TIMEOUT, maximumAge: 0 }
+      );
+    });
+  }
+
+  // --- ekranlar ---
+  function renderResult(data) {
+    var isIn = data.type === 'in';
+    var box = $('result-box');
+    box.className = 'big-result ' + (isIn ? 'in' : 'out');
+    $('result-type').textContent = isIn ? 'GİRİŞ' : 'ÇIKIŞ';
+    $('result-time').textContent = data.time;
+    $('result-name').textContent = data.name;
+    $('result-location').textContent = data.location;
+    var flagBox = $('result-flag');
+    flagBox.classList.toggle('hidden', !data.flagged);
+    if (data.flagged) {
+      flagBox.textContent = data.flag_reason === 'out_of_range'
+        ? 'Kaydedildi, konum doğrulanamadı (lokasyon dışındasınız).'
+        : 'Kaydedildi, konum doğrulanamadı.';
+    }
+    $('result-dup').classList.toggle('hidden', !data.duplicate);
+    var today = data.today || [];
+    $('today-list').textContent = today.length
+      ? 'Bugün: ' + today.map(function (c) {
+          return (c.type === 'in' ? 'giriş ' : 'çıkış ') + c.time;
+        }).join(' · ')
+      : '';
+    show('s-result');
+  }
+
+  function renderPending(name, type) {
+    $('pending-name').textContent = name ? name + ' — ' + (type === 'change' ? 'cihaz değişikliği talebi' : 'yeni kayıt talebi') : '';
+    show('s-pending');
+  }
+
+  // --- akış ---
+  function doCheckin(token) {
+    setLoading('Konum alınıyor…');
+    getPosition().then(function (coords) {
+      setLoading('Kaydediliyor…');
+      var payload = { token: token, slug: SLUG };
+      if (coords) {
+        payload.lat = coords.lat;
+        payload.lng = coords.lng;
+        payload.accuracy = coords.accuracy;
+      }
+      return post('/api/checkin', payload);
+    }).then(function (res) {
+      var body = res.body || {};
+      if (res.status === 200) return renderResult(body);
+      if (body.state === 'pending') return renderPending(body.name);
+      if (body.state === 'unknown') { clearToken(); return startRegister(); }
+      if (body.state === 'revoked' || body.state === 'rejected') {
+        clearToken();
+        return message(
+          'Cihaz kaydı geçersiz',
+          'Bu cihazın kaydı iptal edilmiş. Lütfen yeniden kayıt olun.',
+          'err',
+          true
+        );
+      }
+      if (body.state === 'passive') {
+        return message('Kayıt pasif', 'Kaydınız pasif durumda. Lütfen yöneticinizle görüşün.', 'err', false);
+      }
+      if (res.status === 429) {
+        return message('Çok fazla deneme', body.message || 'Lütfen biraz bekleyip tekrar deneyin.', 'warn', true);
+      }
+      return message('Kayıt alınamadı', body.error || 'Beklenmeyen bir hata oluştu.', 'err', true);
+    }).catch(function () {
+      message('Bağlantı hatası', 'İnternet bağlantınızı kontrol edip tekrar deneyin.', 'err', true);
+    });
+  }
+
+  function startRegister() { show('s-register'); }
+  function startChange() { show('s-change'); }
+
+  function boot() {
+    if (!storageOk()) return show('s-nostorage');
+    var token = loadToken();
+    if (!token) return startRegister();
+
+    setLoading('Kimlik doğrulanıyor…');
+    post('/api/identify', { token: token }).then(function (res) {
+      var body = res.body || {};
+      if (body.state === 'ok') return doCheckin(token);
+      if (body.state === 'pending') return renderPending(body.name);
+      if (body.state === 'passive') {
+        return message('Kayıt pasif', 'Kaydınız pasif durumda. Lütfen yöneticinizle görüşün.', 'err', false);
+      }
+      if (body.state === 'revoked' || body.state === 'rejected') {
+        clearToken();
+        return message('Cihaz kaydı geçersiz', 'Bu cihazın kaydı iptal edilmiş. Lütfen yeniden kayıt olun.', 'err', true);
+      }
+      clearToken();
+      return startRegister();
+    }).catch(function () {
+      message('Bağlantı hatası', 'İnternet bağlantınızı kontrol edip tekrar deneyin.', 'err', true);
+    });
+  }
+
+  // --- form olayları ---
+  $('register-form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var err = $('register-error');
+    err.classList.add('hidden');
+    var btn = $('register-submit');
+    btn.disabled = true;
+    post('/api/register', {
+      slug: SLUG,
+      name: $('name').value,
+      phone: $('phone').value,
+      kvkk: $('kvkk').checked
+    }).then(function (res) {
+      btn.disabled = false;
+      var body = res.body || {};
+      if (res.status === 200 && body.token) {
+        saveToken(body.token);
+        return renderPending(body.name, 'new');
+      }
+      if (body.code === 'already_registered') {
+        $('change-phone').value = $('phone').value;
+        startChange();
+        var cerr = $('change-error');
+        cerr.textContent = body.error;
+        cerr.classList.remove('hidden');
+        return;
+      }
+      err.textContent = body.error || body.message || 'Kayıt gönderilemedi.';
+      err.classList.remove('hidden');
+    }).catch(function () {
+      btn.disabled = false;
+      err.textContent = 'Bağlantı hatası. Tekrar deneyin.';
+      err.classList.remove('hidden');
+    });
+  });
+
+  $('change-form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var err = $('change-error');
+    err.classList.add('hidden');
+    var btn = $('change-submit');
+    btn.disabled = true;
+    post('/api/device-change', { slug: SLUG, phone: $('change-phone').value }).then(function (res) {
+      btn.disabled = false;
+      var body = res.body || {};
+      if (res.status === 200 && body.token) {
+        saveToken(body.token);
+        return renderPending(body.name, 'change');
+      }
+      err.textContent = body.error || body.message || 'Talep gönderilemedi.';
+      err.classList.remove('hidden');
+    }).catch(function () {
+      btn.disabled = false;
+      err.textContent = 'Bağlantı hatası. Tekrar deneyin.';
+      err.classList.remove('hidden');
+    });
+  });
+
+  $('link-change').addEventListener('click', function (ev) { ev.preventDefault(); startChange(); });
+  $('link-register').addEventListener('click', function (ev) { ev.preventDefault(); startRegister(); });
+  $('message-retry').addEventListener('click', function () { boot(); });
+
+  boot();
+})();

@@ -1,0 +1,57 @@
+<%- include('../partials/head', { title: title }) %>
+<%- include('../partials/adminnav') %>
+<main class="wrap">
+  <div class="card">
+    <h2>Rapor</h2>
+    <form class="filters" method="get" action="/admin/rapor">
+      <div><label>Başlangıç</label><input type="date" name="baslangic" value="<%= from %>"></div>
+      <div><label>Bitiş</label><input type="date" name="bitis" value="<%= to %>"></div>
+      <div><button class="btn" type="submit">Önizle</button></div>
+      <div><a class="btn btn-ok" href="/admin/rapor/xlsx?baslangic=<%= from %>&bitis=<%= to %>">Excel (xlsx) indir</a></div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Sayfa 1 — Gün / Personel (<%= rows.length %> satır)</h3>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Tarih</th><th>Personel</th><th>Lokasyon</th><th>Giriş</th><th>Çıkış</th><th>Süre</th><th>Gecikme (dk)</th><th>Not</th></tr></thead>
+      <tbody>
+      <% rows.slice(0, 300).forEach(function (r) { %>
+        <tr>
+          <td class="muted"><%= T.fmtDateTR(r.day) %></td>
+          <td><%= r.employeeName %></td>
+          <td class="muted"><%= r.locationName || '—' %></td>
+          <td><%= r.inTime || '—' %></td>
+          <td><%= r.outTime || '—' %></td>
+          <td><%= r.workText || '—' %></td>
+          <td class="<%= r.lateMinutes > 0 ? 'late' : 'muted' %>"><%= r.lateMinutes || 0 %></td>
+          <td class="small muted">
+            <%= r.missingOut ? 'Çıkış eksik' : '' %><%= r.missingOut && r.flagged ? ' · ' : '' %><%= r.flagged ? 'Konum ⚠' : '' %>
+          </td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+    <% if (rows.length > 300) { %><p class="small muted">İlk 300 satır gösteriliyor; tamamı Excel dosyasında.</p><% } %>
+  </div>
+
+  <div class="card">
+    <h3>Sayfa 2 — Personel toplamları</h3>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Personel</th><th>Gün</th><th>Toplam çalışma</th><th>Geç gelme</th><th>Toplam gecikme (dk)</th><th>Eksik çıkış</th></tr></thead>
+      <tbody>
+      <% totals.forEach(function (t) { %>
+        <tr>
+          <td><%= t.employeeName %></td>
+          <td><%= t.days %></td>
+          <td><%= T.fmtDuration(t.workMinutes) %></td>
+          <td class="<%= t.lateCount ? 'late' : 'muted' %>"><%= t.lateCount %></td>
+          <td class="muted"><%= t.lateMinutes %></td>
+          <td class="<%= t.missingOutCount ? 'late' : 'muted' %>"><%= t.missingOutCount %></td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+  </div>
+</main>
+<%- include('../partials/foot') %>

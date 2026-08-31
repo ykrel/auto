@@ -2,3 +2,11 @@
 silebezi-desc-results.zip
 # Generated outputs: ignored while agents write them; force-added at delivery
 output/
+
+# Node / PDKS
+node_modules/
+data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+.env

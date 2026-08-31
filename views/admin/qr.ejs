@@ -1,0 +1,13 @@
+<%- include('../partials/head', { title: title }) %>
+<main class="wrap-narrow">
+  <div class="card center qr-preview">
+    <h2><%= loc.name %></h2>
+    <img src="<%= dataUrl %>" alt="QR kod">
+    <p class="small muted"><%= url %></p>
+    <p>
+      <a class="btn" href="/admin/lokasyonlar/<%= loc.id %>/qr.png">PNG indir</a>
+      <a class="btn btn-ghost" href="/admin/lokasyonlar">Geri</a>
+    </p>
+  </div>
+</main>
+<%- include('../partials/foot') %>

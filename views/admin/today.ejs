@@ -1,0 +1,93 @@
+<%- include('../partials/head', { title: title }) %>
+<%- include('../partials/adminnav') %>
+<main class="wrap">
+  <div class="card">
+    <form class="filters" method="get" action="/admin">
+      <div>
+        <label for="gun">Gün</label>
+        <input type="date" id="gun" name="gun" value="<%= day %>">
+      </div>
+      <div>
+        <label for="lokasyon">Lokasyon</label>
+        <select id="lokasyon" name="lokasyon">
+          <option value="">Tümü</option>
+          <% locations.forEach(function (l) { %>
+            <option value="<%= l.id %>" <%= locationId === l.id ? 'selected' : '' %>><%= l.name %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div><button class="btn" type="submit">Göster</button></div>
+    </form>
+    <p class="small muted" style="margin-bottom:0">Gün tanımı: 04:00 – ertesi gün 04:00 (Europe/Istanbul)</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="n"><%= overview.present.length %></div><div class="l">İçeride</div></div>
+    <div class="stat"><div class="n"><%= overview.left.length %></div><div class="l">Çıkış yaptı</div></div>
+    <div class="stat"><div class="n"><%= overview.absent.length %></div><div class="l">Gelmedi</div></div>
+    <div class="stat"><div class="n"><%= overview.all.filter(function(r){return r.late;}).length %></div><div class="l">Geç geldi</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Gelenler (<%= overview.present.length %>)</h2>
+    <% if (!overview.present.length) { %><p class="muted small">Şu anda içeride personel yok.</p><% } else { %>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Personel</th><th>Lokasyon</th><th>Giriş</th><th>Mesai</th><th>Gecikme</th><th></th></tr></thead>
+      <tbody>
+      <% overview.present.forEach(function (r) { %>
+        <tr>
+          <td><%= r.employee.name %></td>
+          <td><%= r.employee.location_name || '—' %></td>
+          <td class="<%= r.late ? 'late' : '' %>"><%= r.inTime %></td>
+          <td class="muted"><%= r.shift || '—' %></td>
+          <td class="<%= r.late ? 'late' : 'muted' %>"><%= r.lateMinutes ? r.lateMinutes + ' dk' : '—' %></td>
+          <td><% if (r.flagged) { %><span class="flagicon" title="Konum doğrulanamadı">⚠</span><% } %></td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+    <% } %>
+  </div>
+
+  <div class="card">
+    <h2>Çıkış yapanlar (<%= overview.left.length %>)</h2>
+    <% if (!overview.left.length) { %><p class="muted small">Kayıt yok.</p><% } else { %>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Personel</th><th>Lokasyon</th><th>Giriş</th><th>Çıkış</th><th>Süre</th><th>Gecikme</th><th></th></tr></thead>
+      <tbody>
+      <% overview.left.forEach(function (r) { %>
+        <tr>
+          <td><%= r.employee.name %></td>
+          <td><%= r.employee.location_name || '—' %></td>
+          <td class="<%= r.late ? 'late' : '' %>"><%= r.inTime %></td>
+          <td><%= r.outTime %></td>
+          <td><%= r.workText %></td>
+          <td class="<%= r.late ? 'late' : 'muted' %>"><%= r.lateMinutes ? r.lateMinutes + ' dk' : '—' %></td>
+          <td><% if (r.flagged) { %><span class="flagicon" title="Konum doğrulanamadı">⚠</span><% } %></td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+    <% } %>
+  </div>
+
+  <div class="card">
+    <h2>Henüz gelmeyenler (<%= overview.absent.length %>)</h2>
+    <% if (!overview.absent.length) { %><p class="muted small">Herkes giriş yapmış.</p><% } else { %>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Personel</th><th>Lokasyon</th><th>Mesai</th><th>Telefon</th></tr></thead>
+      <tbody>
+      <% overview.absent.forEach(function (r) { %>
+        <tr>
+          <td><%= r.employee.name %></td>
+          <td><%= r.employee.location_name || '—' %></td>
+          <td class="muted"><%= r.shift || '—' %></td>
+          <td class="muted"><%= r.employee.phone %></td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+    <% } %>
+  </div>
+</main>
+<%- include('../partials/foot') %>

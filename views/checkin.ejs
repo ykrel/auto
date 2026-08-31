@@ -1,0 +1,90 @@
+<%- include('partials/head', { title: title, bodyClass: 'scanbody' }) %>
+<main class="scan" id="app" data-slug="<%= location.slug %>">
+  <h1>Personel Giriş-Çıkış</h1>
+  <div class="loc"><%= location.name %> · <%= serverDate %></div>
+
+  <!-- Yükleniyor -->
+  <section class="state-card" id="s-loading">
+    <div class="spinner"></div>
+    <p class="center muted" id="loading-text">Hazırlanıyor…</p>
+  </section>
+
+  <!-- Depolama kullanılamıyor -->
+  <section class="state-card hidden" id="s-nostorage">
+    <h2 class="center">Gizli sekme algılandı</h2>
+    <div class="notice notice-err">
+      Lütfen normal tarayıcı sekmesinde açın. Gizli/özel sekmede cihaz kimliği saklanamadığı için kayıt alınamaz.
+    </div>
+    <p class="small muted center">QR kodu normal bir sekmede tekrar okutmanız yeterli.</p>
+  </section>
+
+  <!-- Kayıt formu -->
+  <section class="state-card hidden" id="s-register">
+    <h2 class="center">İlk kayıt</h2>
+    <p class="small muted center">Bu cihaz henüz tanımlı değil. Bilgilerinizi girin, yöneticiniz onayladıktan sonra okutmaya başlayabilirsiniz.</p>
+    <form id="register-form" autocomplete="on">
+      <label for="name">Ad Soyad</label>
+      <input type="text" id="name" name="name" placeholder="Örn. Ayşe Yılmaz" autocomplete="name" required>
+      <label for="phone">Telefon</label>
+      <input type="tel" id="phone" name="phone" placeholder="0532 123 45 67" autocomplete="tel" inputmode="numeric" required>
+      <div class="kvkk">
+        <strong>Aydınlatma metni:</strong> Ad-soyadınız, telefon numaranız, giriş-çıkış saatleriniz ve okutma anındaki
+        konum bilginiz yalnızca personel devam takibi amacıyla işlenir; bu amaç dışında kullanılmaz ve üçüncü
+        kişilerle paylaşılmaz.
+      </div>
+      <label class="check">
+        <input type="checkbox" id="kvkk" name="kvkk" required>
+        <span>Aydınlatma metnini okudum, verilerimin devam takibi amacıyla işlenmesini onaylıyorum.</span>
+      </label>
+      <div class="notice notice-err hidden" id="register-error"></div>
+      <button class="btn btn-block" type="submit" id="register-submit">Kaydı gönder</button>
+    </form>
+    <div class="linkline"><a href="#" id="link-change">Daha önce kayıtlıyım</a></div>
+  </section>
+
+  <!-- Cihaz değişikliği -->
+  <section class="state-card hidden" id="s-change">
+    <h2 class="center">Cihaz değişikliği</h2>
+    <p class="small muted center">Kayıtlı telefon numaranızı girin. Yöneticiniz onayladıktan sonra bu cihaz kullanıma açılır.</p>
+    <form id="change-form">
+      <label for="change-phone">Telefon</label>
+      <input type="tel" id="change-phone" name="phone" placeholder="0532 123 45 67" inputmode="numeric" required>
+      <div class="notice notice-err hidden" id="change-error"></div>
+      <button class="btn btn-block" type="submit" id="change-submit">Talep gönder</button>
+    </form>
+    <div class="linkline"><a href="#" id="link-register">Yeni kayıt oluştur</a></div>
+  </section>
+
+  <!-- Onay bekleniyor -->
+  <section class="state-card hidden" id="s-pending">
+    <h2 class="center">Onay bekleniyor</h2>
+    <p class="center" id="pending-name"></p>
+    <div class="notice notice-info">
+      Kaydınız yöneticinizin onayına gönderildi. Onaylandıktan sonra QR kodu tekrar okutarak giriş yapabilirsiniz.
+    </div>
+  </section>
+
+  <!-- Sonuç -->
+  <section class="state-card hidden" id="s-result">
+    <div class="big-result" id="result-box">
+      <div class="type" id="result-type"></div>
+      <div class="time" id="result-time"></div>
+      <div class="who" id="result-name"></div>
+      <div class="where" id="result-location"></div>
+    </div>
+    <div class="notice notice-warn hidden" id="result-flag">Kaydedildi, konum doğrulanamadı.</div>
+    <div class="notice notice-info hidden" id="result-dup">Bu okutma az önce zaten alındı. Mevcut kaydınız yukarıda.</div>
+    <div id="today-list" class="small muted center" style="margin-top:14px"></div>
+  </section>
+
+  <!-- Hata / bilgi -->
+  <section class="state-card hidden" id="s-message">
+    <h2 class="center" id="message-title"></h2>
+    <div class="notice" id="message-body"></div>
+    <button class="btn btn-block btn-ghost" type="button" id="message-retry">Tekrar dene</button>
+  </section>
+
+  <p class="small muted center" style="margin-top:18px">Saat sunucudan alınır · <%= serverTime %></p>
+</main>
+<script src="/static/js/checkin.js"></script>
+<%- include('partials/foot') %>

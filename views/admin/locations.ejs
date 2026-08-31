@@ -1,0 +1,56 @@
+<%- include('../partials/head', { title: title }) %>
+<%- include('../partials/adminnav') %>
+<main class="wrap">
+  <div class="card">
+    <h2>Lokasyonlar</h2>
+    <p class="small muted">QR içeriği: <code><%= baseUrl %>/c/&lt;slug&gt;</code></p>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Ad</th><th>Slug</th><th>Koordinat</th><th>Yarıçap</th><th>Mesai</th><th>Durum</th><th>QR</th><th>Düzenle</th></tr></thead>
+      <tbody>
+      <% locations.forEach(function (l) { %>
+        <tr>
+          <td><%= l.name %></td>
+          <td class="muted"><%= l.slug %></td>
+          <td class="muted"><%= l.lat != null && l.lng != null ? l.lat + ', ' + l.lng : 'girilmedi' %></td>
+          <td><%= l.radius_m %> m</td>
+          <td class="muted"><%= l.shift_start || '—' %></td>
+          <td><%= l.active ? '<span class="pill pill-green">Aktif</span>' : '<span class="pill pill-gray">Kapalı</span>' %></td>
+          <td>
+            <a class="btn btn-sm btn-ghost" href="/admin/lokasyonlar/<%= l.id %>/qr-onizleme">Göster</a>
+            <a class="btn btn-sm" href="/admin/lokasyonlar/<%= l.id %>/qr.png">PNG</a>
+          </td>
+          <td>
+            <details class="row-edit">
+              <summary>Düzenle</summary>
+              <form method="post" action="/admin/lokasyonlar/<%= l.id %>/guncelle" class="inline-form">
+                <input type="text" name="name" value="<%= l.name %>" placeholder="Ad">
+                <input type="text" name="slug" value="<%= l.slug %>" placeholder="slug">
+                <input type="text" name="lat" value="<%= l.lat == null ? '' : l.lat %>" placeholder="Enlem (lat)" inputmode="decimal">
+                <input type="text" name="lng" value="<%= l.lng == null ? '' : l.lng %>" placeholder="Boylam (lng)" inputmode="decimal">
+                <input type="number" name="radius_m" value="<%= l.radius_m %>" min="20" max="5000" placeholder="Yarıçap (m)">
+                <input type="time" name="shift_start" value="<%= l.shift_start || '' %>">
+                <label class="check" style="margin:0"><input type="checkbox" name="active" <%= l.active ? 'checked' : '' %>><span>Aktif</span></label>
+                <button class="btn btn-sm" type="submit">Kaydet</button>
+              </form>
+            </details>
+          </td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h2>Lokasyon ekle</h2>
+    <form method="post" action="/admin/lokasyonlar/ekle" class="grid2">
+      <div><label>Ad</label><input type="text" name="name" required></div>
+      <div><label>Slug (boşsa addan üretilir)</label><input type="text" name="slug"></div>
+      <div><label>Enlem (lat)</label><input type="text" name="lat" inputmode="decimal" placeholder="41.0165"></div>
+      <div><label>Boylam (lng)</label><input type="text" name="lng" inputmode="decimal" placeholder="29.1248"></div>
+      <div><label>Yarıçap (m)</label><input type="number" name="radius_m" value="150" min="20" max="5000"></div>
+      <div><label>Mesai başlangıcı</label><input type="time" name="shift_start" value="08:30"></div>
+      <div style="align-self:end"><button class="btn" type="submit">Ekle</button></div>
+    </form>
+  </div>
+</main>
+<%- include('../partials/foot') %>

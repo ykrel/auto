@@ -1,0 +1,22 @@
+<%- include('../partials/head', { title: title }) %>
+<%- include('../partials/adminnav') %>
+<main class="wrap">
+  <div class="card">
+    <h2>İşlem günlüğü</h2>
+    <p class="small muted">Onaylar, manuel kayıtlar ve düzeltmeler burada tutulur (son 300 kayıt).</p>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Tarih</th><th>Kim</th><th>İşlem</th><th>Detay</th></tr></thead>
+      <tbody>
+      <% rows.forEach(function (r) { %>
+        <tr>
+          <td class="muted"><%= T.fmtDateTime(new Date(r.created_at)) %></td>
+          <td><%= r.actor %></td>
+          <td><%= r.action %></td>
+          <td class="muted"><%= r.detail || '' %></td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+  </div>
+</main>
+<%- include('../partials/foot') %>

@@ -1,0 +1,89 @@
+<%- include('../partials/head', { title: title }) %>
+<%- include('../partials/adminnav') %>
+<main class="wrap">
+  <div class="card">
+    <form class="filters" method="get" action="/admin/kayitlar">
+      <div><label>Başlangıç</label><input type="date" name="baslangic" value="<%= from %>"></div>
+      <div><label>Bitiş</label><input type="date" name="bitis" value="<%= to %>"></div>
+      <div><label>Personel</label>
+        <select name="personel">
+          <option value="">Tümü</option>
+          <% employees.forEach(function (e) { %>
+            <option value="<%= e.id %>" <%= employeeId === e.id ? 'selected' : '' %>><%= e.name %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div><button class="btn" type="submit">Listele</button></div>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Manuel kayıt ekle</h2>
+    <form method="post" action="/admin/kayitlar/ekle" class="inline-form">
+      <select name="employee_id" required>
+        <option value="">Personel seç</option>
+        <% employees.forEach(function (e) { %><option value="<%= e.id %>"><%= e.name %></option><% }); %>
+      </select>
+      <select name="location_id">
+        <option value="">Lokasyon yok</option>
+        <% locations.forEach(function (l) { %><option value="<%= l.id %>"><%= l.name %></option><% }); %>
+      </select>
+      <select name="type">
+        <option value="in">Giriş</option>
+        <option value="out">Çıkış</option>
+      </select>
+      <input type="datetime-local" name="ts" value="<%= defaultDateTime %>" required>
+      <button class="btn btn-sm" type="submit">Ekle</button>
+    </form>
+    <p class="small muted">Saatler Europe/Istanbul olarak girilir. Manuel eklenen ve düzeltilen kayıtlar işlem günlüğüne yazılır.</p>
+  </div>
+
+  <div class="card">
+    <h2>Kayıtlar (<%= rows.length %>)</h2>
+    <% if (!rows.length) { %><p class="muted small">Seçilen aralıkta kayıt yok.</p><% } else { %>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Gün</th><th>Saat</th><th>Personel</th><th>Tür</th><th>Lokasyon</th><th>Mesafe</th><th>Durum</th><th>İşlem</th></tr></thead>
+      <tbody>
+      <% rows.forEach(function (r) { %>
+        <tr>
+          <td class="muted"><%= T.fmtDateTR(r.business_day) %></td>
+          <td><%= T.fmtTime(new Date(r.ts)) %></td>
+          <td><%= r.employee_name %></td>
+          <td><span class="pill <%= r.type === 'in' ? 'pill-green' : 'pill-orange' %>"><%= r.type === 'in' ? 'Giriş' : 'Çıkış' %></span></td>
+          <td class="muted"><%= r.location_name || '—' %></td>
+          <td class="muted"><%= r.distance_m == null ? '—' : Math.round(r.distance_m) + ' m' %></td>
+          <td class="small">
+            <% if (r.flagged) { %>
+              <span class="flagicon">⚠</span>
+              <%= r.flag_reason === 'out_of_range' ? 'Yarıçap dışı' : 'Konum yok' %>
+            <% } else { %><span class="muted">—</span><% } %>
+            <% if (r.source === 'manual') { %><span class="pill pill-gray">Manuel</span><% } %>
+            <% if (r.edited_by) { %>
+              <div class="muted"><%= r.edited_by %> · <%= T.fmtDateTime(new Date(r.edited_at)) %></div>
+            <% } %>
+          </td>
+          <td>
+            <details class="row-edit">
+              <summary>Düzelt</summary>
+              <form method="post" action="/admin/kayitlar/<%= r.id %>/guncelle" class="inline-form">
+                <input type="datetime-local" name="ts" value="<%= T.fmtInputDateTime(new Date(r.ts)) %>">
+                <select name="type">
+                  <option value="in" <%= r.type === 'in' ? 'selected' : '' %>>Giriş</option>
+                  <option value="out" <%= r.type === 'out' ? 'selected' : '' %>>Çıkış</option>
+                </select>
+                <button class="btn btn-sm" type="submit">Kaydet</button>
+              </form>
+              <form method="post" action="/admin/kayitlar/<%= r.id %>/sil" class="inline-form"
+                    onsubmit="return confirm('Kayıt silinsin mi?')">
+                <button class="btn btn-sm btn-danger" type="submit">Sil</button>
+              </form>
+            </details>
+          </td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+    <% } %>
+  </div>
+</main>
+<%- include('../partials/foot') %>

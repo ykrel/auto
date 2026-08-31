@@ -1,0 +1,19 @@
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/admin">PDKS Yönetim</a>
+    <form method="post" action="/admin/cikis"><button class="btn btn-ghost btn-sm" type="submit">Çıkış</button></form>
+  </div>
+  <nav class="tabs">
+    <a href="/admin" class="<%= path === '/' ? 'active' : '' %>">Bugün</a>
+    <a href="/admin/personel" class="<%= path.startsWith('/personel') ? 'active' : '' %>">
+      Personel<% if (pendingCount > 0) { %><span class="badge"><%= pendingCount %></span><% } %>
+    </a>
+    <a href="/admin/lokasyonlar" class="<%= path.startsWith('/lokasyonlar') ? 'active' : '' %>">Lokasyonlar</a>
+    <a href="/admin/kayitlar" class="<%= path.startsWith('/kayitlar') ? 'active' : '' %>">Kayıtlar</a>
+    <a href="/admin/rapor" class="<%= path.startsWith('/rapor') ? 'active' : '' %>">Rapor</a>
+    <a href="/admin/log" class="<%= path.startsWith('/log') ? 'active' : '' %>">Günlük</a>
+  </nav>
+</header>
+<% if (flash) { %>
+  <div class="flash <%= flash.type === 'ok' ? 'flash-ok' : 'flash-err' %>"><%= flash.message %></div>
+<% } %>

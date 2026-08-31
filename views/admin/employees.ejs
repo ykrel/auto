@@ -1,0 +1,98 @@
+<%- include('../partials/head', { title: title }) %>
+<%- include('../partials/adminnav') %>
+<main class="wrap">
+  <div class="card">
+    <h2>Onay bekleyenler (<%= requests.length %>)</h2>
+    <% if (!requests.length) { %><p class="muted small">Bekleyen talep yok.</p><% } else { %>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Talep</th><th>Ad Soyad</th><th>Telefon</th><th>Lokasyon</th><th>Tarih</th><th>İşlem</th></tr></thead>
+      <tbody>
+      <% requests.forEach(function (r) { %>
+        <tr>
+          <td><span class="pill <%= r.type === 'new' ? 'pill-green' : 'pill-orange' %>"><%= r.type === 'new' ? 'Yeni kayıt' : 'Cihaz değişikliği' %></span></td>
+          <td><%= r.name %></td>
+          <td><%= r.phone %></td>
+          <td><%= r.location_name || '—' %></td>
+          <td class="muted small"><%= T.fmtDateTime(new Date(r.created_at)) %></td>
+          <td>
+            <form method="post" action="/admin/personel/talep/<%= r.id %>/onayla" style="display:inline">
+              <button class="btn btn-sm btn-ok" type="submit">Onayla</button>
+            </form>
+            <form method="post" action="/admin/personel/talep/<%= r.id %>/reddet" style="display:inline"
+                  onsubmit="return confirm('Talep reddedilsin mi?')">
+              <button class="btn btn-sm btn-danger" type="submit">Reddet</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+    <% } %>
+  </div>
+
+  <div class="card">
+    <h2>Personel (<%= employees.length %>)</h2>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Ad Soyad</th><th>Telefon</th><th>Lokasyon</th><th>Mesai</th><th>Durum</th><th>Düzenle</th></tr></thead>
+      <tbody>
+      <% employees.forEach(function (e) { %>
+        <tr>
+          <td><%= e.name %></td>
+          <td class="muted"><%= e.phone %></td>
+          <td><%= e.location_name || '—' %></td>
+          <td class="muted"><%= e.shift_start || (e.location_shift ? e.location_shift + ' (lok.)' : '—') %></td>
+          <td>
+            <% if (e.status === 'active') { %><span class="pill pill-green">Aktif</span>
+            <% } else if (e.status === 'pending') { %><span class="pill pill-yellow">Onay bekliyor</span>
+            <% } else { %><span class="pill pill-gray">Pasif</span><% } %>
+          </td>
+          <td>
+            <details class="row-edit">
+              <summary>Düzenle</summary>
+              <form method="post" action="/admin/personel/<%= e.id %>/guncelle" class="inline-form">
+                <input type="text" name="name" value="<%= e.name %>" placeholder="Ad Soyad">
+                <input type="tel" name="phone" value="<%= e.phone %>" placeholder="Telefon">
+                <select name="location_id">
+                  <option value="">Lokasyon yok</option>
+                  <% locations.forEach(function (l) { %>
+                    <option value="<%= l.id %>" <%= e.location_id === l.id ? 'selected' : '' %>><%= l.name %></option>
+                  <% }); %>
+                </select>
+                <input type="time" name="shift_start" value="<%= e.shift_start || '' %>" title="Kişiye özel mesai başlangıcı (boşsa lokasyonunki)">
+                <select name="status">
+                  <option value="active" <%= e.status === 'active' ? 'selected' : '' %>>Aktif</option>
+                  <option value="pending" <%= e.status === 'pending' ? 'selected' : '' %>>Onay bekliyor</option>
+                  <option value="passive" <%= e.status === 'passive' ? 'selected' : '' %>>Pasif</option>
+                </select>
+                <button class="btn btn-sm" type="submit">Kaydet</button>
+              </form>
+              <form method="post" action="/admin/personel/<%= e.id %>/cihaz-iptal" class="inline-form"
+                    onsubmit="return confirm('Bu personelin cihaz kaydı iptal edilsin mi? Yeniden kayıt olması gerekir.')">
+                <button class="btn btn-sm btn-ghost" type="submit">Cihaz kaydını iptal et</button>
+              </form>
+            </details>
+          </td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h2>Personel ekle</h2>
+    <form method="post" action="/admin/personel/ekle" class="grid2">
+      <div><label>Ad Soyad</label><input type="text" name="name" required></div>
+      <div><label>Telefon</label><input type="tel" name="phone" placeholder="0532 123 45 67" required></div>
+      <div><label>Lokasyon</label>
+        <select name="location_id">
+          <option value="">Seçilmedi</option>
+          <% locations.forEach(function (l) { %><option value="<%= l.id %>"><%= l.name %></option><% }); %>
+        </select>
+      </div>
+      <div><label>Mesai başlangıcı (opsiyonel)</label><input type="time" name="shift_start"></div>
+      <div style="align-self:end"><button class="btn" type="submit">Ekle</button></div>
+    </form>
+    <p class="small muted">Elle eklenen personel aktiftir; cihazı tanımlamak için QR okutup "cihaz değişikliği" talebini onaylaması gerekir.</p>
+  </div>
+</main>
+<%- include('../partials/foot') %>
