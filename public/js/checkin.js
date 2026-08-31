@@ -150,17 +150,35 @@
   function doCheckin(token) {
     setLoading('Konum alınıyor…');
     getPosition().then(function (coords) {
-      setLoading('Kaydediliyor…');
-      var payload = { token: token, slug: SLUG };
-      if (coords) {
-        payload.lat = coords.lat;
-        payload.lng = coords.lng;
-        payload.accuracy = coords.accuracy;
+      if (!coords) {
+        message(
+          'Konum alınamadı',
+          'Giriş-çıkış için konum doğrulaması zorunludur. Telefonunuzun konumunu açın, tarayıcıya konum izni verin ve tekrar deneyin.',
+          'err',
+          true
+        );
+        return null;
       }
-      return post('/api/checkin', payload);
+      setLoading('Kaydediliyor…');
+      return post('/api/checkin', {
+        token: token,
+        slug: SLUG,
+        lat: coords.lat,
+        lng: coords.lng,
+        accuracy: coords.accuracy
+      });
     }).then(function (res) {
+      if (!res) return;
       var body = res.body || {};
       if (res.status === 200) return renderResult(body);
+      if (body.state === 'location_rejected') {
+        return message(
+          body.reason === 'out_of_range' ? 'İş yerinde değilsiniz' : 'Konum alınamadı',
+          body.error || 'Konum doğrulanamadı. Kayıt alınmadı.',
+          'err',
+          true
+        );
+      }
       if (body.state === 'pending') return renderPending(body.name);
       if (body.state === 'unknown') { clearToken(); return startRegister(); }
       if (body.state === 'revoked' || body.state === 'rejected') {

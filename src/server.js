@@ -208,6 +208,27 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     coords = { lat, lng, accuracy: Number.isFinite(Number(req.body.accuracy)) ? Number(req.body.accuracy) : null };
   }
 
+  // Konum dogrulamasi: uzakta veya konumsuz okutma KAYIT EDILMEZ, reddedilir.
+  const pos = service.evaluatePosition(location, coords);
+  if (pos.flagged) {
+    if (pos.flag_reason === 'out_of_range') {
+      const dist = Math.round(pos.distance);
+      logAction('personel', 'checkin_rejected', `${info.employee.name} / out_of_range / ${dist}m / ${location.name}`);
+      return res.status(403).json({
+        state: 'location_rejected',
+        reason: 'out_of_range',
+        distance: dist,
+        error: `İş yerinde görünmüyorsunuz: ${location.name} konumuna ${dist >= 1000 ? (dist / 1000).toFixed(1) + ' km' : dist + ' m'} uzaktasınız. Kayıt alınmadı.`
+      });
+    }
+    logAction('personel', 'checkin_rejected', `${info.employee.name} / no_gps / ${location.name}`);
+    return res.status(403).json({
+      state: 'location_rejected',
+      reason: 'no_gps',
+      error: 'Konumunuz alınamadı. Telefonunuzun konumunu açıp tarayıcıya konum izni verin ve tekrar deneyin. Kayıt alınmadı.'
+    });
+  }
+
   const result = service.recordCheckin({
     employee: info.employee,
     location,
