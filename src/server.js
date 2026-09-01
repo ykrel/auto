@@ -15,6 +15,7 @@ const {
 } = require('./util');
 const { TOKEN_COOKIE, setTokenCookie, resolveToken } = require('./auth');
 const service = require('./service');
+const { qrValid } = require('./qr');
 const adminRouter = require('./admin');
 
 const app = express();
@@ -211,6 +212,15 @@ app.post('/api/checkin', rateLimited, (req, res) => {
   const location = service.getLocationBySlug(req.body.slug);
   if (!location || !location.active) return res.status(404).json({ error: 'Lokasyon bulunamadi' });
 
+  // Duvardaki imzali QR kod zorunlu (link degil; yalnizca sayfadaki okuyucu okur)
+  if (!qrValid(req.body.qr, location.slug)) {
+    logAction('personel', 'checkin_rejected', `${info.employee.name} / qr_invalid / ${location.name}`);
+    return res.status(403).json({
+      state: 'qr_invalid',
+      error: 'Duvardaki QR kod okutulmadan kayıt alınamaz. Lütfen lokasyondaki güncel PDKS kodunu okutun.'
+    });
+  }
+
   let coords = null;
   const lat = Number(req.body.lat);
   const lng = Number(req.body.lng);
@@ -239,18 +249,17 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     });
   }
 
-  // Erken cikis onayi: mesai bitiminden once cikis olacaksa once onay istenir.
-  // (Acik kalan sayfanin yeniden yuklenip yanlislikla cikis atmasini da engeller.)
-  {
-    const day = T.todayBusinessDay();
-    const range = T.businessDayRange(day);
-    const lastRec = db
-      .prepare('SELECT * FROM checkins WHERE employee_id = ? AND ts >= ? AND ts < ? ORDER BY ts DESC, id DESC LIMIT 1')
-      .get(info.employee.id, range.start, range.end);
-    const inDupWindow = lastRec && Date.now() - new Date(lastRec.ts).getTime() < 2 * 60 * 1000; // service.js ile ayni pencere
+  // Erken cikis onayi: siradaki islem CIKIS ise ve mesai bitiminden onceyse onay istenir.
+  const day0 = T.todayBusinessDay();
+  const range0 = T.businessDayRange(day0);
+  const lastRec = db
+    .prepare('SELECT * FROM checkins WHERE employee_id = ? AND ts >= ? AND ts < ? ORDER BY ts DESC, id DESC LIMIT 1')
+    .get(info.employee.id, range0.start, range0.end);
+  const inDupWindow = lastRec && Date.now() - new Date(lastRec.ts).getTime() < 2 * 60 * 1000; // service.js ile ayni pencere
+  if (lastRec && lastRec.type === 'in' && !inDupWindow && req.body.confirm !== true) {
     const nowHM = T.fmtTime(new Date());
-    const threshold = earlyExitThreshold(day);
-    if (lastRec && !inDupWindow && nowHM < threshold && req.body.confirm !== true) {
+    const threshold = earlyExitThreshold(day0);
+    if (nowHM < threshold) {
       return res.status(409).json({
         state: 'confirm_required',
         type: 'out',
@@ -268,9 +277,9 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     now: new Date()
   });
 
-  // Gec giris bilgisi: mesai baslangicindan sonraki ilk giris
+  // Gec giris bilgisi: yalnizca gunun ILK girisi icin (ogle arasi donusleri gec sayilmaz)
   const shiftStart = info.employee.shift_start || location.shift_start || '08:30';
-  const late = result.type === 'in' && !result.duplicate && T.fmtTime(new Date(result.ts)) > shiftStart;
+  const late = !lastRec && result.type === 'in' && !result.duplicate && T.fmtTime(new Date(result.ts)) > shiftStart;
 
   const range = T.businessDayRange(result.day);
   const today = db

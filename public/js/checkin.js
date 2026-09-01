@@ -11,7 +11,7 @@
   function $(id) { return document.getElementById(id); }
 
   function show(id) {
-    ['s-loading', 's-nostorage', 's-register', 's-change', 's-pending', 's-action', 's-result', 's-confirm', 's-message']
+    ['s-loading', 's-nostorage', 's-register', 's-change', 's-pending', 's-action', 's-scan', 's-result', 's-confirm', 's-message']
       .forEach(function (s) { $(s).classList.toggle('hidden', s !== id); });
   }
 
@@ -190,42 +190,108 @@
   }
 
   // --- akış ---
-  function sendCheckin(token, coords, confirm) {
+  function sendCheckin(token, coords, qr, confirm) {
     return post('/api/checkin', {
       token: token,
       slug: SLUG,
       lat: coords.lat,
       lng: coords.lng,
       accuracy: coords.accuracy,
+      qr: qr,
       confirm: confirm === true
     });
   }
 
-  function doCheckin(token) {
-    setLoading('Konum alınıyor…');
-    getPosition().then(function (geo) {
-      var coords = geo && geo.coords;
-      if (!coords) {
-        var m = geoErrorMessage(geo && geo.reason);
-        message(m.title, m.body, 'err', true);
-        return null;
+  // --- kamera ile QR okuma ---
+  var scanStream = null;
+  function stopScan() {
+    if (scanStream) {
+      scanStream.getTracks().forEach(function (t) { t.stop(); });
+      scanStream = null;
+    }
+    var v = $('scan-video');
+    if (v) v.srcObject = null;
+  }
+
+  // null döndürürse kullanıcı vazgeçti; hata nesnesi { kind } ile reddedilir
+  function scanQr() {
+    return new Promise(function (resolve, reject) {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof jsQR !== 'function') {
+        return reject({ kind: 'unsupported' });
       }
-      setLoading('Kaydediliyor…');
-      return sendCheckin(token, coords, false).then(function (res) {
-        return { res: res, coords: coords };
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false }).then(function (stream) {
+        scanStream = stream;
+        var video = $('scan-video');
+        video.srcObject = stream;
+        var p = video.play(); if (p && p.catch) p.catch(function () {});
+        show('s-scan');
+        var canvas = document.createElement('canvas');
+        var cctx = canvas.getContext('2d', { willReadFrequently: true });
+        var done = false;
+        $('scan-cancel').onclick = function () { done = true; stopScan(); resolve(null); };
+        (function tick() {
+          if (done) return;
+          if (video.readyState >= 2 && video.videoWidth) {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            cctx.drawImage(video, 0, 0);
+            var img = cctx.getImageData(0, 0, canvas.width, canvas.height);
+            var found = jsQR(img.data, img.width, img.height);
+            if (found && found.data && found.data.indexOf('PDKS|') === 0) {
+              done = true; stopScan();
+              return resolve(found.data);
+            }
+          }
+          setTimeout(tick, 250);
+        })();
+      }).catch(function (err) {
+        reject({ kind: err && err.name === 'NotAllowedError' ? 'denied' : 'error' });
       });
+    });
+  }
+
+  function doCheckin(token) {
+    scanQr().then(function (qr) {
+      if (qr === null) { boot(); return null; } // okutmaktan vazgeçti
+      setLoading('Konum alınıyor…');
+      return getPosition().then(function (geo) {
+        var coords = geo && geo.coords;
+        if (!coords) {
+          var m = geoErrorMessage(geo && geo.reason);
+          message(m.title, m.body, 'err', true);
+          return null;
+        }
+        setLoading('Kaydediliyor…');
+        return sendCheckin(token, coords, qr, false).then(function (res) {
+          return { res: res, coords: coords, qr: qr };
+        });
+      });
+    }, function (err) {
+      stopScan();
+      if (err && err.kind === 'denied') {
+        message('Kamera izni gerekli', 'QR okutmak için kameraya izin vermelisiniz. Tarayıcının kamera iznini açıp tekrar deneyin.', 'err', true);
+      } else if (err && err.kind === 'unsupported') {
+        message('Kamera açılamadı', 'Bu tarayıcı kamera erişimini desteklemiyor. Sayfayı Safari veya Chrome ile açın.', 'err', true);
+      } else {
+        message('Kamera açılamadı', 'Kamera başlatılamadı. Tekrar deneyin.', 'err', true);
+      }
+      return null;
     }).then(function (wrap) {
       if (!wrap) return;
       var res = wrap.res;
       var coords = wrap.coords;
+      var qr = wrap.qr;
       var body = res.body || {};
       if (res.status === 200) return renderResult(body);
+      if (body.state === 'qr_invalid') {
+        return message('QR doğrulanamadı', body.error || 'Duvardaki güncel PDKS kodunu okutun.', 'err', true);
+      }
       if (body.state === 'confirm_required') {
         $('confirm-body').textContent =
           'Mesai bitiminden önce çıkış yapıyorsunuz (saat ' + (body.nowTime || '') + '). Çıkışı onaylıyor musunuz?';
         $('confirm-yes').onclick = function () {
           setLoading('Kaydediliyor…');
-          sendCheckin(token, coords, true).then(function (res2) {
+          sendCheckin(token, coords, qr, true).then(function (res2) {
             var b2 = res2.body || {};
             if (res2.status === 200) return renderResult(b2);
             return message('Kayıt alınamadı', b2.error || 'Beklenmeyen bir hata oluştu.', 'err', true);

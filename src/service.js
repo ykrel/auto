@@ -34,7 +34,7 @@ function evaluatePosition(location, coords) {
 
 /**
  * Okutmayi kaydeder.
- * Gunun ilk okutmasi GIRIS, sonrakiler CIKIS (yeni okutma son cikisi gunceller).
+ * Kayitlar donusumludur: giris → cikis → giris → ... (ayni gun cik-gir desteklenir).
  * Son okutmadan sonraki 2 dk icindeki tekrarlar yok sayilir.
  */
 function recordCheckin({ employee, location, coords, source = 'qr', now = new Date() }) {
@@ -61,41 +61,20 @@ function recordCheckin({ employee, location, coords, source = 'qr', now = new Da
     };
   }
 
-  let type;
-  let id;
-  if (!last) {
-    type = 'in';
-    id = db
-      .prepare(
-        `INSERT INTO checkins
-         (employee_id, location_id, type, ts, business_day, lat, lng, accuracy, distance_m, flagged, flag_reason, source, created_at)
-         VALUES (?, ?, 'in', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-      )
-      .run(
-        employee.id,
-        location.id,
-        ts,
-        day,
-        coords ? coords.lat : null,
-        coords ? coords.lng : null,
-        coords ? coords.accuracy : null,
-        pos.distance,
-        pos.flagged,
-        pos.flag_reason,
-        source,
-        ts
-      ).lastInsertRowid;
-  } else if (last.type === 'out') {
-    // Ayni gunde tekrar okutma: son cikisi guncelle
-    type = 'out';
-    id = last.id;
-    db.prepare(
-      `UPDATE checkins
-         SET ts = ?, location_id = ?, lat = ?, lng = ?, accuracy = ?, distance_m = ?, flagged = ?, flag_reason = ?, source = ?
-       WHERE id = ?`
-    ).run(
-      ts,
+  // Donusumlu tur: ilk okutma giris; son kayit giris ise cikis, cikis ise yeni giris
+  const type = !last ? 'in' : last.type === 'in' ? 'out' : 'in';
+  const id = db
+    .prepare(
+      `INSERT INTO checkins
+       (employee_id, location_id, type, ts, business_day, lat, lng, accuracy, distance_m, flagged, flag_reason, source, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    )
+    .run(
+      employee.id,
       location.id,
+      type,
+      ts,
+      day,
       coords ? coords.lat : null,
       coords ? coords.lng : null,
       coords ? coords.accuracy : null,
@@ -103,31 +82,8 @@ function recordCheckin({ employee, location, coords, source = 'qr', now = new Da
       pos.flagged,
       pos.flag_reason,
       source,
-      last.id
-    );
-  } else {
-    type = 'out';
-    id = db
-      .prepare(
-        `INSERT INTO checkins
-         (employee_id, location_id, type, ts, business_day, lat, lng, accuracy, distance_m, flagged, flag_reason, source, created_at)
-         VALUES (?, ?, 'out', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-      )
-      .run(
-        employee.id,
-        location.id,
-        ts,
-        day,
-        coords ? coords.lat : null,
-        coords ? coords.lng : null,
-        coords ? coords.accuracy : null,
-        pos.distance,
-        pos.flagged,
-        pos.flag_reason,
-        source,
-        ts
-      ).lastInsertRowid;
-  }
+      ts
+    ).lastInsertRowid;
 
   return {
     duplicate: false,
@@ -140,6 +96,20 @@ function recordCheckin({ employee, location, coords, source = 'qr', now = new Da
     distance: pos.distance,
     day
   };
+}
+
+// Ardisik giris→cikis ciftlerinin toplam suresi (dk). Acik kalan giris sureye katilmaz.
+function pairedMinutes(checks) {
+  let total = 0;
+  let openIn = null;
+  for (const c of checks) {
+    if (c.type === 'in') openIn = c;
+    else if (c.type === 'out' && openIn) {
+      total += T.minutesBetween(openIn.ts, c.ts);
+      openIn = null;
+    }
+  }
+  return { total, inside: !!openIn };
 }
 
 // Bir is gunu icin personel bazli ozet (admin "Bugun" ekrani)
@@ -161,21 +131,23 @@ function dayOverview(day, locationId = null) {
       .prepare('SELECT * FROM checkins WHERE employee_id = ? AND ts >= ? AND ts < ? ORDER BY ts ASC')
       .all(emp.id, range.start, range.end);
     const first = checks.find((c) => c.type === 'in') || null;
-    const last = [...checks].reverse().find((c) => c.type === 'out') || null;
+    const lastOut = [...checks].reverse().find((c) => c.type === 'out') || null;
+    const paired = pairedMinutes(checks);
     const shift = emp.shift_start || emp.location_shift || null;
     let lateMinutes = null;
     if (first && shift) {
       const start = T.shiftStartUtc(day, shift);
       if (start) lateMinutes = Math.max(0, T.minutesBetween(start.toISOString(), first.ts));
     }
-    const workMinutes = first && last ? T.minutesBetween(first.ts, last.ts) : null;
+    const workMinutes = checks.length ? paired.total : null;
     return {
       employee: emp,
       shift,
       inCheck: first,
-      outCheck: last,
+      outCheck: lastOut,
+      inside: paired.inside,
       inTime: first ? T.fmtTime(new Date(first.ts)) : null,
-      outTime: last ? T.fmtTime(new Date(last.ts)) : null,
+      outTime: lastOut ? T.fmtTime(new Date(lastOut.ts)) : null,
       lateMinutes,
       late: !!(lateMinutes && lateMinutes > 0),
       workMinutes,
@@ -186,8 +158,8 @@ function dayOverview(day, locationId = null) {
   });
 
   return {
-    present: rows.filter((r) => r.inCheck && !r.outCheck),
-    left: rows.filter((r) => r.inCheck && r.outCheck),
+    present: rows.filter((r) => r.inside),
+    left: rows.filter((r) => r.inCheck && !r.inside),
     absent: rows.filter((r) => !r.inCheck),
     all: rows
   };
@@ -226,10 +198,12 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
         shift: c.emp_shift || c.loc_shift || null,
         inCheck: null,
         outCheck: null,
+        checks: [],
         flagged: false
       });
     }
     const row = map.get(key);
+    row.checks.push(c);
     if (c.type === 'in' && !row.inCheck) row.inCheck = c;
     if (c.type === 'out') row.outCheck = c;
     if (c.flagged) row.flagged = true;
@@ -242,7 +216,8 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
       const start = T.shiftStartUtc(row.day, row.shift);
       if (start) lateMinutes = Math.max(0, T.minutesBetween(start.toISOString(), row.inCheck.ts));
     }
-    const workMinutes = row.inCheck && row.outCheck ? T.minutesBetween(row.inCheck.ts, row.outCheck.ts) : null;
+    const paired = pairedMinutes(row.checks);
+    const workMinutes = row.checks.length ? paired.total : null;
     return {
       ...row,
       inTime: row.inCheck ? T.fmtTime(new Date(row.inCheck.ts)) : '',
@@ -250,7 +225,7 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
       lateMinutes,
       workMinutes,
       workText: workMinutes != null ? T.fmtDuration(workMinutes) : '',
-      missingOut: !!row.inCheck && !row.outCheck
+      missingOut: paired.inside
     };
   });
 

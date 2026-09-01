@@ -64,6 +64,14 @@
     </div>
   </section>
 
+  <!-- QR okuyucu -->
+  <section class="state-card hidden" id="s-scan">
+    <h2 class="center">QR kodu okutun</h2>
+    <p class="small muted center">Duvardaki PDKS kodunu kameraya gösterin.</p>
+    <video id="scan-video" playsinline muted autoplay style="width:100%;border-radius:12px;background:#000;aspect-ratio:3/4;object-fit:cover"></video>
+    <button class="btn btn-block btn-ghost" type="button" id="scan-cancel" style="margin-top:10px">Vazgeç</button>
+  </section>
+
   <!-- Giriş/Çıkış butonu -->
   <section class="state-card hidden" id="s-action">
     <h2 class="center" id="action-name"></h2>
@@ -101,5 +109,6 @@
 
   <p class="small muted center" style="margin-top:18px">Saat sunucudan alınır · <%= serverTime %></p>
 </main>
+<script src="/static/js/jsqr.min.js"></script>
 <script src="/static/js/checkin.js"></script>
 <%- include('partials/foot') %>

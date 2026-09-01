@@ -2,6 +2,7 @@
 
 const express = require('express');
 const QRCode = require('qrcode');
+const { qrContent } = require('./qr');
 const ExcelJS = require('exceljs');
 
 const { db, logAction } = require('./db');
@@ -266,8 +267,8 @@ router.post('/lokasyonlar/:id/guncelle', (req, res) => {
 router.get('/lokasyonlar/:id/qr.png', async (req, res) => {
   const loc = db.prepare('SELECT * FROM locations WHERE id = ?').get(Number(req.params.id));
   if (!loc) return res.status(404).send('Lokasyon bulunamadi');
-  const url = `${baseUrl()}/c/${loc.slug}`;
-  const png = await QRCode.toBuffer(url, { width: 900, margin: 2, errorCorrectionLevel: 'M' });
+  // Icerik link degil, imzali lokasyon kodu — yalnizca personel sayfasindaki okuyucu dogrular
+  const png = await QRCode.toBuffer(qrContent(loc.slug), { width: 900, margin: 2, errorCorrectionLevel: 'M' });
   res.setHeader('Content-Type', 'image/png');
   res.setHeader('Content-Disposition', `attachment; filename="qr-${loc.slug}.png"`);
   res.send(png);
@@ -277,7 +278,7 @@ router.get('/lokasyonlar/:id/qr-onizleme', async (req, res) => {
   const loc = db.prepare('SELECT * FROM locations WHERE id = ?').get(Number(req.params.id));
   if (!loc) return res.status(404).send('Lokasyon bulunamadi');
   const url = `${baseUrl()}/c/${loc.slug}`;
-  const dataUrl = await QRCode.toDataURL(url, { width: 600, margin: 2 });
+  const dataUrl = await QRCode.toDataURL(qrContent(loc.slug), { width: 600, margin: 2 });
   res.render('admin/qr', { title: `QR - ${loc.name}`, loc, url, dataUrl, pendingCount: 0 });
 });
 
