@@ -11,7 +11,7 @@
   function $(id) { return document.getElementById(id); }
 
   function show(id) {
-    ['s-loading', 's-nostorage', 's-register', 's-change', 's-pending', 's-result', 's-confirm', 's-message']
+    ['s-loading', 's-nostorage', 's-register', 's-change', 's-pending', 's-action', 's-result', 's-confirm', 's-message']
       .forEach(function (s) { $(s).classList.toggle('hidden', s !== id); });
   }
 
@@ -172,6 +172,23 @@
     show('s-pending');
   }
 
+  // Sayfa açılınca otomatik işlem YAPILMAZ: duruma göre tek buton gösterilir.
+  function renderAction(body, token) {
+    var today = body.today || [];
+    var next = today.length ? 'out' : 'in';
+    var btn = $('action-btn');
+    btn.textContent = next === 'in' ? 'GİRİŞ YAP' : 'ÇIKIŞ YAP';
+    btn.style.background = next === 'in' ? '#16a34a' : '#ea580c';
+    btn.onclick = function () { doCheckin(token); };
+    $('action-name').textContent = body.name || '';
+    $('action-today').textContent = today.length
+      ? 'Bugün: ' + today.map(function (c) {
+          return (c.type === 'in' ? 'giriş ' : 'çıkış ') + c.time;
+        }).join(' · ')
+      : '';
+    show('s-action');
+  }
+
   // --- akış ---
   function sendCheckin(token, coords, confirm) {
     return post('/api/checkin', {
@@ -216,14 +233,7 @@
             message('Bağlantı hatası', 'İnternet bağlantınızı kontrol edip tekrar deneyin.', 'err', true);
           });
         };
-        $('confirm-no').onclick = function () {
-          message(
-            'Çıkış yapılmadı',
-            'Erken çıkış onaylanmadığı için kayıt alınmadı. Çıkış yapmak istediğinizde QR kodu tekrar okutmanız yeterli.',
-            'info',
-            false
-          );
-        };
+        $('confirm-no').onclick = function () { boot(); }; // vazgeçince butona geri dön
         return show('s-confirm');
       }
       if (body.state === 'location_rejected') {
@@ -268,7 +278,7 @@
     setLoading('Kimlik doğrulanıyor…');
     post('/api/identify', { token: token }).then(function (res) {
       var body = res.body || {};
-      if (body.state === 'ok') return doCheckin(token);
+      if (body.state === 'ok') return renderAction(body, token);
       if (body.state === 'pending') return renderPending(body.name);
       if (body.state === 'passive') {
         return message('Kayıt pasif', 'Kaydınız pasif durumda. Lütfen yöneticinizle görüşün.', 'err', false);
