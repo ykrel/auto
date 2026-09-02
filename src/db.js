@@ -87,11 +87,22 @@ CREATE TABLE IF NOT EXISTS audit_log (
   created_at TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS telegram_subs (
+  chat_id TEXT PRIMARY KEY,
+  name TEXT,
+  created_at TEXT NOT NULL
+);
+
 CREATE INDEX IF NOT EXISTS idx_checkins_emp_day ON checkins(employee_id, business_day);
 CREATE INDEX IF NOT EXISTS idx_checkins_ts ON checkins(ts);
 CREATE INDEX IF NOT EXISTS idx_devices_token ON devices(token);
 CREATE INDEX IF NOT EXISTS idx_requests_status ON device_requests(status);
 `);
+
+// Sonradan eklenen kolonlar (mevcut veritabanini migrate eder)
+const checkinCols = db.prepare('PRAGMA table_info(checkins)').all().map((c) => c.name);
+if (!checkinCols.includes('excused')) db.exec('ALTER TABLE checkins ADD COLUMN excused INTEGER NOT NULL DEFAULT 0');
+if (!checkinCols.includes('excused_by')) db.exec('ALTER TABLE checkins ADD COLUMN excused_by TEXT');
 
 function logAction(actor, action, detail) {
   db.prepare('INSERT INTO audit_log (actor, action, detail, created_at) VALUES (?, ?, ?, ?)')

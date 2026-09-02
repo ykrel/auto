@@ -16,6 +16,7 @@ const {
 const { TOKEN_COOKIE, setTokenCookie, resolveToken } = require('./auth');
 const service = require('./service');
 const { qrValid } = require('./qr');
+const telegram = require('./telegram');
 const adminRouter = require('./admin');
 
 const app = express();
@@ -280,6 +281,11 @@ app.post('/api/checkin', rateLimited, (req, res) => {
   // Gec giris bilgisi: yalnizca gunun ILK girisi icin (ogle arasi donusleri gec sayilmaz)
   const shiftStart = info.employee.shift_start || location.shift_start || '08:30';
   const late = !lastRec && result.type === 'in' && !result.duplicate && T.fmtTime(new Date(result.ts)) > shiftStart;
+  if (late && result.id) {
+    const startUtc = T.shiftStartUtc(result.day, shiftStart);
+    const lateMin = startUtc ? Math.max(1, Math.round((new Date(result.ts) - startUtc) / 60000)) : 0;
+    telegram.notifyLate(info.employee, result.id, result.ts, lateMin).catch(() => {});
+  }
 
   const range = T.businessDayRange(result.day);
   const today = db
@@ -350,6 +356,8 @@ function start() {
     setTimeout(() => process.exit(0), 8000).unref();
   };
   ['SIGTERM', 'SIGINT'].forEach((sig) => process.on(sig, () => shutdown(sig)));
+
+  telegram.start();
 }
 
 if (require.main === module) start();

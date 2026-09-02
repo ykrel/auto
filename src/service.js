@@ -135,7 +135,7 @@ function dayOverview(day, locationId = null) {
     const paired = pairedMinutes(checks);
     const shift = emp.shift_start || emp.location_shift || null;
     let lateMinutes = null;
-    if (first && shift) {
+    if (first && shift && !first.excused) {
       const start = T.shiftStartUtc(day, shift);
       if (start) lateMinutes = Math.max(0, T.minutesBetween(start.toISOString(), first.ts));
     }
@@ -212,7 +212,7 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
 
   const rows = [...map.values()].map((row) => {
     let lateMinutes = 0;
-    if (row.inCheck && row.shift) {
+    if (row.inCheck && row.shift && !row.inCheck.excused) {
       const start = T.shiftStartUtc(row.day, row.shift);
       if (start) lateMinutes = Math.max(0, T.minutesBetween(start.toISOString(), row.inCheck.ts));
     }
