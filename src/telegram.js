@@ -3,7 +3,8 @@
 /**
  * PDKS Telegram bildirim botu (AI yok, yalnizca bildirim + buton).
  * - Kayit: bota erisim kodunu (TELEGRAM_JOIN_CODE) gonderen sohbet aboneligi alir.
- * - 08:33 yoklamasi: hala gelmeyen aktif personel listesi abonelere gider (pazar haric).
+ * - 08:33 yoklamasi: hala gelmeyen aktif personel listesi abonelere gider (pazar haric);
+ *   izinli personel ayri bolumde "izinli" etiketiyle listelenir, gelmeyen sayilmaz.
  * - Gec gelen giris yapinca "X geldi (Y dk gec)" + "Mucbir sebep isaretle" butonu.
  *   Ilk basan gecerli; ikinci basana "Ilk kisi secti zaten" denir.
  *   Mucbir isaretli girisin gecikmesi raporda 0 sayilir (maas kesintisine yansimaz).
@@ -132,12 +133,21 @@ function morningTick() {
   if (done) return;
   logAction('telegram', 'morning_report', day);
   const service = require('./service');
-  const ov = service.dayOverview(day);
-  const yok = ov.absent.map((r) => r.employee.name);
-  const text = yok.length
-    ? `📋 <b>08:33 yoklaması</b> — henüz gelmeyenler (${yok.length}):\n` + yok.map((n) => '• ' + esc(n)).join('\n')
-    : '📋 <b>08:33 yoklaması</b> — herkes geldi ✅';
+  const text = morningText(service.dayOverview(day));
   broadcast(text).catch((e) => console.error('yoklama gonderilemedi:', e.message));
+}
+
+// Yoklama metni: gelmeyenler (aranacaklar) + izinliler ayri, "izinli" etiketiyle
+function morningText(ov) {
+  const yok = ov.absent.map((r) => r.employee.name);
+  const izin = (ov.onLeave || []).map((r) => r.employee.name);
+  let text = yok.length
+    ? `📋 <b>08:33 yoklaması</b> — henüz gelmeyenler (${yok.length}):\n` + yok.map((n) => '• ' + esc(n)).join('\n')
+    : `📋 <b>08:33 yoklaması</b> — ${izin.length ? 'izinliler hariç ' : ''}herkes geldi ✅`;
+  if (izin.length) {
+    text += `\n\n🏖 <b>İzinli</b> (${izin.length}):\n` + izin.map((n) => '• ' + esc(n) + ' — izinli').join('\n');
+  }
+  return text;
 }
 
 function start() {
@@ -150,4 +160,4 @@ function start() {
   console.log('Telegram botu aktif (bildirim + mucbir butonu).');
 }
 
-module.exports = { start, notifyLate };
+module.exports = { start, notifyLate, morningText };
