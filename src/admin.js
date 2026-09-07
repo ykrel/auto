@@ -378,6 +378,46 @@ router.post('/kayitlar/:id/sil', (req, res) => {
   res.redirect(back);
 });
 
+// --- Izinler ---
+const isDay = (v) => /^\d{4}-\d{2}-\d{2}$/.test(v || '');
+
+router.get('/izinler', (req, res) => {
+  const today = T.todayBusinessDay();
+  const from = isDay(req.query.baslangic) ? req.query.baslangic : today.slice(0, 8) + '01';
+  const to = isDay(req.query.bitis) ? req.query.bitis : T.addDays(today, 30);
+  res.render('admin/leaves', {
+    title: 'Izinler',
+    from,
+    to,
+    today,
+    leaves: service.leavesBetween(from, to),
+    employees: allEmployees().filter((e) => e.status === 'active'),
+    pendingCount: service.pendingRequests().length
+  });
+});
+
+router.post('/izinler/ekle', (req, res) => {
+  const employeeId = Number(req.body.employee_id);
+  const from = isDay(req.body.baslangic) ? req.body.baslangic : null;
+  const to = isDay(req.body.bitis) ? req.body.bitis : from;
+  const note = String(req.body.not || '').trim().slice(0, 200);
+  const employee = employeeId ? db.prepare('SELECT id FROM employees WHERE id = ?').get(employeeId) : null;
+  if (!employee || !from || to < from || T.eachDay(from, to).length > 366) {
+    flash(req, res, 'err', 'Personel ve gecerli tarih araligi zorunlu.');
+    return res.redirect('/admin/izinler');
+  }
+  const n = service.addLeave({ employeeId, fromDay: from, toDay: to, note, actor: 'admin' });
+  flash(req, res, 'ok', `${n} gun izin eklendi.`);
+  res.redirect(`/admin/izinler?baslangic=${from}&bitis=${to}`);
+});
+
+router.post('/izinler/:id/sil', (req, res) => {
+  const ok = service.removeLeave(Number(req.params.id), 'admin');
+  flash(req, res, ok ? 'ok' : 'err', ok ? 'Izin silindi.' : 'Izin bulunamadi.');
+  const back = req.get('referer') && req.get('referer').includes('/admin/izinler') ? req.get('referer') : '/admin/izinler';
+  res.redirect(back);
+});
+
 // --- Rapor ---
 router.get('/rapor', (req, res) => {
   const today = T.todayBusinessDay();
@@ -418,6 +458,7 @@ router.get('/rapor/xlsx', async (req, res) => {
   ];
   for (const r of rows) {
     const notes = [];
+    if (r.leave) notes.push('İzinli' + (r.leaveNote ? ' (' + r.leaveNote + ')' : ''));
     if (r.missingOut) notes.push('Çıkış eksik');
     if (r.flagged) notes.push('Konum doğrulanamadı');
     s1.addRow({
@@ -438,6 +479,7 @@ router.get('/rapor/xlsx', async (req, res) => {
   s2.columns = [
     { header: 'Personel', key: 'name', width: 24 },
     { header: 'Gün Sayısı', key: 'days', width: 12 },
+    { header: 'İzin Günü', key: 'leave', width: 12 },
     { header: 'Toplam Çalışma (saat:dk)', key: 'work', width: 24 },
     { header: 'Toplam Çalışma (dk)', key: 'workmin', width: 20 },
     { header: 'Geç Gelme Sayısı', key: 'latecount', width: 18 },
@@ -448,6 +490,7 @@ router.get('/rapor/xlsx', async (req, res) => {
     s2.addRow({
       name: t.employeeName,
       days: t.days,
+      leave: t.leaveDays,
       work: T.fmtDuration(t.workMinutes),
       workmin: t.workMinutes,
       latecount: t.lateCount,

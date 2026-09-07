@@ -73,6 +73,9 @@
 
   <div class="card">
     <h2>Henüz gelmeyenler (<%= overview.absent.length %>)</h2>
+    <% if (overview.onLeave && overview.onLeave.length) { %>
+      <p class="small muted">İzinli (<%= overview.onLeave.length %>): <%= overview.onLeave.map(function (r) { return r.employee.name; }).join(', ') %></p>
+    <% } %>
     <% if (!overview.absent.length) { %><p class="muted small">Herkes giriş yapmış.</p><% } else { %>
     <div class="table-scroll"><table>
       <thead><tr><th>Personel</th><th>Lokasyon</th><th>Mesai</th><th>Telefon</th></tr></thead>

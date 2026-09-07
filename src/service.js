@@ -125,6 +125,7 @@ function dayOverview(day, locationId = null) {
   }
   sql += ' ORDER BY e.name COLLATE NOCASE';
   const employees = db.prepare(sql).all(...params);
+  const leaveSet = new Set(db.prepare('SELECT employee_id FROM leaves WHERE day = ?').all(day).map((r) => r.employee_id));
 
   const rows = employees.map((emp) => {
     const checks = db
@@ -143,6 +144,7 @@ function dayOverview(day, locationId = null) {
     return {
       employee: emp,
       shift,
+      onLeave: leaveSet.has(emp.id),
       inCheck: first,
       outCheck: lastOut,
       inside: paired.inside,
@@ -160,7 +162,8 @@ function dayOverview(day, locationId = null) {
   return {
     present: rows.filter((r) => r.inside),
     left: rows.filter((r) => r.inCheck && !r.inside),
-    absent: rows.filter((r) => !r.inCheck),
+    absent: rows.filter((r) => !r.inCheck && !r.onLeave),
+    onLeave: rows.filter((r) => r.onLeave),
     all: rows
   };
 }
@@ -210,6 +213,42 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
     if (c.location_name) row.locationName = c.location_name;
   }
 
+  // Izin gunleri: kaydi olmayan gune "Izinli" satiri eklenir; kaydi varsa satir izinli olarak isaretlenir
+  let lsql = `SELECT lv.*, e.name AS employee_name, e.shift_start AS emp_shift,
+                     l.name AS location_name, l.shift_start AS loc_shift
+              FROM leaves lv
+              JOIN employees e ON e.id = lv.employee_id
+              LEFT JOIN locations l ON l.id = e.location_id
+              WHERE lv.day >= ? AND lv.day <= ?`;
+  const lparams = [fromDay, toDay];
+  if (employeeId) {
+    lsql += ' AND lv.employee_id = ?';
+    lparams.push(employeeId);
+  }
+  if (locationId) {
+    lsql += ' AND e.location_id = ?';
+    lparams.push(locationId);
+  }
+  for (const lv of db.prepare(lsql).all(...lparams)) {
+    const key = `${lv.day}|${lv.employee_id}`;
+    if (!map.has(key)) {
+      map.set(key, {
+        day: lv.day,
+        employeeId: lv.employee_id,
+        employeeName: lv.employee_name,
+        locationName: lv.location_name,
+        shift: lv.emp_shift || lv.loc_shift || null,
+        inCheck: null,
+        outCheck: null,
+        checks: [],
+        flagged: false
+      });
+    }
+    const row = map.get(key);
+    row.leave = true;
+    row.leaveNote = lv.note || '';
+  }
+
   const rows = [...map.values()].map((row) => {
     let lateMinutes = 0;
     if (row.inCheck && row.shift && !row.inCheck.excused) {
@@ -220,6 +259,8 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
     const workMinutes = row.checks.length ? paired.total : null;
     return {
       ...row,
+      leave: !!row.leave,
+      leaveNote: row.leaveNote || '',
       inTime: row.inCheck ? T.fmtTime(new Date(row.inCheck.ts)) : '',
       outTime: row.outCheck ? T.fmtTime(new Date(row.outCheck.ts)) : '',
       lateMinutes,
@@ -241,6 +282,7 @@ function employeeTotals(rows) {
         employeeId: r.employeeId,
         employeeName: r.employeeName,
         days: 0,
+        leaveDays: 0,
         workMinutes: 0,
         lateCount: 0,
         lateMinutes: 0,
@@ -248,7 +290,8 @@ function employeeTotals(rows) {
       });
     }
     const t = map.get(r.employeeId);
-    t.days += 1;
+    if (r.checks.length) t.days += 1;
+    if (r.leave) t.leaveDays += 1;
     if (r.workMinutes) t.workMinutes += r.workMinutes;
     if (r.lateMinutes > 0) {
       t.lateCount += 1;
@@ -257,6 +300,44 @@ function employeeTotals(rows) {
     if (r.missingOut) t.missingOutCount += 1;
   }
   return [...map.values()].sort((a, b) => a.employeeName.localeCompare(b.employeeName, 'tr'));
+}
+
+// --- Izin gunleri (izinli personel yoklamada "gelmedi" sayilmaz, raporda "Izinli" gorunur) ---
+function leavesBetween(fromDay, toDay, employeeId = null) {
+  let sql = `SELECT lv.*, e.name AS employee_name, l.name AS location_name
+             FROM leaves lv
+             JOIN employees e ON e.id = lv.employee_id
+             LEFT JOIN locations l ON l.id = e.location_id
+             WHERE lv.day >= ? AND lv.day <= ?`;
+  const params = [fromDay, toDay];
+  if (employeeId) {
+    sql += ' AND lv.employee_id = ?';
+    params.push(employeeId);
+  }
+  sql += ' ORDER BY lv.day ASC, e.name COLLATE NOCASE';
+  return db.prepare(sql).all(...params);
+}
+
+function addLeave({ employeeId, fromDay, toDay, note = '', actor = 'admin' }) {
+  const days = T.eachDay(fromDay, toDay);
+  const now = new Date().toISOString();
+  const ins = db.prepare(
+    'INSERT OR IGNORE INTO leaves (employee_id, day, note, created_by, created_at) VALUES (?, ?, ?, ?, ?)'
+  );
+  let n = 0;
+  db.transaction(() => {
+    for (const d of days) n += ins.run(employeeId, d, note || null, actor, now).changes;
+  })();
+  logAction(actor, 'leave_add', `personel #${employeeId} ${fromDay}..${toDay} (${n} gun)${note ? ' - ' + note : ''}`);
+  return n;
+}
+
+function removeLeave(id, actor = 'admin') {
+  const row = db.prepare('SELECT * FROM leaves WHERE id = ?').get(id);
+  if (!row) return false;
+  db.prepare('DELETE FROM leaves WHERE id = ?').run(id);
+  logAction(actor, 'leave_delete', `personel #${row.employee_id} ${row.day}`);
+  return true;
 }
 
 function pendingRequests() {
@@ -329,6 +410,9 @@ module.exports = {
   dayOverview,
   dailyRows,
   employeeTotals,
+  leavesBetween,
+  addLeave,
+  removeLeave,
   pendingRequests,
   approveRequest,
   rejectRequest

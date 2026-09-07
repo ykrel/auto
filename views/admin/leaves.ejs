@@ -1,0 +1,49 @@
+<%- include('../partials/head', { title: title }) %>
+<%- include('../partials/adminnav') %>
+<main class="wrap">
+  <div class="card">
+    <h2>İzin ekle</h2>
+    <form method="post" action="/admin/izinler/ekle" class="inline-form">
+      <select name="employee_id" required>
+        <option value="">Personel seç</option>
+        <% employees.forEach(function (e) { %><option value="<%= e.id %>"><%= e.name %></option><% }); %>
+      </select>
+      <input type="date" name="baslangic" value="<%= today %>" required>
+      <input type="date" name="bitis" value="<%= today %>">
+      <input type="text" name="not" placeholder="Not (yıllık izin, rapor…)" maxlength="200">
+      <button class="btn btn-sm" type="submit">Ekle</button>
+    </form>
+    <p class="small muted" style="margin-bottom:0">Başlangıç–bitiş arasındaki her gün izinli işaretlenir. İzinli personel 08:33 yoklamasında "gelmedi" sayılmaz; raporda gün "İzinli" olarak görünür, çalışma süresi ve gecikmeye katılmaz.</p>
+  </div>
+
+  <div class="card">
+    <form class="filters" method="get" action="/admin/izinler">
+      <div><label>Başlangıç</label><input type="date" name="baslangic" value="<%= from %>"></div>
+      <div><label>Bitiş</label><input type="date" name="bitis" value="<%= to %>"></div>
+      <div><button class="btn" type="submit">Göster</button></div>
+    </form>
+    <h3>İzin günleri (<%= leaves.length %>)</h3>
+    <% if (!leaves.length) { %><p class="muted small">Bu aralıkta izin yok.</p><% } else { %>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Tarih</th><th>Personel</th><th>Lokasyon</th><th>Not</th><th>Ekleyen</th><th></th></tr></thead>
+      <tbody>
+      <% leaves.forEach(function (lv) { %>
+        <tr>
+          <td><%= T.fmtDateTR(lv.day) %></td>
+          <td><%= lv.employee_name %></td>
+          <td class="muted"><%= lv.location_name || '—' %></td>
+          <td class="small"><%= lv.note || '' %></td>
+          <td class="muted small"><%= lv.created_by || '' %> · <%= T.fmtDateTime(new Date(lv.created_at)) %></td>
+          <td>
+            <form method="post" action="/admin/izinler/<%= lv.id %>/sil" style="display:inline" onsubmit="return confirm('İzin silinsin mi?')">
+              <button class="btn btn-sm btn-danger" type="submit">Sil</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+    <% } %>
+  </div>
+</main>
+<%- include('../partials/foot') %>

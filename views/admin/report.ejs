@@ -26,7 +26,10 @@
           <td><%= r.workText || '—' %></td>
           <td class="<%= r.lateMinutes > 0 ? 'late' : 'muted' %>"><%= r.lateMinutes || 0 %></td>
           <td class="small muted">
-            <%= r.missingOut ? 'Çıkış eksik' : '' %><%= r.missingOut && r.flagged ? ' · ' : '' %><%= r.flagged ? 'Konum ⚠' : '' %>
+            <% var notes = [];
+               if (r.leave) notes.push('İzinli' + (r.leaveNote ? ' (' + r.leaveNote + ')' : ''));
+               if (r.missingOut) notes.push('Çıkış eksik');
+               if (r.flagged) notes.push('Konum ⚠'); %><%= notes.join(' · ') %>
           </td>
         </tr>
       <% }); %>
@@ -38,12 +41,13 @@
   <div class="card">
     <h3>Sayfa 2 — Personel toplamları</h3>
     <div class="table-scroll"><table>
-      <thead><tr><th>Personel</th><th>Gün</th><th>Toplam çalışma</th><th>Geç gelme</th><th>Toplam gecikme (dk)</th><th>Eksik çıkış</th></tr></thead>
+      <thead><tr><th>Personel</th><th>Gün</th><th>İzin (gün)</th><th>Toplam çalışma</th><th>Geç gelme</th><th>Toplam gecikme (dk)</th><th>Eksik çıkış</th></tr></thead>
       <tbody>
       <% totals.forEach(function (t) { %>
         <tr>
           <td><%= t.employeeName %></td>
           <td><%= t.days %></td>
+          <td class="muted"><%= t.leaveDays %></td>
           <td><%= T.fmtDuration(t.workMinutes) %></td>
           <td class="<%= t.lateCount ? 'late' : 'muted' %>"><%= t.lateCount %></td>
           <td class="muted"><%= t.lateMinutes %></td>

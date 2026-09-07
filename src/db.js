@@ -93,7 +93,18 @@ CREATE TABLE IF NOT EXISTS telegram_subs (
   created_at TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS leaves (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  employee_id INTEGER NOT NULL REFERENCES employees(id) ON DELETE CASCADE,
+  day TEXT NOT NULL,
+  note TEXT,
+  created_by TEXT,
+  created_at TEXT NOT NULL,
+  UNIQUE(employee_id, day)
+);
+
 CREATE INDEX IF NOT EXISTS idx_checkins_emp_day ON checkins(employee_id, business_day);
+CREATE INDEX IF NOT EXISTS idx_leaves_day ON leaves(day);
 CREATE INDEX IF NOT EXISTS idx_checkins_ts ON checkins(ts);
 CREATE INDEX IF NOT EXISTS idx_devices_token ON devices(token);
 CREATE INDEX IF NOT EXISTS idx_requests_status ON device_requests(status);
