@@ -37,7 +37,7 @@ function evaluatePosition(location, coords) {
  * Kayitlar donusumludur: giris → cikis → giris → ... (ayni gun cik-gir desteklenir).
  * Son okutmadan sonraki 2 dk icindeki tekrarlar yok sayilir.
  */
-function recordCheckin({ employee, location, coords, source = 'qr', now = new Date() }) {
+function recordCheckin({ employee, location, coords, source = 'qr', now = new Date(), device = null }) {
   const ts = now.toISOString();
   const day = T.businessDay(now);
   const range = T.businessDayRange(day);
@@ -66,8 +66,8 @@ function recordCheckin({ employee, location, coords, source = 'qr', now = new Da
   const id = db
     .prepare(
       `INSERT INTO checkins
-       (employee_id, location_id, type, ts, business_day, lat, lng, accuracy, distance_m, flagged, flag_reason, source, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+       (employee_id, location_id, type, ts, business_day, lat, lng, accuracy, distance_m, flagged, flag_reason, source, created_at, device_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
     .run(
       employee.id,
@@ -82,7 +82,8 @@ function recordCheckin({ employee, location, coords, source = 'qr', now = new Da
       pos.flagged,
       pos.flag_reason,
       source,
-      ts
+      ts,
+      device ? device.id : null
     ).lastInsertRowid;
 
   return {
@@ -376,6 +377,50 @@ function approveRequest(requestId, actor = 'admin') {
   return { ok: true };
 }
 
+// --- Cihaz yardimcilari (otomatik cihaz onayi + ortak telefon tespiti, 2026-09-09) ---
+const AUTO_DEVICE_MAX_PER_WEEK = 3; // 7 gunde bu kadar talepten sonrasi elle onaya duser
+
+function activeDeviceCount(employeeId) {
+  return db.prepare('SELECT COUNT(*) AS n FROM devices WHERE employee_id = ? AND active = 1').get(employeeId).n;
+}
+
+function recentDeviceRequestCount(employeeId, days = 7) {
+  const since = new Date(Date.now() - days * 86400000).toISOString();
+  return db
+    .prepare('SELECT COUNT(*) AS n FROM device_requests WHERE employee_id = ? AND created_at >= ?')
+    .get(employeeId, since).n;
+}
+
+// Ayni tarayici kimligi (ayni telefon) baska bir aktif personelin aktif cihazinda kayitli mi?
+function browserIdOtherOwners(browserId, employeeId) {
+  if (!browserId) return [];
+  return db
+    .prepare(
+      `SELECT DISTINCT e.id, e.name FROM devices d JOIN employees e ON e.id = d.employee_id
+       WHERE d.browser_id = ? AND d.active = 1 AND d.employee_id != ? AND e.status = 'active'
+       ORDER BY e.name COLLATE NOCASE`
+    )
+    .all(browserId, employeeId);
+}
+
+/**
+ * Aktif personelin "Daha once kayitliyim" talebi: guvenli gorunuyorsa cihaz aninda aktif edilir
+ * (eski cihazlar KAPATILMAZ; Safari + uygulama ici tarayici birlikte calisabilsin).
+ * Elle onaya dusme sebepleri: haftalik talep siniri asildi, ya da ayni telefon baska personele kayitli.
+ */
+function autoDeviceDecision(employee, browserId) {
+  if (employee.status !== 'active') return { auto: false, reason: 'personel aktif değil' };
+  const recent = recentDeviceRequestCount(employee.id, 7);
+  if (recent >= AUTO_DEVICE_MAX_PER_WEEK) {
+    return { auto: false, reason: `7 günde ${recent + 1}. cihaz talebi` };
+  }
+  const others = browserIdOtherOwners(browserId, employee.id);
+  if (others.length) {
+    return { auto: false, reason: `aynı telefon ${others.map((o) => o.name).join(', ')} adına kayıtlı`, others };
+  }
+  return { auto: true };
+}
+
 function rejectRequest(requestId, actor = 'admin') {
   const req = db.prepare('SELECT * FROM device_requests WHERE id = ?').get(requestId);
   if (!req || req.status !== 'pending') return { ok: false, error: 'Talep bulunamadi' };
@@ -415,5 +460,8 @@ module.exports = {
   removeLeave,
   pendingRequests,
   approveRequest,
-  rejectRequest
+  rejectRequest,
+  activeDeviceCount,
+  browserIdOtherOwners,
+  autoDeviceDecision
 };

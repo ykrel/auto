@@ -42,7 +42,7 @@
     <h2>Kayıtlar (<%= rows.length %>)</h2>
     <% if (!rows.length) { %><p class="muted small">Seçilen aralıkta kayıt yok.</p><% } else { %>
     <div class="table-scroll"><table>
-      <thead><tr><th>Gün</th><th>Saat</th><th>Personel</th><th>Tür</th><th>Lokasyon</th><th>Mesafe</th><th>Durum</th><th>İşlem</th></tr></thead>
+      <thead><tr><th>Gün</th><th>Saat</th><th>Personel</th><th>Tür</th><th>Lokasyon</th><th>Mesafe</th><th>Cihaz</th><th>Durum</th><th>İşlem</th></tr></thead>
       <tbody>
       <% rows.forEach(function (r) { %>
         <tr>
@@ -52,6 +52,12 @@
           <td><span class="pill <%= r.type === 'in' ? 'pill-green' : 'pill-orange' %>"><%= r.type === 'in' ? 'Giriş' : 'Çıkış' %></span></td>
           <td class="muted"><%= r.location_name || '—' %></td>
           <td class="muted"><%= r.distance_m == null ? '—' : Math.round(r.distance_m) + ' m' %></td>
+          <td class="small">
+            <% if (r.device_pk) { %>
+              <span class="muted" title="<%= r.device_ua || '' %>">#<%= r.device_pk %> <%= uaLabel(r.device_ua) %><%= r.device_active ? '' : ' (iptal)' %></span>
+              <% if (r.shared_cnt) { %><div><span class="pill pill-orange" title="Bu telefon başka personelde de kayıtlı">⚠ Ortak telefon</span></div><% } %>
+            <% } else { %><span class="muted">—</span><% } %>
+          </td>
           <td class="small">
             <% if (r.flagged) { %>
               <span class="flagicon">⚠</span>

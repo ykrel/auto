@@ -45,12 +45,12 @@
   <!-- Cihaz değişikliği -->
   <section class="state-card hidden" id="s-change">
     <h2 class="center">Cihaz değişikliği</h2>
-    <p class="small muted center">Kayıtlı telefon numaranızı girin. Yöneticiniz onayladıktan sonra bu cihaz kullanıma açılır.</p>
+    <p class="small muted center">Kayıtlı telefon numaranızı girin; numaranız eşleşirse bu telefon hemen kullanıma açılır.</p>
     <form id="change-form">
       <label for="change-phone">Telefon</label>
       <input type="tel" id="change-phone" name="phone" placeholder="0532 123 45 67" inputmode="numeric" required>
       <div class="notice notice-err hidden" id="change-error"></div>
-      <button class="btn btn-block" type="submit" id="change-submit">Talep gönder</button>
+      <button class="btn btn-block" type="submit" id="change-submit">Devam et</button>
     </form>
     <div class="linkline"><a href="#" id="link-register">Yeni kayıt oluştur</a></div>
   </section>
@@ -110,5 +110,5 @@
   <p class="small muted center" style="margin-top:18px">Saat sunucudan alınır · <%= serverTime %></p>
 </main>
 <script src="/static/js/jsqr.min.js"></script>
-<script src="/static/js/checkin.js"></script>
+<script src="/static/js/checkin.js?v=20260909"></script>
 <%- include('partials/foot') %>

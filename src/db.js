@@ -114,6 +114,12 @@ CREATE INDEX IF NOT EXISTS idx_requests_status ON device_requests(status);
 const checkinCols = db.prepare('PRAGMA table_info(checkins)').all().map((c) => c.name);
 if (!checkinCols.includes('excused')) db.exec('ALTER TABLE checkins ADD COLUMN excused INTEGER NOT NULL DEFAULT 0');
 if (!checkinCols.includes('excused_by')) db.exec('ALTER TABLE checkins ADD COLUMN excused_by TEXT');
+// 2026-09-09: kayitlara cihaz bilgisi + cihazlara tarayici kimligi (ortak telefon tespiti)
+if (!checkinCols.includes('device_id')) db.exec('ALTER TABLE checkins ADD COLUMN device_id INTEGER REFERENCES devices(id)');
+const deviceCols = db.prepare('PRAGMA table_info(devices)').all().map((c) => c.name);
+if (!deviceCols.includes('browser_id')) db.exec('ALTER TABLE devices ADD COLUMN browser_id TEXT');
+db.exec('CREATE INDEX IF NOT EXISTS idx_devices_browser ON devices(browser_id)');
+db.exec('CREATE INDEX IF NOT EXISTS idx_checkins_device ON checkins(device_id)');
 
 function logAction(actor, action, detail) {
   db.prepare('INSERT INTO audit_log (actor, action, detail, created_at) VALUES (?, ?, ?, ?)')

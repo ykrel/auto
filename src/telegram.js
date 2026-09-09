@@ -53,6 +53,21 @@ async function notifyLate(employee, checkinId, ts, lateMinutes) {
   await broadcast(text, [[{ text: 'Mücbir sebep işaretle', callback_data: 'excuse:' + checkinId }]]);
 }
 
+// --- Cihaz bildirimleri (otomatik cihaz onayi, 2026-09-09) ---
+async function notifyDeviceAdded(employee, label, activeCount) {
+  await broadcast(`📱 <b>${esc(employee.name)}</b> yeni cihaz ekledi (${esc(label)}) — aktif cihaz: ${activeCount}`);
+}
+
+async function notifyDeviceHeld(employee, label, reason) {
+  await broadcast(`⏸ <b>${esc(employee.name)}</b> cihaz talebi onaya düştü (${esc(label)}): ${esc(reason)}. Panel → Personel.`);
+}
+
+async function notifySharedDevice(employee, others, label) {
+  await broadcast(
+    `⚠️ <b>Ortak telefon:</b> ${esc(employee.name)} okuttu (${esc(label)}); aynı telefon şu personelde de kayıtlı: <b>${esc(others.join(', '))}</b>`
+  );
+}
+
 // --- Gelen mesaj / buton islemleri ---
 async function handleUpdate(u) {
   if (u.callback_query) {
@@ -160,4 +175,4 @@ function start() {
   console.log('Telegram botu aktif (bildirim + mucbir butonu).');
 }
 
-module.exports = { start, notifyLate, morningText };
+module.exports = { start, notifyLate, morningText, notifyDeviceAdded, notifyDeviceHeld, notifySharedDevice };

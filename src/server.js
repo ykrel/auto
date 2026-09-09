@@ -11,7 +11,9 @@ const {
   validPhone,
   cleanName,
   newToken,
-  createRateLimiter
+  createRateLimiter,
+  cleanBrowserId,
+  uaLabel
 } = require('./util');
 const { TOKEN_COOKIE, setTokenCookie, resolveToken } = require('./auth');
 const service = require('./service');
@@ -140,6 +142,7 @@ app.post('/api/register', rateLimited, (req, res) => {
 
   const now = new Date().toISOString();
   const token = newToken();
+  const browserId = cleanBrowserId(req.body.bid);
   const result = db.transaction(() => {
     let employeeId;
     if (existing) {
@@ -153,8 +156,8 @@ app.post('/api/register', rateLimited, (req, res) => {
         .run(name, phone, location.id, now).lastInsertRowid;
     }
     const deviceId = db
-      .prepare('INSERT INTO devices (employee_id, token, active, user_agent, created_at) VALUES (?, ?, 0, ?, ?)')
-      .run(employeeId, token, String(req.get('user-agent') || '').slice(0, 200), now).lastInsertRowid;
+      .prepare('INSERT INTO devices (employee_id, token, active, user_agent, created_at, browser_id) VALUES (?, ?, 0, ?, ?, ?)')
+      .run(employeeId, token, String(req.get('user-agent') || '').slice(0, 200), now, browserId).lastInsertRowid;
     db.prepare(
       `INSERT INTO device_requests (employee_id, device_id, location_id, name, phone, type, status, created_at)
        VALUES (?, ?, ?, ?, ?, 'new', 'pending', ?)`
@@ -184,17 +187,42 @@ app.post('/api/device-change', rateLimited, (req, res) => {
 
   const now = new Date().toISOString();
   const token = newToken();
+  const ua = String(req.get('user-agent') || '').slice(0, 200);
+  const browserId = cleanBrowserId(req.body.bid);
+  const label = uaLabel(ua);
+
+  // 2026-09-09: aktif personelin cihaz degisikligi guvenliyse ANINDA onaylanir (yonetici onayi beklenmez).
+  // Eski cihazlar kapatilmaz. Supheli durumlarda (haftalik sinir, ayni telefon baska personelde) eski akis: onaya duser.
+  const decision = service.autoDeviceDecision(employee, browserId);
+  if (decision.auto) {
+    db.transaction(() => {
+      const deviceId = db
+        .prepare('INSERT INTO devices (employee_id, token, active, user_agent, created_at, browser_id) VALUES (?, ?, 1, ?, ?, ?)')
+        .run(employee.id, token, ua, now, browserId).lastInsertRowid;
+      db.prepare(
+        `INSERT INTO device_requests (employee_id, device_id, location_id, name, phone, type, status, created_at, decided_at, decided_by)
+         VALUES (?, ?, ?, ?, ?, 'change', 'approved', ?, ?, 'auto')`
+      ).run(employee.id, deviceId, location.id, employee.name, phone, now, now);
+    })();
+    const activeCount = service.activeDeviceCount(employee.id);
+    logAction('sistem', 'device_auto_approve', `${employee.name} / ${phone} / ${label} / aktif cihaz: ${activeCount}`);
+    telegram.notifyDeviceAdded(employee, label, activeCount).catch(() => {});
+    setTokenCookie(req, res, token);
+    return res.json({ state: 'ok', token, name: employee.name, type: 'change', auto: true });
+  }
+
   db.transaction(() => {
     const deviceId = db
-      .prepare('INSERT INTO devices (employee_id, token, active, user_agent, created_at) VALUES (?, ?, 0, ?, ?)')
-      .run(employee.id, token, String(req.get('user-agent') || '').slice(0, 200), now).lastInsertRowid;
+      .prepare('INSERT INTO devices (employee_id, token, active, user_agent, created_at, browser_id) VALUES (?, ?, 0, ?, ?, ?)')
+      .run(employee.id, token, ua, now, browserId).lastInsertRowid;
     db.prepare(
       `INSERT INTO device_requests (employee_id, device_id, location_id, name, phone, type, status, created_at)
        VALUES (?, ?, ?, ?, ?, 'change', 'pending', ?)`
     ).run(employee.id, deviceId, location.id, employee.name, phone, now);
   })();
 
-  logAction('personel', 'device_change_request', `${employee.name} / ${phone}`);
+  logAction('personel', 'device_change_request', `${employee.name} / ${phone} / ${label} / onaya düştü: ${decision.reason}`);
+  if (employee.status === 'active') telegram.notifyDeviceHeld(employee, label, decision.reason).catch(() => {});
   setTokenCookie(req, res, token);
   res.json({ state: 'pending', token, name: employee.name, type: 'change' });
 });
@@ -270,13 +298,37 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     }
   }
 
+  // Tarayici kimligini cihaza isle (eski cihazlar icin geriye donuk doldurma)
+  const bid = cleanBrowserId(req.body.bid);
+  if (bid && info.device.browser_id !== bid) {
+    db.prepare('UPDATE devices SET browser_id = ? WHERE id = ?').run(bid, info.device.id);
+    info.device.browser_id = bid;
+  }
+
   const result = service.recordCheckin({
     employee: info.employee,
     location,
     coords,
     source: 'qr',
-    now: new Date()
+    now: new Date(),
+    device: info.device
   });
+
+  // Ortak telefon tespiti: ayni tarayici kimligi baska bir aktif personelde de kayitliysa Telegram'a uyari (gunde 1 kez / kisi)
+  if (result.id && !result.duplicate && info.device.browser_id) {
+    const others = service.browserIdOtherOwners(info.device.browser_id, info.employee.id);
+    if (others.length) {
+      const key = `${result.day} #${info.employee.id}`;
+      const already = db
+        .prepare("SELECT 1 FROM audit_log WHERE action = 'shared_device' AND detail LIKE ? LIMIT 1")
+        .get(key + '%');
+      if (!already) {
+        const names = others.map((o) => o.name);
+        logAction('sistem', 'shared_device', `${key} ${info.employee.name} ~ ${names.join(', ')} / cihaz #${info.device.id}`);
+        telegram.notifySharedDevice(info.employee, names, uaLabel(info.device.user_agent)).catch(() => {});
+      }
+    }
+  }
 
   // Gec giris bilgisi: yalnizca gunun ILK girisi icin (ogle arasi donusleri gec sayilmaz)
   const shiftStart = info.employee.shift_start || location.shift_start || '08:30';

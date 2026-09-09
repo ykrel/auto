@@ -45,6 +45,7 @@
             <% if (e.status === 'active') { %><span class="pill pill-green">Aktif</span>
             <% } else if (e.status === 'pending') { %><span class="pill pill-yellow">Onay bekliyor</span>
             <% } else { %><span class="pill pill-gray">Pasif</span><% } %>
+            <% if (e.status !== 'passive') { %><div class="small muted" title="Aktif cihaz (tarayıcı) sayısı"><%= e.device_count %> cihaz</div><% } %>
           </td>
           <td>
             <details class="row-edit">
@@ -92,7 +93,7 @@
       <div><label>Mesai başlangıcı (opsiyonel)</label><input type="time" name="shift_start"></div>
       <div style="align-self:end"><button class="btn" type="submit">Ekle</button></div>
     </form>
-    <p class="small muted">Elle eklenen personel aktiftir; cihazı tanımlamak için QR okutup "cihaz değişikliği" talebini onaylaması gerekir.</p>
+    <p class="small muted">Elle eklenen personel aktiftir; QR'ı okutup "Daha önce kayıtlıyım" deyip numarasını yazınca cihazı kendiliğinden tanımlanır (onay gerekmez). Yalnızca haftada 3'ten fazla cihaz ekleyen ya da başka personele kayıtlı telefondan gelen talepler onaya düşer.</p>
   </div>
 </main>
 <%- include('../partials/foot') %>

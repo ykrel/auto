@@ -74,6 +74,29 @@
     document.cookie = COOKIE + '=; path=/; max-age=0; SameSite=Lax';
   }
 
+  // Tarayıcı kimliği: token'dan bağımsız, bu tarayıcıya özel rastgele kimlik.
+  // Sunucu bununla aynı telefonun birden fazla personel için kullanıldığını fark eder. Token silinse de kalır.
+  var BID_KEY = 'pdks_bid';
+  function loadBid() {
+    var b = readCookie(BID_KEY);
+    var ls = null;
+    try { ls = window.localStorage.getItem(BID_KEY); } catch (e) { ls = null; }
+    b = b || ls;
+    if (!b || !/^[a-f0-9]{16,64}$/.test(b)) {
+      b = '';
+      try {
+        var arr = new Uint8Array(16);
+        window.crypto.getRandomValues(arr);
+        for (var i = 0; i < arr.length; i++) b += ('0' + arr[i].toString(16)).slice(-2);
+      } catch (e) {
+        while (b.length < 32) b += Math.floor(Math.random() * 16).toString(16);
+      }
+    }
+    try { window.localStorage.setItem(BID_KEY, b); } catch (e) { /* yoksay */ }
+    writeCookie(BID_KEY, b);
+    return b;
+  }
+
   function post(url, data) {
     return fetch(url, {
       method: 'POST',
@@ -193,6 +216,7 @@
   function sendCheckin(token, coords, qr, confirm) {
     return post('/api/checkin', {
       token: token,
+      bid: loadBid(),
       slug: SLUG,
       lat: coords.lat,
       lng: coords.lng,
@@ -369,6 +393,7 @@
     btn.disabled = true;
     post('/api/register', {
       slug: SLUG,
+      bid: loadBid(),
       name: $('name').value,
       phone: $('phone').value,
       kvkk: $('kvkk').checked
@@ -402,11 +427,12 @@
     err.classList.add('hidden');
     var btn = $('change-submit');
     btn.disabled = true;
-    post('/api/device-change', { slug: SLUG, phone: $('change-phone').value }).then(function (res) {
+    post('/api/device-change', { slug: SLUG, bid: loadBid(), phone: $('change-phone').value }).then(function (res) {
       btn.disabled = false;
       var body = res.body || {};
       if (res.status === 200 && body.token) {
         saveToken(body.token);
+        if (body.state === 'ok') return boot(); // anında onaylandı → doğrudan GİRİŞ/ÇIKIŞ butonu
         return renderPending(body.name, 'change');
       }
       err.textContent = body.error || body.message || 'Talep gönderilemedi.';

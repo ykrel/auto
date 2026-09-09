@@ -7,7 +7,7 @@ const ExcelJS = require('exceljs');
 
 const { db, logAction } = require('./db');
 const T = require('./time');
-const { slugify, cleanName, normalizePhone, validPhone, validShift } = require('./util');
+const { slugify, cleanName, normalizePhone, validPhone, validShift, uaLabel } = require('./util');
 const { checkPassword, setSessionCookie, clearSessionCookie, requireAdmin } = require('./auth');
 const service = require('./service');
 
@@ -22,7 +22,8 @@ function allLocations() {
 function allEmployees() {
   return db
     .prepare(
-      `SELECT e.*, l.name AS location_name, l.shift_start AS location_shift
+      `SELECT e.*, l.name AS location_name, l.shift_start AS location_shift,
+              (SELECT COUNT(*) FROM devices d WHERE d.employee_id = e.id AND d.active = 1) AS device_count
        FROM employees e LEFT JOIN locations l ON l.id = e.location_id
        ORDER BY CASE e.status WHEN 'pending' THEN 0 WHEN 'active' THEN 1 ELSE 2 END, e.name COLLATE NOCASE`
     )
@@ -290,10 +291,15 @@ router.get('/kayitlar', (req, res) => {
   const employeeId = req.query.personel ? Number(req.query.personel) : null;
   const range = T.rangeToUtc(from, to);
 
-  let sql = `SELECT c.*, e.name AS employee_name, l.name AS location_name
+  let sql = `SELECT c.*, e.name AS employee_name, l.name AS location_name,
+                    d.id AS device_pk, d.user_agent AS device_ua, d.active AS device_active,
+                    (SELECT COUNT(DISTINCT d2.employee_id) FROM devices d2
+                      WHERE d2.browser_id IS NOT NULL AND d2.browser_id = d.browser_id
+                        AND d2.employee_id != c.employee_id AND d2.active = 1) AS shared_cnt
              FROM checkins c
              JOIN employees e ON e.id = c.employee_id
              LEFT JOIN locations l ON l.id = c.location_id
+             LEFT JOIN devices d ON d.id = c.device_id
              WHERE c.ts >= ? AND c.ts < ?`;
   const params = [range.start, range.end];
   if (employeeId) {
@@ -312,6 +318,7 @@ router.get('/kayitlar', (req, res) => {
     employees: allEmployees(),
     locations: allLocations(),
     defaultDateTime: T.fmtInputDateTime(new Date()),
+    uaLabel,
     pendingCount: service.pendingRequests().length
   });
 });

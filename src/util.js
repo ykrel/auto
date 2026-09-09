@@ -75,7 +75,37 @@ function createRateLimiter({ limit = 5, windowMs = 60000 } = {}) {
   };
 }
 
+// Istemcinin urettigi tarayici kimligi (localStorage/cookie'de saklanir, token'dan bagimsiz):
+// ayni telefonun farkli personeller icin kullanildigini yakalamak icin.
+function cleanBrowserId(raw) {
+  const s = String(raw || '').trim().toLowerCase();
+  return /^[a-f0-9]{16,64}$/.test(s) ? s : null;
+}
+
+// User-Agent'i admin ekrani icin kisa etikete cevirir: "iPhone Safari", "Android Chrome", "iPhone Uygulama içi"
+function uaLabel(ua) {
+  const s = String(ua || '');
+  if (!s) return '—';
+  const dev = /iPhone/.test(s) ? 'iPhone' : /iPad/.test(s) ? 'iPad' : /Android/.test(s) ? 'Android'
+    : /Windows/.test(s) ? 'Windows' : /Macintosh/.test(s) ? 'Mac' : 'Cihaz';
+  let br;
+  if (/WhatsApp/i.test(s)) br = 'WhatsApp';
+  else if (/Instagram/i.test(s)) br = 'Instagram';
+  else if (/FBAN|FBAV|FB_IAB/.test(s)) br = 'Facebook';
+  else if (/Telegram/i.test(s)) br = 'Telegram';
+  else if (/SamsungBrowser/.test(s)) br = 'Samsung';
+  else if (/Edg/.test(s)) br = 'Edge';
+  else if (/CriOS|Chrome\//.test(s)) br = 'Chrome';
+  else if (/FxiOS|Firefox/.test(s)) br = 'Firefox';
+  else if (/Safari/.test(s)) br = 'Safari';
+  else if (/wv\)/.test(s) || /iPhone|iPad/.test(s)) br = 'Uygulama içi';
+  else br = 'Tarayıcı';
+  return dev + ' ' + br;
+}
+
 module.exports = {
+  cleanBrowserId,
+  uaLabel,
   haversineMeters,
   normalizePhone,
   validPhone,
