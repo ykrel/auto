@@ -5,6 +5,11 @@
 
 const TZ = 'Europe/Istanbul';
 const DAY_START_HOUR = 4;
+// Mesai baslangicindan sonraki ilk N dakika gec sayilmaz (env: LATE_TOLERANCE_MIN).
+// Tolerans asilirsa gecikme bastan itibaren tam olarak sayilir.
+const LATE_TOLERANCE_MIN = Number.isFinite(Number(process.env.LATE_TOLERANCE_MIN))
+  ? Number(process.env.LATE_TOLERANCE_MIN)
+  : 10;
 
 const partsFmt = new Intl.DateTimeFormat('en-GB', {
   timeZone: TZ,
@@ -140,6 +145,14 @@ function shiftStartUtc(dayStr, hhmm) {
   return localToUtc(y, m, d, hh, mm, 0);
 }
 
+// Bir girisin gec kalma dakikasi (tolerans icinde 0).
+function lateMinutesFor(dayStr, hhmm, tsIso) {
+  const start = shiftStartUtc(dayStr, hhmm);
+  if (!start) return 0;
+  const diff = minutesBetween(start.toISOString(), tsIso);
+  return diff > LATE_TOLERANCE_MIN ? diff : 0;
+}
+
 function minutesBetween(aIso, bIso) {
   return Math.round((new Date(bIso).getTime() - new Date(aIso).getTime()) / 60000);
 }
@@ -154,6 +167,8 @@ function fmtDuration(minutes) {
 module.exports = {
   TZ,
   DAY_START_HOUR,
+  LATE_TOLERANCE_MIN,
+  lateMinutesFor,
   localParts,
   localToUtc,
   fmtDate,

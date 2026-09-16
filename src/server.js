@@ -332,10 +332,12 @@ app.post('/api/checkin', rateLimited, (req, res) => {
 
   // Gec giris bilgisi: yalnizca gunun ILK girisi icin (ogle arasi donusleri gec sayilmaz)
   const shiftStart = info.employee.shift_start || location.shift_start || '08:30';
-  const late = !lastRec && result.type === 'in' && !result.duplicate && T.fmtTime(new Date(result.ts)) > shiftStart;
+  const lateMin =
+    !lastRec && result.type === 'in' && !result.duplicate
+      ? T.lateMinutesFor(result.day, shiftStart, result.ts)
+      : 0;
+  const late = lateMin > 0;
   if (late && result.id) {
-    const startUtc = T.shiftStartUtc(result.day, shiftStart);
-    const lateMin = startUtc ? Math.max(1, Math.round((new Date(result.ts) - startUtc) / 60000)) : 0;
     telegram.notifyLate(info.employee, result.id, result.ts, lateMin).catch(() => {});
   }
 
