@@ -10,6 +10,10 @@ const DAY_START_HOUR = 4;
 const LATE_TOLERANCE_MIN = Number.isFinite(Number(process.env.LATE_TOLERANCE_MIN))
   ? Number(process.env.LATE_TOLERANCE_MIN)
   : 10;
+// Mesai bitisi (HH:MM). Aksam yoklamasi bunun 5 dk sonrasinda gider, elle cikis girerken
+// varsayilan saat budur. Cumartesi is yeri erken kapandigi icin ayri.
+const SHIFT_END = /^\d{2}:\d{2}$/.test(process.env.SHIFT_END || '') ? process.env.SHIFT_END : '18:30';
+const SHIFT_END_SAT = /^\d{2}:\d{2}$/.test(process.env.SHIFT_END_SAT || '') ? process.env.SHIFT_END_SAT : '17:00';
 
 const partsFmt = new Intl.DateTimeFormat('en-GB', {
   timeZone: TZ,
@@ -122,6 +126,43 @@ function addDays(dayStr, n) {
   return `${dt.getUTCFullYear()}-${pad(dt.getUTCMonth() + 1)}-${pad(dt.getUTCDate())}`;
 }
 
+// 0 pazar ... 6 cumartesi
+function weekdayOf(dayStr) {
+  const [y, m, d] = dayStr.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+}
+
+function shiftEndFor(dayStr) {
+  return weekdayOf(dayStr) === 6 ? SHIFT_END_SAT : SHIFT_END;
+}
+
+// "HH:MM" + n dakika (gun icinde doner)
+function addMinutesHM(hhmm, n) {
+  const [h, m] = hhmm.split(':').map(Number);
+  const t = (((h * 60 + m + n) % 1440) + 1440) % 1440;
+  return `${pad(Math.floor(t / 60))}:${pad(t % 60)}`;
+}
+
+// Kullanicinin yazdigi saati "HH:MM"e cevirir: "18:30", "1830", "18.30", "18,30", "18"
+function parseHM(text) {
+  const s = String(text == null ? '' : text).trim();
+  let hh = null;
+  let mm = null;
+  let m = /^(\d{1,2})\s*[:.,\s-]\s*(\d{1,2})$/.exec(s);
+  if (m) {
+    hh = Number(m[1]);
+    mm = Number(m[2]);
+  } else if ((m = /^(\d{3,4})$/.exec(s))) {
+    hh = Number(m[1].slice(0, m[1].length - 2));
+    mm = Number(m[1].slice(-2));
+  } else if ((m = /^(\d{1,2})$/.exec(s))) {
+    hh = Number(m[1]);
+    mm = 0;
+  }
+  if (hh == null || hh > 23 || mm > 59) return null;
+  return `${pad(hh)}:${pad(mm)}`;
+}
+
 function eachDay(fromDay, toDay) {
   const days = [];
   let cur = fromDay;
@@ -168,7 +209,13 @@ module.exports = {
   TZ,
   DAY_START_HOUR,
   LATE_TOLERANCE_MIN,
+  SHIFT_END,
+  SHIFT_END_SAT,
   lateMinutesFor,
+  weekdayOf,
+  shiftEndFor,
+  addMinutesHM,
+  parseHM,
   localParts,
   localToUtc,
   fmtDate,
@@ -183,6 +230,7 @@ module.exports = {
   addDays,
   eachDay,
   shiftStartUtc,
+  dayTimeUtc: shiftStartUtc,
   minutesBetween,
   fmtDuration
 };
