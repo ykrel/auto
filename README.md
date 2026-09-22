@@ -34,6 +34,9 @@ ADMIN_PASSWORD=gizli-sifre BASE_URL=http://localhost:3000 npm start
 | `PORT` | hayır | Railway otomatik verir; yerelde varsayılan 3000 |
 | `DATA_DIR` | evet (Railway) | SQLite dosyasının tutulduğu klasör, örn. `/data` |
 | `SESSION_SECRET` | hayır | Admin oturum imzalama anahtarı; verilmezse `ADMIN_PASSWORD`'dan türetilir |
+| `LATE_TOLERANCE_MIN` | hayır | Mesai başlangıcından sonraki bu kadar dakika geç sayılmaz (varsayılan 10) |
+| `SHIFT_END` / `SHIFT_END_SAT` | hayır | Mesai bitişi HH:MM, hafta içi / cumartesi (varsayılan 18:30 / 17:00) |
+| `EARLY_EXIT_TOLERANCE_MIN` | hayır | Mesai bitişinden önceki son bu kadar dakikada çıkış "erken çıkış" bildirimi üretmez (varsayılan 5) |
 
 Örnek dosya: `.env.example`
 

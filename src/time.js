@@ -10,6 +10,11 @@ const DAY_START_HOUR = 4;
 const LATE_TOLERANCE_MIN = Number.isFinite(Number(process.env.LATE_TOLERANCE_MIN))
   ? Number(process.env.LATE_TOLERANCE_MIN)
   : 10;
+// Mesai bitisinden onceki son N dakikada okutulan cikis "erken cikis" bildirimi uretmez
+// (env: EARLY_EXIT_TOLERANCE_MIN). Tolerans asilirsa erken dakika bastan itibaren tam sayilir.
+const EARLY_EXIT_TOLERANCE_MIN = Number.isFinite(Number(process.env.EARLY_EXIT_TOLERANCE_MIN))
+  ? Number(process.env.EARLY_EXIT_TOLERANCE_MIN)
+  : 5;
 // Mesai bitisi (HH:MM). Aksam yoklamasi bunun 5 dk sonrasinda gider, elle cikis girerken
 // varsayilan saat budur. Cumartesi is yeri erken kapandigi icin ayri.
 const SHIFT_END = /^\d{2}:\d{2}$/.test(process.env.SHIFT_END || '') ? process.env.SHIFT_END : '18:30';
@@ -194,6 +199,15 @@ function lateMinutesFor(dayStr, hhmm, tsIso) {
   return diff > LATE_TOLERANCE_MIN ? diff : 0;
 }
 
+// Bir cikisin mesai bitisinden kac dakika erken oldugu (tolerans icinde ya da mesai sonrasi 0).
+// Mesai bitisi verilmezse o gunun bitisi (shiftEndFor) kullanilir.
+function earlyMinutesFor(dayStr, tsIso, hhmm) {
+  const end = shiftStartUtc(dayStr, hhmm || shiftEndFor(dayStr));
+  if (!end) return 0;
+  const diff = minutesBetween(tsIso, end.toISOString());
+  return diff > EARLY_EXIT_TOLERANCE_MIN ? diff : 0;
+}
+
 function minutesBetween(aIso, bIso) {
   return Math.round((new Date(bIso).getTime() - new Date(aIso).getTime()) / 60000);
 }
@@ -209,9 +223,11 @@ module.exports = {
   TZ,
   DAY_START_HOUR,
   LATE_TOLERANCE_MIN,
+  EARLY_EXIT_TOLERANCE_MIN,
   SHIFT_END,
   SHIFT_END_SAT,
   lateMinutesFor,
+  earlyMinutesFor,
   weekdayOf,
   shiftEndFor,
   addMinutesHM,

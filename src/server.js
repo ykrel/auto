@@ -341,13 +341,13 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     telegram.notifyLate(info.employee, result.id, result.ts, lateMin).catch(() => {});
   }
 
-  // Erken cikis bildirimi: mesai bitiminden once okutulan cikis aninda abonelere gider
+  // Erken cikis bildirimi: mesai bitiminden once okutulan cikis aninda abonelere gider.
+  // Son EARLY_EXIT_TOLERANCE_MIN dakika (vars. 5) tolerans: 18:25 ve sonrasi bildirim uretmez.
   if (result.type === 'out' && result.id && !result.duplicate) {
     const shiftEnd = T.shiftEndFor(result.day);
     const outHM = T.fmtTime(new Date(result.ts));
-    if (outHM >= '05:00' && outHM < shiftEnd) {
-      const endUtc = T.dayTimeUtc(result.day, shiftEnd);
-      const earlyMin = endUtc ? Math.max(1, T.minutesBetween(result.ts, endUtc.toISOString())) : 0;
+    const earlyMin = outHM >= '05:00' ? T.earlyMinutesFor(result.day, result.ts, shiftEnd) : 0;
+    if (earlyMin > 0) {
       telegram.notifyEarlyExit(info.employee, { id: result.id, ts: result.ts }, shiftEnd, earlyMin).catch(() => {});
     }
   }
