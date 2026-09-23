@@ -56,6 +56,17 @@ async function notifyLate(employee, checkinId, ts, lateMinutes) {
   await broadcast(text, [[{ text: 'Mücbir sebep işaretle', callback_data: 'excuse:' + checkinId }]]);
 }
 
+// --- Yoklamadan sonra gelen / cikan bildirimi ---
+// 08:33 yoklamasinda "gelmedi" gorunup sonradan (tolerans icinde, gec sayilmadan) gelen kisi icin.
+async function notifyArrivedAfterReport(employee, ts) {
+  await broadcast(`✅ <b>${esc(employee.name)}</b> geldi — giriş ${T.fmtTime(new Date(ts))} (yoklamadan sonra)`);
+}
+
+// Aksam yoklamasinda "cikis okutmayan" listesindeyken sonradan QR ile cikan kisi icin.
+async function notifyLeftAfterReport(employee, ts) {
+  await broadcast(`🚪 <b>${esc(employee.name)}</b> çıkış yaptı — ${T.fmtTime(new Date(ts))} (akşam yoklamasından sonra)`);
+}
+
 // --- Erken cikis bildirimi ---
 async function notifyEarlyExit(employee, checkin, shiftEnd, earlyMinutes) {
   const text =
@@ -328,13 +339,18 @@ function eveningTick() {
 
 async function eveningSend(ov, day, end, trigger) {
   const inside = ov.present;
+  const girdi = inside.length + ov.left.length; // bugun giris yapanlar
+  if (!girdi) {
+    await broadcast(`🌙 <b>${trigger} akşam yoklaması</b> — bugün giriş yapan olmadı`);
+    return;
+  }
   if (!inside.length) {
-    await broadcast(`🌙 <b>${trigger} akşam yoklaması</b> — herkes çıkış yaptı ✅`);
+    await broadcast(`🌙 <b>${trigger} akşam yoklaması</b> — giriş yapan herkes çıkış yaptı ✅ (${girdi} kişi)`);
     return;
   }
   const lines = inside.map((r) => `• <b>${esc(r.employee.name)}</b> — giriş ${r.inTime || '—'}`);
   const text =
-    `🌙 <b>${trigger} akşam yoklaması</b> — çıkış okutmayan ${inside.length} kişi:\n` +
+    `🌙 <b>${trigger} akşam yoklaması</b> — giriş yapan ${girdi} kişiden ${inside.length} kişi çıkış okutmadı:\n` +
     lines.join('\n') +
     `\n\nİsme basınca çıkış <b>${end}</b> olarak kaydedilir; başka saat için ⌨ düğmesini kullanın.`;
   const kb = inside.slice(0, 10).map((r) => [
@@ -358,6 +374,8 @@ function start() {
 module.exports = {
   start,
   notifyLate,
+  notifyArrivedAfterReport,
+  notifyLeftAfterReport,
   handleUpdate,
   eveningSend,
   notifyEarlyExit,

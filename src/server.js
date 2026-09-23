@@ -341,6 +341,19 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     telegram.notifyLate(info.employee, result.id, result.ts, lateMin).catch(() => {});
   }
 
+  // Yoklama sonrasi durum bildirimi: 08:33 raporu "gelmedi" dedikten sonra gec sayilmadan gelen,
+  // ya da aksam raporu "cikis okutmadi" dedikten sonra QR ile cikan kisi abonelere bildirilir.
+  if (result.id && !result.duplicate) {
+    const reported = (action) =>
+      db.prepare('SELECT 1 FROM audit_log WHERE action = ? AND detail = ? LIMIT 1').get(action, result.day);
+    if (!lastRec && result.type === 'in' && !late && reported('morning_report')) {
+      telegram.notifyArrivedAfterReport(info.employee, result.ts).catch(() => {});
+    }
+    if (result.type === 'out' && reported('evening_report')) {
+      telegram.notifyLeftAfterReport(info.employee, result.ts).catch(() => {});
+    }
+  }
+
   // Erken cikis bildirimi: mesai bitiminden once okutulan cikis aninda abonelere gider.
   // Son EARLY_EXIT_TOLERANCE_MIN dakika (vars. 5) tolerans: 18:25 ve sonrasi bildirim uretmez.
   if (result.type === 'out' && result.id && !result.duplicate) {
