@@ -198,7 +198,9 @@
   // Sayfa açılınca otomatik işlem YAPILMAZ: duruma göre tek buton gösterilir.
   function renderAction(body, token) {
     var today = body.today || [];
-    var next = today.length ? 'out' : 'in';
+    // Sıradaki işlem son kayda göre: içerideyse ÇIKIŞ, değilse (hiç kayıt yok ya da öğle arası çıkmış) GİRİŞ
+    var last = today.length ? today[today.length - 1] : null;
+    var next = last && last.type === 'in' ? 'out' : 'in';
     var btn = $('action-btn');
     btn.textContent = next === 'in' ? 'GİRİŞ YAP' : 'ÇIKIŞ YAP';
     btn.style.background = next === 'in' ? '#16a34a' : '#ea580c';
