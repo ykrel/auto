@@ -314,7 +314,7 @@
       }
       if (body.state === 'confirm_required') {
         $('confirm-body').textContent =
-          'Mesai bitiminden önce çıkış yapıyorsunuz (saat ' + (body.nowTime || '') + '). Çıkışı onaylıyor musunuz?';
+          'Erken çıkıyorsunuz (saat ' + (body.nowTime || '') + '). Onaylıyor musunuz?';
         $('confirm-yes').onclick = function () {
           setLoading('Kaydediliyor…');
           sendCheckin(token, coords, qr, true).then(function (res2) {

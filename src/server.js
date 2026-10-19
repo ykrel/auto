@@ -26,8 +26,8 @@ const PORT = process.env.PORT || 3000;
 const BASE_URL = (process.env.BASE_URL || `http://localhost:${PORT}`).replace(/\/+$/, '');
 // Bu saatten (Europe/Istanbul, HH:MM) once yapilan cikislar "erken cikis" sayilir ve onay kutusu cikar.
 // Cumartesi is yeri erken kapandigi icin esik ayridir.
-const EARLY_EXIT_BEFORE = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE || '') ? process.env.EARLY_EXIT_BEFORE : '18:25';
-const EARLY_EXIT_BEFORE_SAT = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE_SAT || '') ? process.env.EARLY_EXIT_BEFORE_SAT : '16:55';
+const EARLY_EXIT_BEFORE = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE || '') ? process.env.EARLY_EXIT_BEFORE : '18:29';
+const EARLY_EXIT_BEFORE_SAT = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE_SAT || '') ? process.env.EARLY_EXIT_BEFORE_SAT : '16:59';
 
 function earlyExitThreshold(businessDayStr) {
   const [y, m, d] = businessDayStr.split('-').map(Number);
