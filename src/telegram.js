@@ -290,7 +290,7 @@ async function handleCallback(cq, bot = MAIN) {
         {
           chat_id: cq.message.chat.id,
           message_id: cq.message.message_id,
-          text: (cq.message.text || '') + `\n✅ Mücbir sebep işaretlendi — ${who}. Gecikme maaş kesintisine yansımaz.`
+          text: (cq.message.text || '') + `\n✅ Mücbir sebep işaretlendi — ${who}.`
         },
         bot
       );
