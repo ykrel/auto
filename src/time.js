@@ -137,16 +137,32 @@ function weekdayOf(dayStr) {
   return new Date(Date.UTC(y, m - 1, d)).getUTCDay();
 }
 
+// Tatil gunleri veritabaninda (holidays); db.js acilista bu sorguyu baglar.
+// holidayFor(gun, lokasyon) -> { shift_end, note } ya da null. shift_end bossa tam gun tatil,
+// doluysa yarim gun (arife): mesai o saatte biter.
+let holidayLookup = () => null;
+function setHolidayLookup(fn) {
+  holidayLookup = typeof fn === 'function' ? fn : () => null;
+}
+function holidayFor(dayStr, location) {
+  return holidayLookup(dayStr, location && location.id != null ? location.id : null) || null;
+}
+
 // Lokasyon verilirse ve hafta ici ise lokasyonun kendi mesai bitisi (varsa) gecerlidir.
+// Yarim gun tatilde mesai tatilin bitis saatinde biter.
 function shiftEndFor(dayStr, location) {
+  const h = holidayFor(dayStr, location);
+  if (h && h.shift_end) return h.shift_end;
   if (weekdayOf(dayStr) === 6) return SHIFT_END_SAT;
   return (location && location.shift_end) || SHIFT_END;
 }
 
-// Lokasyon o gun calisiyor mu? Pazar kapali; cumartesi lokasyonun "saturday" bayragina bagli.
+// Lokasyon o gun calisiyor mu? Pazar ve tam gun tatil kapali; cumartesi lokasyonun "saturday" bayragina bagli.
 function worksOn(dayStr, location) {
   const wd = weekdayOf(dayStr);
   if (wd === 0) return false;
+  const h = holidayFor(dayStr, location);
+  if (h && !h.shift_end) return false;
   if (wd === 6) return !location || location.saturday !== 0;
   return true;
 }
@@ -239,6 +255,8 @@ module.exports = {
   lateMinutesFor,
   earlyMinutesFor,
   weekdayOf,
+  setHolidayLookup,
+  holidayFor,
   shiftEndFor,
   worksOn,
   addMinutesHM,

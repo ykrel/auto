@@ -1,0 +1,50 @@
+<%- include('../partials/head', { title: title }) %>
+<%- include('../partials/adminnav') %>
+<main class="wrap">
+  <div class="card">
+    <h2>Tatil ekle</h2>
+    <form method="post" action="/admin/tatiller/ekle" class="inline-form">
+      <input type="date" name="baslangic" value="<%= today %>" required>
+      <input type="date" name="bitis" value="<%= today %>">
+      <select name="location_id">
+        <option value="">Tüm lokasyonlar</option>
+        <% locations.forEach(function (l) { %><option value="<%= l.id %>"><%= l.name %></option><% }); %>
+      </select>
+      <input type="time" name="bitis_saati" title="Yarım gün ise mesai bitişi (arife 13:00)">
+      <input type="text" name="not" placeholder="Not (29 Ekim, arife, toplu izin…)" maxlength="200">
+      <button class="btn btn-sm" type="submit">Ekle</button>
+    </form>
+    <p class="small muted" style="margin-bottom:0">Saat boş bırakılırsa tam gün tatil: sabah ve akşam yoklaması gitmez, kimse "gelmedi" ya da geç sayılmaz. Saat yazılırsa yarım gün: mesai o saatte biter, erken çıkış ve akşam yoklaması o saate göre. Tatilde çalışan raporda "Tatilde çalışma" olarak sayılır.</p>
+  </div>
+
+  <div class="card">
+    <form class="filters" method="get" action="/admin/tatiller">
+      <div><label>Başlangıç</label><input type="date" name="baslangic" value="<%= from %>"></div>
+      <div><label>Bitiş</label><input type="date" name="bitis" value="<%= to %>"></div>
+      <div><button class="btn" type="submit">Göster</button></div>
+    </form>
+    <h3>Tatil günleri (<%= holidays.length %>)</h3>
+    <% if (!holidays.length) { %><p class="muted small">Bu aralıkta tatil yok.</p><% } else { %>
+    <div class="table-scroll"><table>
+      <thead><tr><th>Tarih</th><th>Lokasyon</th><th>Tür</th><th>Not</th><th>Ekleyen</th><th></th></tr></thead>
+      <tbody>
+      <% holidays.forEach(function (h) { %>
+        <tr>
+          <td><%= T.fmtDateTR(h.day) %></td>
+          <td class="muted"><%= h.location_name || 'Tümü' %></td>
+          <td><%= h.shift_end ? 'Yarım gün (' + h.shift_end + ')' : 'Tam gün' %></td>
+          <td class="small"><%= h.note || '' %></td>
+          <td class="muted small"><%= h.created_by || '' %> · <%= T.fmtDateTime(new Date(h.created_at)) %></td>
+          <td>
+            <form method="post" action="/admin/tatiller/<%= h.id %>/sil" style="display:inline" onsubmit="return confirm('Tatil silinsin mi?')">
+              <button class="btn btn-sm btn-danger" type="submit">Sil</button>
+            </form>
+          </td>
+        </tr>
+      <% }); %>
+      </tbody>
+    </table></div>
+    <% } %>
+  </div>
+</main>
+<%- include('../partials/foot') %>

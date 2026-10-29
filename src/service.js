@@ -136,8 +136,10 @@ function dayOverview(day, locationId = null) {
     const lastOut = [...checks].reverse().find((c) => c.type === 'out') || null;
     const paired = pairedMinutes(checks);
     const shift = emp.shift_start || emp.location_shift || null;
+    // Lokasyonun calismadigi gun (pazar, tatil, cumartesi calismayan bina): gelmeyen ve gec sayilmaz
+    const offDay = !T.worksOn(day, { id: emp.location_id, saturday: emp.location_saturday });
     let lateMinutes = null;
-    if (first && shift && !first.excused) {
+    if (first && shift && !first.excused && !offDay) {
       lateMinutes = T.lateMinutesFor(day, shift, first.ts);
     }
     const workMinutes = checks.length ? paired.total : null;
@@ -145,8 +147,7 @@ function dayOverview(day, locationId = null) {
       employee: emp,
       shift,
       onLeave: leaveSet.has(emp.id),
-      // Lokasyonun calismadigi gun (pazar, cumartesi calismayan bina): gelmeyen sayilmaz
-      offDay: !T.worksOn(day, { saturday: emp.location_saturday }),
+      offDay,
       inCheck: first,
       outCheck: lastOut,
       inside: paired.inside,
@@ -174,10 +175,11 @@ function dayOverview(day, locationId = null) {
 function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
   const range = T.rangeToUtc(fromDay, toDay);
   let sql = `SELECT c.*, e.name AS employee_name, e.shift_start AS emp_shift, e.location_id AS emp_location,
-                    l.name AS location_name, l.shift_start AS loc_shift
+                    l.name AS location_name, l.shift_start AS loc_shift, el.saturday AS emp_loc_saturday
              FROM checkins c
              JOIN employees e ON e.id = c.employee_id
              LEFT JOIN locations l ON l.id = c.location_id
+             LEFT JOIN locations el ON el.id = e.location_id
              WHERE c.ts >= ? AND c.ts < ?`;
   const params = [range.start, range.end];
   if (employeeId) {
@@ -202,6 +204,8 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
         employeeId: c.employee_id,
         employeeName: c.employee_name,
         locationName: c.location_name,
+        empLocation: c.emp_location,
+        empLocSaturday: c.emp_loc_saturday,
         shift: c.emp_shift || c.loc_shift || null,
         inCheck: null,
         outCheck: null,
@@ -218,8 +222,8 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
   }
 
   // Izin gunleri: kaydi olmayan gune "Izinli" satiri eklenir; kaydi varsa satir izinli olarak isaretlenir
-  let lsql = `SELECT lv.*, e.name AS employee_name, e.shift_start AS emp_shift,
-                     l.name AS location_name, l.shift_start AS loc_shift
+  let lsql = `SELECT lv.*, e.name AS employee_name, e.shift_start AS emp_shift, e.location_id AS emp_location,
+                     l.name AS location_name, l.shift_start AS loc_shift, l.saturday AS emp_loc_saturday
               FROM leaves lv
               JOIN employees e ON e.id = lv.employee_id
               LEFT JOIN locations l ON l.id = e.location_id
@@ -241,6 +245,8 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
         employeeId: lv.employee_id,
         employeeName: lv.employee_name,
         locationName: lv.location_name,
+        empLocation: lv.emp_location,
+        empLocSaturday: lv.emp_loc_saturday,
         shift: lv.emp_shift || lv.loc_shift || null,
         inCheck: null,
         outCheck: null,
@@ -254,8 +260,12 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
   }
 
   const rows = [...map.values()].map((row) => {
+    // Personelin kendi lokasyonunun takvimi: tatil ve calisilmayan gunde gecikme yok, calisma "tatilde" sayilir
+    const loc = { id: row.empLocation, saturday: row.empLocSaturday };
+    const holiday = T.holidayFor(row.day, loc);
+    const offDay = !T.worksOn(row.day, loc);
     let lateMinutes = 0;
-    if (row.inCheck && row.shift && !row.inCheck.excused) {
+    if (row.inCheck && row.shift && !row.inCheck.excused && !offDay) {
       lateMinutes = T.lateMinutesFor(row.day, row.shift, row.inCheck.ts);
     }
     const paired = pairedMinutes(row.checks);
@@ -264,6 +274,8 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
       ...row,
       leave: !!row.leave,
       leaveNote: row.leaveNote || '',
+      offDay,
+      holiday: holiday ? (holiday.note || 'Tatil') + (holiday.shift_end ? ` (yarım gün, ${holiday.shift_end})` : '') : '',
       inTime: row.inCheck ? T.fmtTime(new Date(row.inCheck.ts)) : '',
       outTime: row.outCheck ? T.fmtTime(new Date(row.outCheck.ts)) : '',
       lateMinutes,
@@ -286,6 +298,7 @@ function employeeTotals(rows) {
         employeeName: r.employeeName,
         days: 0,
         leaveDays: 0,
+        offDayWork: 0,
         workMinutes: 0,
         lateCount: 0,
         lateMinutes: 0,
@@ -295,6 +308,7 @@ function employeeTotals(rows) {
     const t = map.get(r.employeeId);
     if (r.checks.length) t.days += 1;
     if (r.leave) t.leaveDays += 1;
+    if (r.offDay && r.checks.length) t.offDayWork += 1;
     if (r.workMinutes) t.workMinutes += r.workMinutes;
     if (r.lateMinutes > 0) {
       t.lateCount += 1;
@@ -340,6 +354,47 @@ function removeLeave(id, actor = 'admin') {
   if (!row) return false;
   db.prepare('DELETE FROM leaves WHERE id = ?').run(id);
   logAction(actor, 'leave_delete', `personel #${row.employee_id} ${row.day}`);
+  return true;
+}
+
+// --- Tatil gunleri (resmi tatil, arife, toplu izin): yoklama gitmez, kimse "gelmedi" ya da gec sayilmaz ---
+function holidaysBetween(fromDay, toDay) {
+  return db
+    .prepare(
+      `SELECT h.*, l.name AS location_name FROM holidays h LEFT JOIN locations l ON l.id = h.location_id
+       WHERE h.day >= ? AND h.day <= ? ORDER BY h.day ASC, h.location_id IS NOT NULL, l.name`
+    )
+    .all(fromDay, toDay);
+}
+
+// Ayni gun ve lokasyon icin var olan tatil yeni bilgiyle degistirilir
+function addHoliday({ fromDay, toDay, locationId = null, shiftEnd = null, note = '', actor = 'admin' }) {
+  const days = T.eachDay(fromDay, toDay);
+  const now = new Date().toISOString();
+  const del = db.prepare('DELETE FROM holidays WHERE day = ? AND IFNULL(location_id, 0) = ?');
+  const ins = db.prepare(
+    'INSERT INTO holidays (day, location_id, shift_end, note, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?)'
+  );
+  db.transaction(() => {
+    for (const d of days) {
+      del.run(d, locationId || 0);
+      ins.run(d, locationId || null, shiftEnd || null, note || null, actor, now);
+    }
+  })();
+  logAction(
+    actor,
+    'holiday_add',
+    `${fromDay}${toDay !== fromDay ? '..' + toDay : ''} ${locationId ? 'lokasyon #' + locationId : 'tum lokasyonlar'}` +
+      `${shiftEnd ? ' yarim gun ' + shiftEnd : ''}${note ? ' ' + note : ''}`
+  );
+  return days.length;
+}
+
+function removeHoliday(id, actor = 'admin') {
+  const row = db.prepare('SELECT * FROM holidays WHERE id = ?').get(id);
+  if (!row) return false;
+  db.prepare('DELETE FROM holidays WHERE id = ?').run(id);
+  logAction(actor, 'holiday_delete', `${row.day} ${row.location_id ? 'lokasyon #' + row.location_id : 'tum lokasyonlar'}`);
   return true;
 }
 
@@ -460,6 +515,9 @@ module.exports = {
   leavesBetween,
   addLeave,
   removeLeave,
+  holidaysBetween,
+  addHoliday,
+  removeHoliday,
   pendingRequests,
   approveRequest,
   rejectRequest,

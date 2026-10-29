@@ -146,6 +146,24 @@ if (!subCols.includes('bot')) {
 // Abone ayni zamanda personelse (orn. bina sefi) kendi kaydi icin buton islemi yapamaz (Kagan 24.10)
 const subCols2 = db.prepare('PRAGMA table_info(telegram_subs)').all().map((c) => c.name);
 if (!subCols2.includes('employee_id')) db.exec('ALTER TABLE telegram_subs ADD COLUMN employee_id INTEGER REFERENCES employees(id)');
+// 2026-10-29 tatil gunleri (Kagan: sistem mesaiyi bilsin, tatilde bosa mesaj gelmesin).
+// location_id bossa tum lokasyonlar; shift_end bossa tam gun, doluysa yarim gun (arife, mesai o saatte biter).
+db.exec(`CREATE TABLE IF NOT EXISTS holidays (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  day TEXT NOT NULL,
+  location_id INTEGER REFERENCES locations(id),
+  shift_end TEXT,
+  note TEXT,
+  created_by TEXT,
+  created_at TEXT NOT NULL
+)`);
+db.exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_holidays_day_loc ON holidays(day, IFNULL(location_id, 0))');
+
+// Lokasyona ozel tatil, tum lokasyonlar icin girilmis tatilden once gelir.
+const holidayStmt = db.prepare(
+  'SELECT shift_end, note FROM holidays WHERE day = ? AND (location_id IS NULL OR location_id = ?) ORDER BY location_id IS NULL LIMIT 1'
+);
+require('./time').setHolidayLookup((day, locationId) => holidayStmt.get(day, locationId == null ? -1 : locationId));
 
 function logAction(actor, action, detail) {
   db.prepare('INSERT INTO audit_log (actor, action, detail, created_at) VALUES (?, ?, ?, ?)')

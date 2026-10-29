@@ -474,7 +474,9 @@ function eveningTick() {
     if (!T.worksOn(day, loc)) continue;
     const end = T.shiftEndFor(day, loc);
     // Lokasyonun kendi aksam yoklama saati varsa o (hafta ici), yoksa mesai bitisi + 5 dk
-    const trigger = loc.evening_at && T.weekdayOf(day) !== 6 ? loc.evening_at : T.addMinutesHM(end, 5);
+    // Yarim gun tatilde (arife) yoklama tatil bitisinden 5 dk sonra
+    const halfDay = !!(T.holidayFor(day, loc) || {}).shift_end;
+    const trigger = loc.evening_at && T.weekdayOf(day) !== 6 && !halfDay ? loc.evening_at : T.addMinutesHM(end, 5);
     // Gec baslayan konteyner gece yarisi eski gunun raporunu atmasin diye ust sinir
     if (hm < trigger || hm > T.addMinutesHM(trigger, 180)) continue;
     if (reportSent('evening_report', day, loc.id)) continue;
