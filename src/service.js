@@ -116,7 +116,7 @@ function pairedMinutes(checks) {
 // Bir is gunu icin personel bazli ozet (admin "Bugun" ekrani)
 function dayOverview(day, locationId = null) {
   const range = T.businessDayRange(day);
-  let sql = `SELECT e.*, l.name AS location_name, l.shift_start AS location_shift
+  let sql = `SELECT e.*, l.name AS location_name, l.shift_start AS location_shift, l.saturday AS location_saturday
              FROM employees e LEFT JOIN locations l ON l.id = e.location_id
              WHERE e.status = 'active'`;
   const params = [];
@@ -145,6 +145,8 @@ function dayOverview(day, locationId = null) {
       employee: emp,
       shift,
       onLeave: leaveSet.has(emp.id),
+      // Lokasyonun calismadigi gun (pazar, cumartesi calismayan bina): gelmeyen sayilmaz
+      offDay: !T.worksOn(day, { saturday: emp.location_saturday }),
       inCheck: first,
       outCheck: lastOut,
       inside: paired.inside,
@@ -162,7 +164,7 @@ function dayOverview(day, locationId = null) {
   return {
     present: rows.filter((r) => r.inside),
     left: rows.filter((r) => r.inCheck && !r.inside),
-    absent: rows.filter((r) => !r.inCheck && !r.onLeave),
+    absent: rows.filter((r) => !r.inCheck && !r.onLeave && !r.offDay),
     onLeave: rows.filter((r) => r.onLeave),
     all: rows
   };
@@ -182,8 +184,10 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
     sql += ' AND c.employee_id = ?';
     params.push(employeeId);
   }
+  // Lokasyon filtresi personelin kendi lokasyonuna gore: baska binada okuttugu giris/cikis da
+  // ayni gunde kalir (Merkez'den girip Uretim'den cikan gun bolunmez)
   if (locationId) {
-    sql += ' AND c.location_id = ?';
+    sql += ' AND e.location_id = ?';
     params.push(locationId);
   }
   sql += ' ORDER BY c.ts ASC';

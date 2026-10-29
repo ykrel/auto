@@ -137,8 +137,18 @@ function weekdayOf(dayStr) {
   return new Date(Date.UTC(y, m - 1, d)).getUTCDay();
 }
 
-function shiftEndFor(dayStr) {
-  return weekdayOf(dayStr) === 6 ? SHIFT_END_SAT : SHIFT_END;
+// Lokasyon verilirse ve hafta ici ise lokasyonun kendi mesai bitisi (varsa) gecerlidir.
+function shiftEndFor(dayStr, location) {
+  if (weekdayOf(dayStr) === 6) return SHIFT_END_SAT;
+  return (location && location.shift_end) || SHIFT_END;
+}
+
+// Lokasyon o gun calisiyor mu? Pazar kapali; cumartesi lokasyonun "saturday" bayragina bagli.
+function worksOn(dayStr, location) {
+  const wd = weekdayOf(dayStr);
+  if (wd === 0) return false;
+  if (wd === 6) return !location || location.saturday !== 0;
+  return true;
 }
 
 // "HH:MM" + n dakika (gun icinde doner)
@@ -230,6 +240,7 @@ module.exports = {
   earlyMinutesFor,
   weekdayOf,
   shiftEndFor,
+  worksOn,
   addMinutesHM,
   parseHM,
   localParts,

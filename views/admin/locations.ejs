@@ -5,7 +5,7 @@
     <h2>Lokasyonlar</h2>
     <p class="small muted">QR içeriği: <code><%= baseUrl %>/c/&lt;slug&gt;</code></p>
     <div class="table-scroll"><table>
-      <thead><tr><th>Ad</th><th>Slug</th><th>Koordinat</th><th>Yarıçap</th><th>Mesai</th><th>Durum</th><th>QR</th><th>Düzenle</th></tr></thead>
+      <thead><tr><th>Ad</th><th>Slug</th><th>Koordinat</th><th>Yarıçap</th><th>Mesai</th><th>Cumartesi</th><th>Durum</th><th>QR</th><th>Düzenle</th></tr></thead>
       <tbody>
       <% locations.forEach(function (l) { %>
         <tr>
@@ -13,7 +13,8 @@
           <td class="muted"><%= l.slug %></td>
           <td class="muted"><%= l.lat != null && l.lng != null ? l.lat + ', ' + l.lng : 'girilmedi' %></td>
           <td><%= l.radius_m %> m</td>
-          <td class="muted"><%= l.shift_start || '—' %></td>
+          <td class="muted"><%= l.shift_start || '—' %> – <%= l.shift_end || T.SHIFT_END %><%= l.evening_at ? ' · yoklama ' + l.evening_at : '' %></td>
+          <td class="muted"><%= l.saturday === 0 ? 'Kapalı' : 'Çalışır' %></td>
           <td><%= l.active ? '<span class="pill pill-green">Aktif</span>' : '<span class="pill pill-gray">Kapalı</span>' %></td>
           <td>
             <a class="btn btn-sm btn-ghost" href="/admin/lokasyonlar/<%= l.id %>/qr-onizleme">Göster</a>
@@ -28,7 +29,10 @@
                 <input type="text" name="lat" value="<%= l.lat == null ? '' : l.lat %>" placeholder="Enlem (lat)" inputmode="decimal">
                 <input type="text" name="lng" value="<%= l.lng == null ? '' : l.lng %>" placeholder="Boylam (lng)" inputmode="decimal">
                 <input type="number" name="radius_m" value="<%= l.radius_m %>" min="20" max="5000" placeholder="Yarıçap (m)">
-                <input type="time" name="shift_start" value="<%= l.shift_start || '' %>">
+                <input type="time" name="shift_start" value="<%= l.shift_start || '' %>" title="Mesai başlangıcı">
+                <input type="time" name="shift_end" value="<%= l.shift_end || '' %>" title="Mesai bitişi (boşsa <%= T.SHIFT_END %>)">
+                <input type="time" name="evening_at" value="<%= l.evening_at || '' %>" title="Akşam yoklaması (boşsa bitiş + 5 dk)">
+                <label class="check" style="margin:0"><input type="checkbox" name="saturday" <%= l.saturday === 0 ? '' : 'checked' %>><span>Cumartesi çalışır</span></label>
                 <label class="check" style="margin:0"><input type="checkbox" name="active" <%= l.active ? 'checked' : '' %>><span>Aktif</span></label>
                 <button class="btn btn-sm" type="submit">Kaydet</button>
               </form>
@@ -49,6 +53,8 @@
       <div><label>Boylam (lng)</label><input type="text" name="lng" inputmode="decimal" placeholder="29.1248"></div>
       <div><label>Yarıçap (m)</label><input type="number" name="radius_m" value="150" min="20" max="5000"></div>
       <div><label>Mesai başlangıcı</label><input type="time" name="shift_start" value="08:30"></div>
+      <div><label>Mesai bitişi (boşsa <%= T.SHIFT_END %>)</label><input type="time" name="shift_end"></div>
+      <div style="align-self:end"><label class="check" style="margin:0"><input type="checkbox" name="saturday" checked><span>Cumartesi çalışır</span></label></div>
       <div style="align-self:end"><button class="btn" type="submit">Ekle</button></div>
     </form>
   </div>

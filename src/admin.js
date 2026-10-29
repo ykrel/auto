@@ -213,8 +213,11 @@ function parseLocationBody(body) {
   const lng = body.lng === '' || body.lng == null ? null : Number(body.lng);
   const radius = Number(body.radius_m) > 0 ? Math.round(Number(body.radius_m)) : 150;
   const shift = (body.shift_start || '').trim() || null;
+  const shiftEnd = (body.shift_end || '').trim() || null; // bossa genel mesai bitisi (SHIFT_END)
   const active = body.active === 'on' || body.active === '1' ? 1 : 0;
-  return { name, slug, lat, lng, radius, shift, active };
+  const saturday = body.saturday === 'on' || body.saturday === '1' ? 1 : 0;
+  const eveningAt = (body.evening_at || '').trim() || null; // bossa mesai bitisi + 5 dk
+  return { name, slug, lat, lng, radius, shift, shiftEnd, active, saturday, eveningAt };
 }
 
 router.post('/lokasyonlar/ekle', (req, res) => {
@@ -223,8 +226,8 @@ router.post('/lokasyonlar/ekle', (req, res) => {
     flash(req, res, 'err', 'Ad ve slug zorunlu.');
     return res.redirect('/admin/lokasyonlar');
   }
-  if (!validShift(loc.shift)) {
-    flash(req, res, 'err', 'Mesai baslangici SS:DD formatinda olmali.');
+  if (!validShift(loc.shift) || !validShift(loc.shiftEnd) || !validShift(loc.eveningAt)) {
+    flash(req, res, 'err', 'Mesai saatleri SS:DD formatinda olmali.');
     return res.redirect('/admin/lokasyonlar');
   }
   if (db.prepare('SELECT id FROM locations WHERE slug = ?').get(loc.slug)) {
@@ -232,9 +235,9 @@ router.post('/lokasyonlar/ekle', (req, res) => {
     return res.redirect('/admin/lokasyonlar');
   }
   db.prepare(
-    `INSERT INTO locations (slug, name, lat, lng, radius_m, shift_start, active, created_at)
-     VALUES (?, ?, ?, ?, ?, ?, 1, ?)`
-  ).run(loc.slug, loc.name, loc.lat, loc.lng, loc.radius, loc.shift, new Date().toISOString());
+    `INSERT INTO locations (slug, name, lat, lng, radius_m, shift_start, shift_end, saturday, evening_at, active, created_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)`
+  ).run(loc.slug, loc.name, loc.lat, loc.lng, loc.radius, loc.shift, loc.shiftEnd, loc.saturday, loc.eveningAt, new Date().toISOString());
   logAction('admin', 'location_create', `${loc.name} (${loc.slug})`);
   flash(req, res, 'ok', 'Lokasyon eklendi.');
   res.redirect('/admin/lokasyonlar');
@@ -248,7 +251,7 @@ router.post('/lokasyonlar/:id/guncelle', (req, res) => {
     return res.redirect('/admin/lokasyonlar');
   }
   const loc = parseLocationBody(req.body);
-  if (!loc.name || !loc.slug || !validShift(loc.shift)) {
+  if (!loc.name || !loc.slug || !validShift(loc.shift) || !validShift(loc.shiftEnd) || !validShift(loc.eveningAt)) {
     flash(req, res, 'err', 'Girilen bilgiler gecersiz.');
     return res.redirect('/admin/lokasyonlar');
   }
@@ -258,8 +261,8 @@ router.post('/lokasyonlar/:id/guncelle', (req, res) => {
     return res.redirect('/admin/lokasyonlar');
   }
   db.prepare(
-    'UPDATE locations SET name = ?, slug = ?, lat = ?, lng = ?, radius_m = ?, shift_start = ?, active = ? WHERE id = ?'
-  ).run(loc.name, loc.slug, loc.lat, loc.lng, loc.radius, loc.shift, loc.active, id);
+    'UPDATE locations SET name = ?, slug = ?, lat = ?, lng = ?, radius_m = ?, shift_start = ?, shift_end = ?, saturday = ?, evening_at = ?, active = ? WHERE id = ?'
+  ).run(loc.name, loc.slug, loc.lat, loc.lng, loc.radius, loc.shift, loc.shiftEnd, loc.saturday, loc.eveningAt, loc.active, id);
   logAction('admin', 'location_update', `#${id} ${loc.name}`);
   flash(req, res, 'ok', 'Lokasyon guncellendi.');
   res.redirect('/admin/lokasyonlar');
@@ -430,11 +433,14 @@ router.get('/rapor', (req, res) => {
   const today = T.todayBusinessDay();
   const from = /^\d{4}-\d{2}-\d{2}$/.test(req.query.baslangic || '') ? req.query.baslangic : T.addDays(today, -29);
   const to = /^\d{4}-\d{2}-\d{2}$/.test(req.query.bitis || '') ? req.query.bitis : today;
-  const rows = service.dailyRows(from, to);
+  const locationId = req.query.lokasyon ? Number(req.query.lokasyon) : null;
+  const rows = service.dailyRows(from, to, null, locationId);
   res.render('admin/report', {
     title: 'Rapor',
     from,
     to,
+    locations: allLocations(),
+    locationId,
     rows,
     totals: service.employeeTotals(rows),
     pendingCount: service.pendingRequests().length
@@ -445,7 +451,9 @@ router.get('/rapor/xlsx', async (req, res) => {
   const today = T.todayBusinessDay();
   const from = /^\d{4}-\d{2}-\d{2}$/.test(req.query.baslangic || '') ? req.query.baslangic : T.addDays(today, -29);
   const to = /^\d{4}-\d{2}-\d{2}$/.test(req.query.bitis || '') ? req.query.bitis : today;
-  const rows = service.dailyRows(from, to);
+  const locationId = req.query.lokasyon ? Number(req.query.lokasyon) : null;
+  const loc = locationId ? service.getLocation(locationId) : null;
+  const rows = service.dailyRows(from, to, null, locationId);
   const totals = service.employeeTotals(rows);
 
   const wb = new ExcelJS.Workbook();
@@ -508,7 +516,7 @@ router.get('/rapor/xlsx', async (req, res) => {
   s2.getRow(1).font = { bold: true };
 
   res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-  res.setHeader('Content-Disposition', `attachment; filename="pdks-${from}_${to}.xlsx"`);
+  res.setHeader('Content-Disposition', `attachment; filename="pdks-${loc ? loc.slug + '-' : ''}${from}_${to}.xlsx"`);
   await wb.xlsx.write(res);
   res.end();
 });

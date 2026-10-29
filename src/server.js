@@ -17,7 +17,7 @@ const {
 } = require('./util');
 const { TOKEN_COOKIE, setTokenCookie, resolveToken } = require('./auth');
 const service = require('./service');
-const { qrValid } = require('./qr');
+const { qrSlug } = require('./qr');
 const telegram = require('./telegram');
 const adminRouter = require('./admin');
 
@@ -29,10 +29,11 @@ const BASE_URL = (process.env.BASE_URL || `http://localhost:${PORT}`).replace(/\
 const EARLY_EXIT_BEFORE = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE || '') ? process.env.EARLY_EXIT_BEFORE : '18:29';
 const EARLY_EXIT_BEFORE_SAT = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE_SAT || '') ? process.env.EARLY_EXIT_BEFORE_SAT : '16:59';
 
-function earlyExitThreshold(businessDayStr) {
-  const [y, m, d] = businessDayStr.split('-').map(Number);
-  const weekday = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 6 = cumartesi
-  return weekday === 6 ? EARLY_EXIT_BEFORE_SAT : EARLY_EXIT_BEFORE;
+function earlyExitThreshold(businessDayStr, location) {
+  if (T.weekdayOf(businessDayStr) === 6) return EARLY_EXIT_BEFORE_SAT;
+  // Lokasyonun kendi mesai bitisi varsa esik bitisten 1 dk oncesi (18:30 -> 18:29)
+  if (location && location.shift_end) return T.addMinutesHM(location.shift_end, -1);
+  return EARLY_EXIT_BEFORE;
 }
 
 app.set('trust proxy', 1);
@@ -46,16 +47,14 @@ app.use('/static', express.static(path.join(__dirname, '..', 'public'), { maxAge
 app.locals.T = T;
 app.locals.BASE_URL = BASE_URL;
 
-// --- Rate limit: token (yoksa IP) basina dakikada 5 istek ---
+// --- Rate limit: token basina dakikada 5 istek; token yoksa IP basina 30 ---
+// (Toplu kayit gununde ayni Wi-Fi'deki herkes tek IP'den gelir; 5 ile kuyruk olusuyordu.)
 const writeLimiter = createRateLimiter({ limit: 5, windowMs: 60000 });
-
-function limitKey(req) {
-  const token = (req.body && req.body.token) || req.cookies[TOKEN_COOKIE];
-  return token ? 'tok:' + token : 'ip:' + (req.ip || 'bilinmiyor');
-}
+const ipLimiter = createRateLimiter({ limit: 30, windowMs: 60000 });
 
 function rateLimited(req, res, next) {
-  const result = writeLimiter(limitKey(req));
+  const token = (req.body && req.body.token) || req.cookies[TOKEN_COOKIE];
+  const result = token ? writeLimiter('tok:' + token) : ipLimiter('ip:' + (req.ip || 'bilinmiyor'));
   if (!result.ok) {
     res.setHeader('Retry-After', String(result.retryAfter));
     return res.status(429).json({
@@ -238,11 +237,14 @@ app.post('/api/checkin', rateLimited, (req, res) => {
   if (info.state === 'revoked') return res.status(403).json({ state: 'revoked', name: info.employee.name });
   if (info.state === 'passive') return res.status(403).json({ state: 'passive', name: info.employee.name });
 
-  const location = service.getLocationBySlug(req.body.slug);
+  // Kayit okutulan QR'in lokasyonuna yazilir. Giris-cikis binadan bagimsiz donusumludur (Kagan 22.10):
+  // Merkez'den giren, Uretim'e gorevlendirildiyse Uretim'de cikis okutur.
+  const scannedSlug = qrSlug(req.body.qr);
+  const location = service.getLocationBySlug(scannedSlug || req.body.slug);
   if (!location || !location.active) return res.status(404).json({ error: 'Lokasyon bulunamadi' });
 
   // Duvardaki imzali QR kod zorunlu (link degil; yalnizca sayfadaki okuyucu okur)
-  if (!qrValid(req.body.qr, location.slug)) {
+  if (!scannedSlug) {
     logAction('personel', 'checkin_rejected', `${info.employee.name} / qr_invalid / ${location.name}`);
     return res.status(403).json({
       state: 'qr_invalid',
@@ -287,7 +289,7 @@ app.post('/api/checkin', rateLimited, (req, res) => {
   const inDupWindow = lastRec && Date.now() - new Date(lastRec.ts).getTime() < 2 * 60 * 1000; // service.js ile ayni pencere
   if (lastRec && lastRec.type === 'in' && !inDupWindow && req.body.confirm !== true) {
     const nowHM = T.fmtTime(new Date());
-    const threshold = earlyExitThreshold(day0);
+    const threshold = earlyExitThreshold(day0, location);
     if (nowHM < threshold) {
       return res.status(409).json({
         state: 'confirm_required',
@@ -344,8 +346,7 @@ app.post('/api/checkin', rateLimited, (req, res) => {
   // Yoklama sonrasi durum bildirimi: 08:33 raporu "gelmedi" dedikten sonra gec sayilmadan gelen,
   // ya da aksam raporu "cikis okutmadi" dedikten sonra QR ile cikan kisi abonelere bildirilir.
   if (result.id && !result.duplicate) {
-    const reported = (action) =>
-      db.prepare('SELECT 1 FROM audit_log WHERE action = ? AND detail = ? LIMIT 1').get(action, result.day);
+    const reported = (action) => telegram.reportSent(action, result.day, info.employee.location_id);
     if (!lastRec && result.type === 'in' && !late && reported('morning_report')) {
       telegram.notifyArrivedAfterReport(info.employee, result.ts).catch(() => {});
     }
@@ -354,10 +355,16 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     }
   }
 
+  // Gun ici geri donus: cikistan sonraki yeniden giris abonelere gider. Sabahki ilk giris (yoklama) ve
+  // aksam cikisi (aksam yoklamasi) toplu bildirildigi icin ayrica gitmez.
+  if (result.id && !result.duplicate && result.type === 'in' && lastRec && lastRec.type === 'out') {
+    telegram.notifyReturned(info.employee, result.ts, lastRec.ts).catch(() => {});
+  }
+
   // Erken cikis bildirimi: mesai bitiminden once okutulan cikis aninda abonelere gider.
   // Son EARLY_EXIT_TOLERANCE_MIN dakika (vars. 5) tolerans: 18:25 ve sonrasi bildirim uretmez.
   if (result.type === 'out' && result.id && !result.duplicate) {
-    const shiftEnd = T.shiftEndFor(result.day);
+    const shiftEnd = T.shiftEndFor(result.day, location);
     const outHM = T.fmtTime(new Date(result.ts));
     const earlyMin = outHM >= '05:00' ? T.earlyMinutesFor(result.day, result.ts, shiftEnd) : 0;
     if (earlyMin > 0) {

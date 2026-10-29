@@ -6,8 +6,17 @@
     <form class="filters" method="get" action="/admin/rapor">
       <div><label>Başlangıç</label><input type="date" name="baslangic" value="<%= from %>"></div>
       <div><label>Bitiş</label><input type="date" name="bitis" value="<%= to %>"></div>
+      <div>
+        <label>Lokasyon</label>
+        <select name="lokasyon">
+          <option value="">Tümü</option>
+          <% locations.forEach(function (l) { %>
+            <option value="<%= l.id %>" <%= locationId === l.id ? 'selected' : '' %>><%= l.name %></option>
+          <% }); %>
+        </select>
+      </div>
       <div><button class="btn" type="submit">Önizle</button></div>
-      <div><a class="btn btn-ok" href="/admin/rapor/xlsx?baslangic=<%= from %>&bitis=<%= to %>">Excel (xlsx) indir</a></div>
+      <div><a class="btn btn-ok" href="/admin/rapor/xlsx?baslangic=<%= from %>&bitis=<%= to %><%= locationId ? '&lokasyon=' + locationId : '' %>">Excel (xlsx) indir</a></div>
     </form>
   </div>
 

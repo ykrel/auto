@@ -120,6 +120,32 @@ const deviceCols = db.prepare('PRAGMA table_info(devices)').all().map((c) => c.n
 if (!deviceCols.includes('browser_id')) db.exec('ALTER TABLE devices ADD COLUMN browser_id TEXT');
 db.exec('CREATE INDEX IF NOT EXISTS idx_devices_browser ON devices(browser_id)');
 db.exec('CREATE INDEX IF NOT EXISTS idx_checkins_device ON checkins(device_id)');
+// 2026-10-22: lokasyona ozel mesai bitisi (bossa SHIFT_END) ve cumartesi calisma bilgisi (Uretim binasi)
+const locationCols = db.prepare('PRAGMA table_info(locations)').all().map((c) => c.name);
+if (!locationCols.includes('shift_end')) db.exec('ALTER TABLE locations ADD COLUMN shift_end TEXT');
+if (!locationCols.includes('saturday')) db.exec('ALTER TABLE locations ADD COLUMN saturday INTEGER NOT NULL DEFAULT 1');
+// Aksam yoklamasi saati (bossa mesai bitisi + 5 dk). Uretim 18:50 (Kagan 24.10: 18:45'te henuz cikmayanlar oluyor)
+if (!locationCols.includes('evening_at')) db.exec('ALTER TABLE locations ADD COLUMN evening_at TEXT');
+// Lokasyona ozel Telegram botu (Uretim): ayni kisi iki botta da abone olabilsin diye anahtar (chat_id, bot).
+// Mevcut aboneler 'main' (ana PDKS botu) olarak tasinir.
+const subCols = db.prepare('PRAGMA table_info(telegram_subs)').all().map((c) => c.name);
+if (!subCols.includes('bot')) {
+  db.transaction(() => {
+    db.exec(`CREATE TABLE telegram_subs_yeni (
+      chat_id TEXT NOT NULL,
+      bot TEXT NOT NULL DEFAULT 'main',
+      name TEXT,
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (chat_id, bot)
+    )`);
+    db.exec("INSERT INTO telegram_subs_yeni (chat_id, bot, name, created_at) SELECT chat_id, 'main', name, created_at FROM telegram_subs");
+    db.exec('DROP TABLE telegram_subs');
+    db.exec('ALTER TABLE telegram_subs_yeni RENAME TO telegram_subs');
+  })();
+}
+// Abone ayni zamanda personelse (orn. bina sefi) kendi kaydi icin buton islemi yapamaz (Kagan 24.10)
+const subCols2 = db.prepare('PRAGMA table_info(telegram_subs)').all().map((c) => c.name);
+if (!subCols2.includes('employee_id')) db.exec('ALTER TABLE telegram_subs ADD COLUMN employee_id INTEGER REFERENCES employees(id)');
 
 function logAction(actor, action, detail) {
   db.prepare('INSERT INTO audit_log (actor, action, detail, created_at) VALUES (?, ?, ?, ?)')
