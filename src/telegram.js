@@ -380,10 +380,16 @@ async function handleUpdate(u, bot = MAIN) {
     const text = u.message.text.trim();
     if (u.message.reply_to_message && (await handleTimeReply(u, bot))) return null;
     const known = db.prepare('SELECT 1 FROM telegram_subs WHERE chat_id = ? AND bot = ?').get(chatId, bot.key);
+    if (known && ICTIMA_RE.test(text)) {
+      return api('sendMessage', { chat_id: chatId, text: ictimaText(bot), parse_mode: 'HTML' }, bot);
+    }
     if (known) {
       return api(
         'sendMessage',
-        { chat_id: chatId, text: 'Kayıtlısınız ✓ Bildirimler otomatik gelir; mesaj yazmanız gerekmez.' },
+        {
+          chat_id: chatId,
+          text: 'Kayıtlısınız ✓ Bildirimler otomatik gelir; mesaj yazmanız gerekmez.\nŞu an içeride kimler var: /ictima'
+        },
         bot
       );
     }
@@ -402,7 +408,8 @@ async function handleUpdate(u, bot = MAIN) {
           text:
             `Kayıt tamam, ${name} ✓\nPDKS bildirimleri${yer} bu sohbete gelecek:\n` +
             `• Sabah yoklaması (gelmeyenler)\n• Geç gelen personel + mücbir sebep butonu\n` +
-            `• Erken çıkan personel + saat düzeltme\n• Akşam yoklaması (çıkış okutmayanlar)`
+            `• Erken çıkan personel + saat düzeltme\n• Akşam yoklaması (çıkış okutmayanlar)\n` +
+            `İstediğiniz an içeride kimler var: /ictima`
         },
         bot
       );
@@ -414,6 +421,46 @@ async function handleUpdate(u, bot = MAIN) {
     );
   }
   return null;
+}
+
+// --- /ictima: o an iceride kimler var (Kagan 06.11). Telegram komut adinda yalniz a-z kabul ettigi icin
+// menude /ictima; elle yazilan /içtima, /iştima ve noktasiz "içtima" da calisir. Yalniz abonelere cevap verir.
+// Botun lokasyonlari: lokasyon botuysa kendi lokasyonu, ana botsa kendi botu olmayan lokasyonlar ---
+const ICTIMA_RE = /^\/?(ictima|içtima|iştima|istima)(@\w+)?$/i;
+
+function botLocations(bot) {
+  if (bot.location) return [bot.location];
+  return activeLocations().filter((l) => !locationBot(l));
+}
+
+function ictimaText(bot, now = new Date()) {
+  const service = require('./service');
+  const day = T.businessDay(now);
+  const parts = botLocations(bot).map((loc) => {
+    const ov = service.dayOverview(day, loc.id);
+    const yer = bot.location ? '' : locTag(loc);
+    let t = `🪖 <b>İçtima ${T.fmtTime(now)}</b>${yer} — içeride ${ov.present.length} kişi`;
+    if (ov.present.length) {
+      t += ':\n' + ov.present.map((r) => `• ${esc(r.employee.name)} — giriş ${r.inTime || '—'}`).join('\n');
+    }
+    if (ov.left.length) {
+      t += `\n\n🚪 <b>Çıktı</b> (${ov.left.length}):\n` +
+        ov.left.map((r) => `• ${esc(r.employee.name)} — ${r.outTime || '—'}`).join('\n');
+    }
+    if (ov.absent.length) {
+      t += `\n\n❌ <b>Gelmedi</b> (${ov.absent.length}):\n` + ov.absent.map((r) => '• ' + esc(r.employee.name)).join('\n');
+    }
+    if (ov.onLeave.length) {
+      t += `\n\n🏖 <b>İzinli</b> (${ov.onLeave.length}):\n` + ov.onLeave.map((r) => '• ' + esc(r.employee.name)).join('\n');
+    }
+    return t;
+  });
+  return parts.length ? parts.join('\n\n— — —\n\n') : '🪖 İçtima: bu botun lokasyonunda aktif personel yok.';
+}
+
+// Komut menusu (botun "/" listesinde gorunur)
+function setCommands(bot) {
+  return api('setMyCommands', { commands: [{ command: 'ictima', description: 'Şu an içeride kimler var' }] }, bot);
 }
 
 // --- Uzun sorgulama dongusu ---
@@ -520,7 +567,10 @@ function start() {
     console.log('Telegram botu kapali (TELEGRAM_BOT_TOKEN yok).');
     return;
   }
-  for (const bot of bots) poll(bot);
+  for (const bot of bots) {
+    setCommands(bot);
+    poll(bot);
+  }
   setInterval(morningTick, 30000);
   setInterval(eveningTick, 30000);
   console.log(`Telegram botu aktif (bildirim + mucbir/cikis butonlari): ${bots.map((b) => b.key).join(', ')}`);
@@ -536,6 +586,7 @@ module.exports = {
   eveningSend,
   notifyEarlyExit,
   morningText,
+  ictimaText,
   morningTick,
   eveningTick,
   addExit,
