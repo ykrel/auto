@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const crypto = require('crypto');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 
@@ -391,6 +392,39 @@ app.post('/api/checkin', rateLimited, (req, res) => {
     late,
     shiftStart,
     ...result
+  });
+});
+
+// --- Bekci (guvenlik, CT102) icin salt okunur "iceride kim var" ucu ---
+// Bearer BEKCI_API_TOKEN ile; kaynak Telegram /ictima ile ayni (service.dayOverview().present):
+// personelin KENDI lokasyonuna gore, gunun son kaydi giris olanlar.
+function bekciAuthorized(req) {
+  const expected = process.env.BEKCI_API_TOKEN || '';
+  if (expected.length < 16) return false;
+  const m = /^Bearer\s+(\S+)\s*$/i.exec(req.get('authorization') || '');
+  if (!m) return false;
+  const a = crypto.createHash('sha256').update(m[1]).digest();
+  const b = crypto.createHash('sha256').update(expected).digest();
+  return crypto.timingSafeEqual(a, b);
+}
+
+app.get('/api/icerde', (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  if (!bekciAuthorized(req)) return res.status(401).json({ error: 'yetkisiz' });
+  const slug = String(req.query.lokasyon || '').trim();
+  const location = slug ? service.getLocationBySlug(slug) : null;
+  if (!location || !location.active) return res.status(404).json({ error: 'lokasyon_yok' });
+  const now = new Date();
+  const day = T.businessDay(now);
+  const ov = service.dayOverview(day, location.id);
+  res.json({
+    lokasyon: location.slug,
+    zaman: now.toISOString(),
+    gun: day,
+    // O gun calisilmiyorsa (pazar, tam gun tatil, kapali cumartesi) null; yarim gun tatilde tatil bitisi
+    mesai_bitis: T.worksOn(day, location) ? T.shiftEndFor(day, location) : null,
+    sayi: ov.present.length,
+    icerde: ov.present.map((r) => ({ ad: r.employee.name, giris: r.inTime }))
   });
 });
 
