@@ -22,7 +22,7 @@ test('PDKS izin işlemleri', async (t) => {
   });
   Object.assign(process.env, {
     DATA_DIR: dir, SESSION_SECRET: 'izin-test-oturumu', ADMIN_PASSWORD: 'izin-test',
-    IZIN_ONAYCILAR: '101, 202, 101', TELEGRAM_BOT_TOKEN: 'test-main',
+    IZIN_SEFLER: '24, 25', IZIN_ONAYCILAR: '101, 202, 101', TELEGRAM_BOT_TOKEN: 'test-main',
     TELEGRAM_BOT_TOKEN_URETIM: 'test-uretim', NODE_ENV: 'test'
   });
   let clock = RealDate.parse('2026-11-26T09:00:00Z');
@@ -72,6 +72,8 @@ test('PDKS izin işlemleri', async (t) => {
   await t.test('Eski şema taşınır, eski izin korunur', () => {
     assert.deepEqual(db.prepare('SELECT note,type,request_id FROM leaves').get(), { note: 'Eski kayıt', type: null, request_id: null });
     assert.equal(db.prepare('SELECT hire_date FROM employees').get().hire_date, null);
+    assert.ok(db.prepare('PRAGMA foreign_key_list(leave_requests)').all().some((fk) =>
+      fk.from === 'opened_by' && fk.table === 'employees' && fk.to === 'id'));
     assert.deepEqual(db.prepare('PRAGMA index_info(idx_leave_requests_emp_status)').all().map((r) => r.name), ['employee_id', 'status']);
     for (const table of ['leave_requests', 'panel_links']) assert.ok(db.prepare("SELECT 1 FROM sqlite_master WHERE name=?").get(table));
   });
@@ -125,7 +127,8 @@ test('PDKS izin işlemleri', async (t) => {
     assert.match(html, /Taleplerim/);
     assert.equal((await api('/api/izin')).status, 401);
     assert.equal((await api('/api/izin?token=kapali')).status, 403);
-    assert.deepEqual((await api('/api/izin?token=ayse')).body, { talepler: [], turler: ['yillik', 'mazeret', 'ucretsiz'] });
+    assert.equal((await api('/api/identify', { token: 'ayse' })).body.izinSef, false);
+    assert.deepEqual((await api('/api/izin?token=ayse')).body, { sef: false, talepler: [], turler: ['yillik', 'mazeret', 'ucretsiz'] });
     assert.equal((await http('/api/izin', { headers: { cookie: 'pdks_token=ayse' } })).status, 200);
     assert.equal((await http('/api/izin?token=ayse')).status, 401); // token URL'den kabul edilmez
   });
@@ -153,9 +156,12 @@ test('PDKS izin işlemleri', async (t) => {
   let first, second, third, approveButton, rejectButton;
   await t.test('Oluşturma, lokasyon botu, onaycı kopyaları ve bekleyen talep sınırı', async () => {
     newWindow();
-    const r = await request('2026-11-27', '2026-12-02', { note: 'Aile ziyareti' });
+    const r = await request('2026-11-27', '2026-12-02', { note: 'Aile ziyareti', employee_id: 2, opened_by: 24 });
     assert.equal(r.status, 201);
     first = r.body.id;
+    assert.equal(byId(first).employee_id, 1);
+    assert.equal(byId(first).opened_by, null);
+    assert.equal((await api('/api/izin?token=ayse')).body.talepler[0].acan, null);
     assert.equal(byId(first).work_days, 3);
     assert.equal(byId(first).file_ref, null);
     const copies = JSON.parse(byId(first).tg_msgs);
@@ -188,7 +194,7 @@ test('PDKS izin işlemleri', async (t) => {
     assert.equal(edits.length, 2);
     for (const c of edits) {
       assert.equal(c.method, 'editMessageText');
-      assert.match(c.text, /🚫 Personel iptal etti$/);
+      assert.match(c.text, /🚫 İptal edildi — .+$/);
       assert.deepEqual(c.reply_markup.inline_keyboard, []);
     }
     assert.equal((await api('/api/izin/' + second + '/iptal', { token: 'ayse' })).status, 409);
@@ -365,6 +371,66 @@ test('PDKS izin işlemleri', async (t) => {
     assert.equal(person[1], 'Ayşe Yılmaz');
     assert.equal(person[headers.indexOf('Rapor (gün)')], 2);
     assert.equal(person[headers.indexOf('İzin Günü')], 2);
+  });
+
+  await t.test('Şef yalnız aynı lokasyondaki diğer aktif personeli seçebilir', async () => {
+    const add = db.prepare('INSERT INTO employees(id,name,phone,location_id,status,created_at) VALUES (?,?,?,?,?,?)');
+    add.run(24, 'Ali Ekizkuyu', '05550000024', 1, 'active', now);
+    add.run(25, 'Merkez Şefi', '05550000025', 2, 'active', now);
+    add.run(26, 'Pasif Personel', '05550000026', 1, 'passive', now);
+    add.run(27, 'Arzu Kaya', '05550000027', 1, 'active', now);
+    device.run(24, 'ali', 1, now);
+    device.run(25, 'merkez-sef', 1, now);
+    db.prepare("UPDATE telegram_subs SET employee_id = 24 WHERE chat_id = '303'").run();
+    process.env.IZIN_ONAYCILAR = '101,202,303';
+    assert.equal((await api('/api/identify', { token: 'ali' })).body.izinSef, true);
+    const list = (await api('/api/izin?token=ali')).body;
+    assert.equal(list.sef, true);
+    assert.deepEqual(list.personel, [{ id: 27, name: 'Arzu Kaya' }, { id: 1, name: 'Ayşe Yılmaz' }]);
+    assert.deepEqual(list.talepler, []);
+    for (const target of [undefined, '24', 2, 26, 999, [1]]) {
+      newWindow();
+      const r = await request('2026-12-23', '2026-12-23', { token: 'ali', employee_id: target });
+      assert.equal(r.status, 400);
+      assert.equal(r.body.error, target === undefined || target === '24'
+        ? "Kendi izniniz için Kağan Bey'e başvurun." : 'Geçerli bir personel seçin.');
+    }
+  });
+
+  await t.test('Şefin talebi hedefe kaydolur, onaycılara gider ve yalnız açan şef iptal edebilir', async () => {
+    newWindow();
+    const delegated = (day) => request(day, day, { token: 'ali', employee_id: '1' });
+    assert.match((await delegated('2026-12-22')).body.error, /çakış/);
+    assert.match((await delegated('2026-12-26')).body.error, /iş günü yok/);
+    const created = await delegated('2026-12-23');
+    assert.equal(created.status, 201);
+    const id = created.body.id;
+    const row = byId(id);
+    assert.equal(row.employee_id, 1);
+    assert.equal(row.opened_by, 24);
+    const copies = JSON.parse(row.tg_msgs);
+    assert.deepEqual(copies.map((c) => c.chat_id).sort(), ['101', '202']);
+    for (const copy of copies) {
+      assert.match(calls[copy.message_id - 1].text, /Ayşe Yılmaz · Üretim\nAçan: Ali Ekizkuyu \(şef\)\n/);
+    }
+    await callback(303, 'izin:onay:' + id);
+    assert.equal(calls.at(-1).text, 'Bu işlem için yetkiniz yok');
+    assert.equal(await panelCommand(303), 'Bu komut yalnız yöneticiler için');
+    assert.equal(byId(id).status, 'pending');
+    const opened = (await api('/api/izin?token=ali')).body.talepler;
+    assert.deepEqual(opened.map((r) => [r.id, r.ad]), [[id, 'Ayşe Yılmaz']]);
+    assert.deepEqual((await api('/api/izin?token=merkez-sef')).body.talepler, []);
+    const personal = (await api('/api/izin?token=ayse')).body.talepler;
+    assert.equal(personal[0].id, id);
+    assert.equal(personal[0].acan, 'Ali Ekizkuyu');
+    assert.match((await (await panel('/')).text()).split('Son kararlar')[0], /Açan: Ali Ekizkuyu \(şef\)/);
+    const cancel = (token) => api('/api/izin/' + id + '/iptal', { token });
+    assert.equal((await cancel('ayse')).status, 409);
+    assert.equal((await cancel('merkez-sef')).status, 409);
+    assert.equal((await cancel('ali')).status, 200);
+    assert.equal(byId(id).status, 'cancelled');
+    assert.equal((await cancel('ali')).status, 409);
+    assert.match((await (await panel('/')).text()).split('Son kararlar')[1], /Açan: Ali Ekizkuyu \(şef\)/);
   });
 
   await t.test('Panelden çıkış ve 30 günlük oturum süresi', async () => {

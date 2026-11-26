@@ -2,13 +2,19 @@
 
 const crypto = require('crypto');
 const { db } = require('./db');
+const { isLeaveSupervisor } = require('./service');
 
 const MAX_AGE = 30 * 24 * 60 * 60 * 1000;
 const cookie = { path: '/yonetim', httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production' };
 const secret = process.env.SESSION_SECRET || crypto.randomBytes(32);
 
 function approvers() {
-  return new Set((process.env.IZIN_ONAYCILAR || '').split(',').map((s) => s.trim()).filter(Boolean));
+  const chats = new Set((process.env.IZIN_ONAYCILAR || '').split(',').map((s) => s.trim()).filter(Boolean));
+  const linked = db.prepare('SELECT chat_id, employee_id FROM telegram_subs WHERE employee_id IS NOT NULL');
+  for (const sub of linked.iterate()) {
+    if (isLeaveSupervisor(sub.employee_id)) chats.delete(sub.chat_id);
+  }
+  return chats;
 }
 
 function approverName(chatId, botKey) {

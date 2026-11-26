@@ -137,6 +137,9 @@ CREATE INDEX IF NOT EXISTS idx_requests_status ON device_requests(status);
 `);
 
 // Sonradan eklenen kolonlar (mevcut veritabanini migrate eder)
+const requestCols = db.prepare('PRAGMA table_info(leave_requests)').all().map((c) => c.name);
+if (!requestCols.includes('opened_by')) db.exec('ALTER TABLE leave_requests ADD COLUMN opened_by INTEGER REFERENCES employees(id)');
+db.exec('CREATE INDEX IF NOT EXISTS idx_leave_requests_opened_by ON leave_requests(opened_by)');
 const leaveCols = db.prepare('PRAGMA table_info(leaves)').all().map((c) => c.name);
 if (!leaveCols.includes('type')) db.exec('ALTER TABLE leaves ADD COLUMN type TEXT');
 if (!leaveCols.includes('request_id')) db.exec('ALTER TABLE leaves ADD COLUMN request_id INTEGER REFERENCES leave_requests(id)');

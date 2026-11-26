@@ -511,6 +511,17 @@ function rejectRequest(requestId, actor = 'admin') {
 const leaveLabels = { yillik: 'Yıllık izin', mazeret: 'Mazeret izni', ucretsiz: 'Ücretsiz izin', rapor: 'Rapor' };
 const leaveStatuses = { pending: 'Bekliyor', approved: 'Onaylandı', rejected: 'Reddedildi', cancelled: 'İptal edildi' };
 
+function isLeaveSupervisor(employeeId) {
+  return (process.env.IZIN_SEFLER || '').split(',').some((id) => id.trim() === String(employeeId));
+}
+
+const teamFilter = "location_id = ? AND status = 'active' AND id != ?";
+
+function leaveTeam(supervisor) {
+  return db.prepare('SELECT id, name FROM employees WHERE ' + teamFilter)
+    .all(supervisor.location_id, supervisor.id).sort((a, b) => a.name.localeCompare(b.name, 'tr') || a.id - b.id);
+}
+
 function validDay(day) {
   return typeof day === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(day) && T.addDays(day, 0) === day;
 }
@@ -525,6 +536,20 @@ function workingDays(start, end, location) {
 }
 
 const createLeaveRequest = db.transaction((employee, input, panelName = null) => {
+  let openedBy = null;
+  if (panelName === null && isLeaveSupervisor(employee.id)) {
+    const target = input.employee_id;
+    if (target == null || target === '' || target === employee.id || target === String(employee.id)) {
+      return { error: "Kendi izniniz için Kağan Bey'e başvurun." };
+    }
+    if ((typeof target !== 'string' && typeof target !== 'number') || !/^[1-9]\d*$/.test(target)) {
+      return { error: 'Geçerli bir personel seçin.' };
+    }
+    openedBy = employee.id;
+    employee = db.prepare('SELECT id, location_id FROM employees WHERE ' + teamFilter + ' AND id = ?')
+      .get(employee.location_id, openedBy, target);
+    if (!employee) return { error: 'Geçerli bir personel seçin.' };
+  }
   const { start, end, type, note = '' } = input;
   const today = T.todayBusinessDay();
   if (!validDay(start) || !validDay(end)) return { error: 'Geçerli bir başlangıç ve bitiş tarihi girin.' };
@@ -546,8 +571,8 @@ const createLeaveRequest = db.transaction((employee, input, panelName = null) =>
   const days = workingDays(start, end, getLocation(employee.location_id));
   if (!days.length) return { error: 'Seçtiğiniz aralıkta lokasyonunuz için iş günü yok.' };
   const id = db.prepare(`INSERT INTO leave_requests
-    (employee_id, kind, leave_type, start_day, end_day, work_days, note, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
-    .run(employee.id, type === 'rapor' ? 'rapor' : 'izin', type, start, end, days.length, note.trim() || null, new Date().toISOString()).lastInsertRowid;
+    (employee_id, opened_by, kind, leave_type, start_day, end_day, work_days, note, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+    .run(employee.id, openedBy, type === 'rapor' ? 'rapor' : 'izin', type, start, end, days.length, note.trim() || null, new Date().toISOString()).lastInsertRowid;
   if (panelName !== null) decideLeaveRequest(id, true, panelName, 'panel');
   return { ok: true, id };
 }).immediate;
@@ -578,6 +603,8 @@ module.exports = {
   leaveLabels,
   leaveStatuses,
   validDay,
+  isLeaveSupervisor,
+  leaveTeam,
   createLeaveRequest,
   decideLeaveRequest,
   DUPLICATE_WINDOW_MS,

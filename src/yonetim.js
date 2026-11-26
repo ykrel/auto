@@ -52,7 +52,8 @@ router.post('/cikis', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  const select = `SELECT r.*, e.name, l.name AS location FROM leave_requests r JOIN employees e ON e.id = r.employee_id
+  const select = `SELECT r.*, e.name, opener.name AS acan, l.name AS location FROM leave_requests r
+    JOIN employees e ON e.id = r.employee_id LEFT JOIN employees opener ON opener.id = r.opened_by
     LEFT JOIN locations l ON l.id = e.location_id`;
   const pending = db.prepare(select + " WHERE r.status = 'pending' ORDER BY r.id").all();
   const decided = db.prepare(select + " WHERE r.status != 'pending' ORDER BY r.decided_at DESC, r.id DESC LIMIT 30").all();

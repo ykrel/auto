@@ -92,17 +92,19 @@ async function broadcast(text, inlineKeyboard, locationId) {
 }
 
 function leaveRequest(id) {
-  return db.prepare(`SELECT r.*, e.name, e.location_id, l.name AS location_name FROM leave_requests r
-    JOIN employees e ON e.id = r.employee_id LEFT JOIN locations l ON l.id = e.location_id WHERE r.id = ?`).get(id);
+  return db.prepare(`SELECT r.*, e.name, e.location_id, l.name AS location_name, opener.name AS acan FROM leave_requests r
+    JOIN employees e ON e.id = r.employee_id LEFT JOIN employees opener ON opener.id = r.opened_by
+    LEFT JOIN locations l ON l.id = e.location_id WHERE r.id = ?`).get(id);
 }
 
 function leaveText(r) {
   const weekdays = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
   const dayLabel = (day) => T.fmtDateTR(day).slice(0, 5) + ' ' + weekdays[T.weekdayOf(day)];
   let text = `📝 İzin talebi #${r.id}\n${r.name} · ${r.location_name || 'Lokasyon belirtilmemiş'}\n` +
+    (r.opened_by != null ? `Açan: ${r.acan} (şef)\n` : '') +
     `${dayLabel(r.start_day)} – ${dayLabel(r.end_day)} (${r.work_days} iş günü)\n${service.leaveLabels[r.leave_type]}`;
   if (r.note) text += '\nNot: ' + r.note;
-  if (r.status === 'cancelled') return text + '\n🚫 Personel iptal etti';
+  if (r.status === 'cancelled') return text + '\n🚫 İptal edildi — ' + (r.decided_by || 'personel');
   if (r.status === 'approved' || r.status === 'rejected') {
     const when = new Date(r.decided_at);
     const result = r.status === 'approved' ? '✅ Onaylandı' : '❌ Reddedildi';

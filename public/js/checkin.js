@@ -211,18 +211,28 @@
           return (c.type === 'in' ? 'giriş ' : 'çıkış ') + c.time;
         }).join(' · ')
       : '';
+    setLeaveRole(body.izinSef);
     show('s-action');
   }
 
   // ES5 + Promise (eski tarayicilarda async/await butun sayfayi bozar). Token URL'ye yazilmaz, baslikla gider.
+  function setLeaveRole(sef) {
+    $('leave-open').textContent = sef ? 'Başkası için izin talebi aç' : 'İzin talebi aç';
+    $('leave-title').textContent = sef ? 'Başkası için izin talebi' : 'İzin talebi';
+    $('leave-list-title').textContent = sef ? 'Açtığım talepler' : 'Taleplerim';
+    $('leave-employee-field').classList.toggle('hidden', !sef);
+    $('leave-employee').disabled = !sef;
+    $('leave-employee').required = !!sef;
+  }
+
   function renderLeaves(list, data) {
     list.textContent = data.talepler.length ? '' : 'Henüz talebiniz yok.';
     data.talepler.forEach(function (r) {
       var row = document.createElement('p');
       var dateLabel = function (day) { return day.split('-').reverse().join('.'); };
-      row.textContent = dateLabel(r.start_day) + ' – ' + dateLabel(r.end_day) + ' · ' + r.tur +
+      row.textContent = (data.sef ? r.ad + ' · ' : '') + dateLabel(r.start_day) + ' – ' + dateLabel(r.end_day) + ' · ' + r.tur +
         ' · ' + r.work_days + ' iş günü · ' + r.durum + ' ';
-      if (r.status === 'pending') {
+      if (r.status === 'pending' && (data.sef || r.acan === null)) {
         var cancel = document.createElement('button');
         cancel.type = 'button';
         cancel.className = 'btn btn-sm btn-ghost';
@@ -250,6 +260,17 @@
         if (!res.ok || !data.talepler) {
           list.textContent = data.error || 'Talepler yüklenemedi.';
           return;
+        }
+        setLeaveRole(data.sef);
+        if (data.sef) {
+          var employee = $('leave-employee');
+          var selected = employee.value;
+          employee.options.length = 1;
+          data.personel.forEach(function (person) {
+            var option = new Option(person.name, String(person.id));
+            option.selected = option.value === selected;
+            employee.add(option);
+          });
         }
         renderLeaves(list, data);
       });
@@ -287,9 +308,11 @@
   };
   $('leave-form').onsubmit = function (ev) {
     ev.preventDefault();
-    submitLeave('/api/izin', {
+    var data = {
       start: $('leave-start').value, end: $('leave-end').value, type: $('leave-type').value, note: $('leave-note').value
-    }, $('leave-send'), 'Talebiniz iletildi. Onaylanınca burada görünecek.');
+    };
+    if (!$('leave-employee').disabled) data.employee_id = $('leave-employee').value;
+    submitLeave('/api/izin', data, $('leave-send'), 'Talebiniz iletildi. Onaylanınca burada görünecek.');
   };
 
   // --- akış ---

@@ -108,11 +108,15 @@ app.use('/api/izin', (req, res, next) => {
 });
 
 app.get('/api/izin', (req, res) => {
-  const talepler = db.prepare(`SELECT id, start_day, end_day, leave_type, work_days, note, status FROM leave_requests
-    WHERE employee_id = ? ORDER BY id DESC LIMIT 10`).all(req.employee.id).map((r) => ({
+  const sef = service.isLeaveSupervisor(req.employee.id);
+  const people = sef ? { personel: service.leaveTeam(req.employee) } : {};
+  const party = sef ? 'JOIN employees e ON e.id = r.employee_id WHERE r.opened_by = ?'
+    : 'LEFT JOIN employees e ON e.id = r.opened_by WHERE r.employee_id = ?';
+  const talepler = db.prepare(`SELECT r.id, r.start_day, r.end_day, r.leave_type, r.work_days, r.note, r.status,
+    e.name AS ${sef ? 'ad' : 'acan'} FROM leave_requests r ${party} ORDER BY r.id DESC LIMIT 10`).all(req.employee.id).map((r) => ({
       ...r, tur: service.leaveLabels[r.leave_type], durum: service.leaveStatuses[r.status]
     }));
-  res.json({ talepler, turler: Object.keys(service.leaveLabels).filter((type) => type !== 'rapor') });
+  res.json({ sef, ...people, talepler, turler: Object.keys(service.leaveLabels).filter((type) => type !== 'rapor') });
 });
 
 app.post('/api/izin', async (req, res, next) => {
@@ -128,7 +132,9 @@ app.post('/api/izin/:id/iptal', async (req, res, next) => {
   try {
     const id = req.params.id;
     const changed = db.prepare(`UPDATE leave_requests SET status = 'cancelled', decided_by = ?, decided_at = ?
-      WHERE id = ? AND employee_id = ? AND status = 'pending'`).run(req.employee.name, new Date().toISOString(), id, req.employee.id);
+      WHERE id = ? AND status = 'pending' AND ((opened_by IS NULL AND employee_id = ?) OR opened_by = ?)`)
+      .run(req.employee.name, new Date().toISOString(), id, req.employee.id,
+        service.isLeaveSupervisor(req.employee.id) ? req.employee.id : null);
     if (!changed.changes) return res.status(409).json({ error: 'Yalnızca kendi bekleyen talebinizi iptal edebilirsiniz.' });
     await telegram.updateLeaveMessages(id);
     res.json({ ok: true });
@@ -154,6 +160,7 @@ app.post('/api/identify', (req, res) => {
 
   res.json({
     state: info.state,
+    izinSef: info.state === 'ok' ? service.isLeaveSupervisor(info.employee.id) : undefined,
     token,
     name: info.employee.name,
     today: checks.map((c) => ({ type: c.type, time: T.fmtTime(new Date(c.ts)), flagged: !!c.flagged }))

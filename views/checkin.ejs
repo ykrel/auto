@@ -81,8 +81,12 @@
   </section>
 
   <section class="state-card hidden" id="s-leave">
-    <h2>İzin talebi</h2>
+    <h2 id="leave-title">İzin talebi</h2>
     <form id="leave-form">
+      <div class="hidden" id="leave-employee-field">
+        <label for="leave-employee">Personel</label>
+        <select id="leave-employee" disabled><option value="">Personel seçin</option></select>
+      </div>
       <label for="leave-start">Başlangıç tarihi</label>
       <input id="leave-start" type="date" value="<%= T.addDays(T.todayBusinessDay(), 1) %>" required>
       <label for="leave-end">Bitiş tarihi</label>
@@ -97,7 +101,7 @@
       <button type="button" class="btn btn-block btn-ghost" id="leave-close">Vazgeç</button>
     </form>
     <p id="leave-feedback" role="status"></p>
-    <h3>Taleplerim</h3>
+    <h3 id="leave-list-title">Taleplerim</h3>
     <div id="leave-list" aria-live="polite"></div>
   </section>
 
@@ -132,5 +136,5 @@
   <p class="small muted center" style="margin-top:18px">Saat sunucudan alınır · <%= serverTime %></p>
 </main>
 <script src="/static/js/jsqr.min.js"></script>
-<script src="/static/js/checkin.js?v=20261126"></script>
+<script src="/static/js/checkin.js?v=20261126-2"></script>
 <%- include('partials/foot') %>
