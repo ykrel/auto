@@ -20,6 +20,9 @@
 const { db, logAction } = require('./db');
 const T = require('./time');
 
+const panelAuth = require('./panel-auth');
+const service = require('./service');
+
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
 const JOIN_CODE = (process.env.TELEGRAM_JOIN_CODE || '').trim();
 const MAIN = { key: 'main', token: TOKEN, location: null, offset: 0 };
@@ -86,6 +89,56 @@ async function broadcast(text, inlineKeyboard, locationId) {
   for (const s of subscribers(bot)) {
     await api('sendMessage', { chat_id: s.chat_id, text, ...extra }, bot);
   }
+}
+
+function leaveRequest(id) {
+  return db.prepare(`SELECT r.*, e.name, e.location_id, l.name AS location_name FROM leave_requests r
+    JOIN employees e ON e.id = r.employee_id LEFT JOIN locations l ON l.id = e.location_id WHERE r.id = ?`).get(id);
+}
+
+function leaveText(r) {
+  const weekdays = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
+  const dayLabel = (day) => T.fmtDateTR(day).slice(0, 5) + ' ' + weekdays[T.weekdayOf(day)];
+  let text = `📝 İzin talebi #${r.id}\n${r.name} · ${r.location_name || 'Lokasyon belirtilmemiş'}\n` +
+    `${dayLabel(r.start_day)} – ${dayLabel(r.end_day)} (${r.work_days} iş günü)\n${service.leaveLabels[r.leave_type]}`;
+  if (r.note) text += '\nNot: ' + r.note;
+  if (r.status === 'cancelled') return text + '\n🚫 Personel iptal etti';
+  if (r.status === 'approved' || r.status === 'rejected') {
+    const when = new Date(r.decided_at);
+    const result = r.status === 'approved' ? '✅ Onaylandı' : '❌ Reddedildi';
+    text += `\n${result} — ${r.decided_by} ${T.fmtDateTR(T.fmtDate(when)).slice(0, 5)} ${T.fmtTime(when)}`;
+  }
+  return text;
+}
+
+async function editLeaveCopy(r, copy) {
+  const bot = copy.bot === 'main' ? MAIN : locationBot(service.getLocationBySlug(copy.bot));
+  if (bot && bot.token) {
+    await api('editMessageText', { chat_id: copy.chat_id, message_id: copy.message_id,
+      text: leaveText(r), reply_markup: { inline_keyboard: [] } }, bot);
+  }
+}
+
+async function updateLeaveMessages(id) {
+  const r = leaveRequest(id);
+  if (r) await Promise.all(JSON.parse(r.tg_msgs).map((copy) => editLeaveCopy(r, copy)));
+}
+
+async function notifyLeaveRequest(id) {
+  const r = leaveRequest(id);
+  const bot = botFor(r.location_id);
+  if (!bot.token) return;
+  const keyboard = [[{ text: '✅ Onayla', callback_data: 'izin:onay:' + id },
+    { text: '❌ Reddet', callback_data: 'izin:red:' + id }]];
+  await Promise.all([...panelAuth.approvers()].map(async (chatId) => {
+    const sent = await api('sendMessage', { chat_id: chatId, text: leaveText(r), reply_markup: { inline_keyboard: keyboard } }, bot);
+    if (!sent || !sent.ok) return;
+    const copy = { chat_id: chatId, bot: bot.key, message_id: sent.result.message_id };
+    db.prepare("UPDATE leave_requests SET tg_msgs = json_insert(tg_msgs, '$[#]', json(?)) WHERE id = ?").run(JSON.stringify(copy), id);
+    // Gonderim surerken panelden veya diger kopyadan karar verilmis olabilir.
+    const current = leaveRequest(id);
+    if (current.status !== 'pending') await editLeaveCopy(current, copy);
+  }));
 }
 
 // --- Lokasyon yardimcilari ---
@@ -270,6 +323,19 @@ async function handleCallback(cq, bot = MAIN) {
   const chatId = cq.message && cq.message.chat && cq.message.chat.id;
   let m;
 
+  if ((m = /^izin:(onay|red):(\d+)$/.exec(data))) {
+    const chat = String(chatId);
+    const answer = (text) => api('answerCallbackQuery', { callback_query_id: cq.id, text }, bot);
+    if (!panelAuth.approvers().has(chat) || String(cq.from && cq.from.id) !== chat) return answer('Bu işlem için yetkiniz yok');
+    const name = panelAuth.approverName(chat, bot.key);
+    const id = Number(m[2]);
+    const approve = m[1] === 'onay';
+    const result = service.decideLeaveRequest(id, approve, name, 'telegram');
+    if (!result.ok) return answer(result.already ? 'Bu talebe zaten karar verildi — ' + result.already.decided_by : 'Talep bulunamadı.');
+    await Promise.all([answer(approve ? 'Onaylandı' : 'Reddedildi'), updateLeaveMessages(id)]);
+    return null;
+  }
+
   if ((m = /^excuse:(\d+)$/.exec(data))) {
     const row = db.prepare('SELECT * FROM checkins WHERE id = ?').get(Number(m[1]));
     if (!row) return api('answerCallbackQuery', { callback_query_id: cq.id, text: 'Kayıt bulunamadı.' }, bot);
@@ -378,6 +444,14 @@ async function handleUpdate(u, bot = MAIN) {
   if (u.message && u.message.chat && typeof u.message.text === 'string') {
     const chatId = String(u.message.chat.id);
     const text = u.message.text.trim();
+    if (/^\/panel(@\w+)?$/i.test(text)) {
+      let message = 'Bu komut yalnız yöneticiler için';
+      if (panelAuth.approvers().has(chatId) && String(u.message.from && u.message.from.id) === chatId) {
+        const link = panelAuth.issueLink(chatId, panelAuth.approverName(chatId, bot.key));
+        message = 'Yönetici paneli (10 dakika geçerli, tek kullanımlık)\n' + link;
+      }
+      return api('sendMessage', { chat_id: chatId, text: message, link_preview_options: { is_disabled: true } }, bot);
+    }
     if (u.message.reply_to_message && (await handleTimeReply(u, bot))) return null;
     const known = db.prepare('SELECT 1 FROM telegram_subs WHERE chat_id = ? AND bot = ?').get(chatId, bot.key);
     if (known && ICTIMA_RE.test(text)) {
@@ -460,7 +534,7 @@ function ictimaText(bot, now = new Date()) {
 
 // Komut menusu (botun "/" listesinde gorunur)
 function setCommands(bot) {
-  return api('setMyCommands', { commands: [{ command: 'ictima', description: 'Şu an içeride kimler var' }] }, bot);
+  return api('setMyCommands', { commands: [{ command: 'ictima', description: 'Şu an içeride kimler var' }, { command: 'panel', description: 'İzin yönetim paneli' }] }, bot);
 }
 
 // --- Uzun sorgulama dongusu ---
@@ -500,13 +574,16 @@ function morningTick() {
 // Yoklama metni: gelmeyenler (aranacaklar) + izinliler ayri, "izinli" etiketiyle
 function morningText(ov, location, trigger = '08:33') {
   const yok = ov.absent.map((r) => r.employee.name);
-  const izin = (ov.onLeave || []).map((r) => r.employee.name);
+  const izin = (ov.onLeave || []).map((r) => {
+    const label = r.leaveType === 'rapor' ? 'raporlu' : (service.leaveLabels[r.leaveType] || 'izinli').toLocaleLowerCase('tr');
+    return '• ' + esc(r.employee.name) + ' — ' + label;
+  });
   const baslik = `📋 <b>${trigger} yoklaması</b>${locTag(location)}`;
   let text = yok.length
     ? `${baslik} — henüz gelmeyenler (${yok.length}):\n` + yok.map((n) => '• ' + esc(n)).join('\n')
     : `${baslik} — ${izin.length ? 'izinliler hariç ' : ''}herkes geldi ✅`;
   if (izin.length) {
-    text += `\n\n🏖 <b>İzinli</b> (${izin.length}):\n` + izin.map((n) => '• ' + esc(n) + ' — izinli').join('\n');
+    text += `\n\n🏖 <b>İzinli</b> (${izin.length}):\n` + izin.join('\n');
   }
   return text;
 }
@@ -578,6 +655,8 @@ function start() {
 
 module.exports = {
   start,
+  notifyLeaveRequest,
+  updateLeaveMessages,
   notifyLate,
   notifyArrivedAfterReport,
   notifyLeftAfterReport,

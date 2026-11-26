@@ -10,6 +10,10 @@
       </select>
       <input type="date" name="baslangic" value="<%= today %>" required>
       <input type="date" name="bitis" value="<%= today %>">
+      <label>Tür <select name="type">
+        <option value="">Belirtilmemiş</option>
+        <% for (const [key, label] of Object.entries(leaveLabels)) { %><option value="<%= key %>"><%= label %></option><% } %>
+      </select></label>
       <input type="text" name="not" placeholder="Not (yıllık izin, rapor…)" maxlength="200">
       <button class="btn btn-sm" type="submit">Ekle</button>
     </form>
@@ -25,13 +29,14 @@
     <h3>İzin günleri (<%= leaves.length %>)</h3>
     <% if (!leaves.length) { %><p class="muted small">Bu aralıkta izin yok.</p><% } else { %>
     <div class="table-scroll"><table>
-      <thead><tr><th>Tarih</th><th>Personel</th><th>Lokasyon</th><th>Not</th><th>Ekleyen</th><th></th></tr></thead>
+      <thead><tr><th>Tarih</th><th>Personel</th><th>Lokasyon</th><th>Tür</th><th>Not</th><th>Ekleyen</th><th></th></tr></thead>
       <tbody>
       <% leaves.forEach(function (lv) { %>
         <tr>
           <td><%= T.fmtDateTR(lv.day) %></td>
           <td><%= lv.employee_name %></td>
           <td class="muted"><%= lv.location_name || '—' %></td>
+          <td><%= leaveLabels[lv.type] || 'Belirtilmemiş' %></td>
           <td class="small"><%= lv.note || '' %></td>
           <td class="muted small"><%= lv.created_by || '' %> · <%= T.fmtDateTime(new Date(lv.created_at)) %></td>
           <td>

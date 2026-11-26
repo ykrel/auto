@@ -76,7 +76,29 @@
   <section class="state-card hidden" id="s-action">
     <h2 class="center" id="action-name"></h2>
     <button class="btn btn-block" type="button" id="action-btn" style="font-size:24px;padding:20px 0;font-weight:700"></button>
+    <div class="linkline small"><a href="#izin" id="leave-open">İzin iste</a></div>
     <div id="action-today" class="small muted center" style="margin-top:14px"></div>
+  </section>
+
+  <section class="state-card hidden" id="s-leave">
+    <h2>İzin iste</h2>
+    <form id="leave-form">
+      <label for="leave-start">Başlangıç tarihi</label>
+      <input id="leave-start" type="date" value="<%= T.addDays(T.todayBusinessDay(), 1) %>" required>
+      <label for="leave-end">Bitiş tarihi</label>
+      <input id="leave-end" type="date" value="<%= T.addDays(T.todayBusinessDay(), 1) %>" required>
+      <label for="leave-type">Tür</label>
+      <select id="leave-type">
+        <% for (const key of ['yillik', 'mazeret', 'ucretsiz']) { %><option value="<%= key %>"><%= leaveLabels[key] %></option><% } %>
+      </select>
+      <label for="leave-note">Açıklama (isteğe bağlı)</label>
+      <textarea id="leave-note" maxlength="300" rows="3"></textarea>
+      <button class="btn btn-block" id="leave-send">Talebi gönder</button>
+      <button type="button" class="btn btn-block btn-ghost" id="leave-close">Vazgeç</button>
+    </form>
+    <p id="leave-feedback" role="status"></p>
+    <h3>Taleplerim</h3>
+    <div id="leave-list" aria-live="polite"></div>
   </section>
 
   <!-- Sonuç -->
@@ -110,5 +132,5 @@
   <p class="small muted center" style="margin-top:18px">Saat sunucudan alınır · <%= serverTime %></p>
 </main>
 <script src="/static/js/jsqr.min.js"></script>
-<script src="/static/js/checkin.js?v=20261022"></script>
+<script src="/static/js/checkin.js?v=20261126"></script>
 <%- include('partials/foot') %>

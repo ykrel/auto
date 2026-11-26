@@ -52,6 +52,7 @@ app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, '..', 'public'), { maxAge: '1h' }));
 
 app.locals.T = T;
+app.locals.leaveLabels = service.leaveLabels;
 app.locals.BASE_URL = BASE_URL;
 
 // --- Rate limit: token basina dakikada 5 istek; token yoksa IP basina 30 ---
@@ -60,13 +61,14 @@ const writeLimiter = createRateLimiter({ limit: 5, windowMs: 60000 });
 const ipLimiter = createRateLimiter({ limit: 30, windowMs: 60000 });
 
 function rateLimited(req, res, next) {
+  const scope = req.baseUrl === '/api/izin' ? 'izin:' : '';
   const token = (req.body && req.body.token) || req.cookies[TOKEN_COOKIE];
-  const result = token ? writeLimiter('tok:' + token) : ipLimiter('ip:' + (req.ip || 'bilinmiyor'));
+  const result = token ? writeLimiter(scope + 'tok:' + token) : ipLimiter(scope + 'ip:' + (req.ip || 'bilinmiyor'));
   if (!result.ok) {
     res.setHeader('Retry-After', String(result.retryAfter));
     return res.status(429).json({
       error: 'rate_limited',
-      message: `Cok fazla istek. ${result.retryAfter} saniye sonra tekrar deneyin.`
+      message: `Çok fazla istek. ${result.retryAfter} saniye sonra tekrar deneyin.`
     });
   }
   next();
@@ -93,6 +95,44 @@ app.get('/c/:slug', (req, res) => {
     serverTime: T.fmtTime(new Date()),
     serverDate: T.fmtDateTR(T.fmtDate(new Date()))
   });
+});
+
+app.use('/api/izin', (req, res, next) => {
+  res.set('Cache-Control', 'no-store');
+  const token = (req.body && req.body.token) || req.get('x-pdks-token') || req.cookies[TOKEN_COOKIE];
+  const identity = resolveToken(token);
+  if (identity.state !== 'ok') return res.status(identity.state === 'unknown' ? 401 : 403).json({ error: 'İzin işlemleri için aktif bir personel kaydı gerekiyor.' });
+  req.employee = identity.employee;
+  if (req.method === 'POST') return rateLimited(req, res, next);
+  next();
+});
+
+app.get('/api/izin', (req, res) => {
+  const talepler = db.prepare(`SELECT id, start_day, end_day, leave_type, work_days, note, status FROM leave_requests
+    WHERE employee_id = ? ORDER BY id DESC LIMIT 10`).all(req.employee.id).map((r) => ({
+      ...r, tur: service.leaveLabels[r.leave_type], durum: service.leaveStatuses[r.status]
+    }));
+  res.json({ talepler, turler: Object.keys(service.leaveLabels).filter((type) => type !== 'rapor') });
+});
+
+app.post('/api/izin', async (req, res, next) => {
+  try {
+    const result = service.createLeaveRequest(req.employee, req.body);
+    if (result.error) return res.status(400).json(result);
+    await telegram.notifyLeaveRequest(result.id);
+    res.status(201).json(result);
+  } catch (e) { next(e); }
+});
+
+app.post('/api/izin/:id/iptal', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const changed = db.prepare(`UPDATE leave_requests SET status = 'cancelled', decided_by = ?, decided_at = ?
+      WHERE id = ? AND employee_id = ? AND status = 'pending'`).run(req.employee.name, new Date().toISOString(), id, req.employee.id);
+    if (!changed.changes) return res.status(409).json({ error: 'Yalnızca kendi bekleyen talebinizi iptal edebilirsiniz.' });
+    await telegram.updateLeaveMessages(id);
+    res.json({ ok: true });
+  } catch (e) { next(e); }
 });
 
 // --- Cihaz / kimlik ---
@@ -444,6 +484,7 @@ app.get('/api/icerde', (req, res) => {
   });
 });
 
+app.use('/yonetim', require('./yonetim'));
 app.use('/admin', adminRouter);
 
 app.use((req, res) => {

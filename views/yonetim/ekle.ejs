@@ -1,0 +1,21 @@
+<%- include('baslik') %>
+<main class="wrap">
+  <section class="card">
+    <h2>İzin ekle</h2>
+    <form method="post" action="/yonetim/izin-ekle">
+      <input type="hidden" name="csrf" value="<%= session.csrf %>">
+      <label>Personel <select name="employee_id" required>
+        <option value="">Personel seçin</option>
+        <% for (const p of people) { %><option value="<%= p.id %>"><%= p.name %> · <%= p.location || 'Lokasyon belirtilmemiş' %></option><% } %>
+      </select></label>
+      <label>Başlangıç tarihi <input type="date" name="start" value="<%= today %>" required></label>
+      <label>Bitiş tarihi <input type="date" name="end" value="<%= today %>" required></label>
+      <label>Tür <select name="type">
+        <% for (const [key, label] of Object.entries(leaveLabels)) { %><option value="<%= key %>"><%= label %></option><% } %>
+      </select></label>
+      <label>Not (isteğe bağlı) <textarea name="note" maxlength="300" rows="3"></textarea></label>
+      <button class="btn">İzin ekle</button>
+    </form>
+  </section>
+</main>
+<%- include('../partials/foot') %>

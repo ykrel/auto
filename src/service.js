@@ -126,7 +126,7 @@ function dayOverview(day, locationId = null) {
   }
   sql += ' ORDER BY e.name COLLATE NOCASE';
   const employees = db.prepare(sql).all(...params);
-  const leaveSet = new Set(db.prepare('SELECT employee_id FROM leaves WHERE day = ?').all(day).map((r) => r.employee_id));
+  const leaveTypes = new Map(db.prepare('SELECT employee_id, type FROM leaves WHERE day = ?').all(day).map((r) => [r.employee_id, r.type]));
 
   const rows = employees.map((emp) => {
     const checks = db
@@ -146,7 +146,8 @@ function dayOverview(day, locationId = null) {
     return {
       employee: emp,
       shift,
-      onLeave: leaveSet.has(emp.id),
+      onLeave: leaveTypes.has(emp.id),
+      leaveType: leaveTypes.get(emp.id),
       offDay,
       inCheck: first,
       outCheck: lastOut,
@@ -256,6 +257,9 @@ function dailyRows(fromDay, toDay, employeeId = null, locationId = null) {
     }
     const row = map.get(key);
     row.leave = true;
+    row.leaveType = lv.type;
+    const shortType = { yillik: 'yıllık', mazeret: 'mazeret', ucretsiz: 'ücretsiz', rapor: 'rapor' }[lv.type];
+    row.leaveLabel = shortType ? `İzinli (${shortType})` : 'İzinli';
     row.leaveNote = lv.note || '';
   }
 
@@ -298,6 +302,7 @@ function employeeTotals(rows) {
         employeeName: r.employeeName,
         days: 0,
         leaveDays: 0,
+        reportDays: 0,
         offDayWork: 0,
         workMinutes: 0,
         lateCount: 0,
@@ -308,6 +313,7 @@ function employeeTotals(rows) {
     const t = map.get(r.employeeId);
     if (r.checks.length) t.days += 1;
     if (r.leave) t.leaveDays += 1;
+    if (r.leaveType === 'rapor') t.reportDays += 1;
     if (r.offDay && r.checks.length) t.offDayWork += 1;
     if (r.workMinutes) t.workMinutes += r.workMinutes;
     if (r.lateMinutes > 0) {
@@ -335,15 +341,15 @@ function leavesBetween(fromDay, toDay, employeeId = null) {
   return db.prepare(sql).all(...params);
 }
 
-function addLeave({ employeeId, fromDay, toDay, note = '', actor = 'admin' }) {
+function addLeave({ employeeId, fromDay, toDay, note = '', type = null, actor = 'admin' }) {
   const days = T.eachDay(fromDay, toDay);
   const now = new Date().toISOString();
   const ins = db.prepare(
-    'INSERT OR IGNORE INTO leaves (employee_id, day, note, created_by, created_at) VALUES (?, ?, ?, ?, ?)'
+    'INSERT OR IGNORE INTO leaves (employee_id, day, note, type, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?)'
   );
   let n = 0;
   db.transaction(() => {
-    for (const d of days) n += ins.run(employeeId, d, note || null, actor, now).changes;
+    for (const d of days) n += ins.run(employeeId, d, note || null, type, actor, now).changes;
   })();
   logAction(actor, 'leave_add', `personel #${employeeId} ${fromDay}..${toDay} (${n} gun)${note ? ' - ' + note : ''}`);
   return n;
@@ -502,7 +508,78 @@ function rejectRequest(requestId, actor = 'admin') {
   return { ok: true };
 }
 
+const leaveLabels = { yillik: 'Yıllık izin', mazeret: 'Mazeret izni', ucretsiz: 'Ücretsiz izin', rapor: 'Rapor' };
+const leaveStatuses = { pending: 'Bekliyor', approved: 'Onaylandı', rejected: 'Reddedildi', cancelled: 'İptal edildi' };
+
+function validDay(day) {
+  return typeof day === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(day) && T.addDays(day, 0) === day;
+}
+
+function workingDays(start, end, location) {
+  const days = [];
+  for (let day = start; day <= end; day = T.addDays(day, 1)) {
+    if (T.worksOn(day, location)) days.push(day);
+    if (day === end) break;
+  }
+  return days;
+}
+
+const createLeaveRequest = db.transaction((employee, input, panelName = null) => {
+  const { start, end, type, note = '' } = input;
+  const today = T.todayBusinessDay();
+  if (!validDay(start) || !validDay(end)) return { error: 'Geçerli bir başlangıç ve bitiş tarihi girin.' };
+  if (end < start) return { error: 'Bitiş tarihi başlangıçtan önce olamaz.' };
+  if (typeof type !== 'string' || !Object.hasOwn(leaveLabels, type) || (type === 'rapor' && panelName === null)) return { error: 'Geçerli bir izin türü seçin.' };
+  if (typeof note !== 'string' || note.length > 300) return { error: 'Açıklama en çok 300 karakter olabilir.' };
+  if (panelName === null) {
+    if (start < T.addDays(today, -3)) return { error: 'Başlangıç tarihi en fazla 3 gün geriye gidebilir.' };
+    if (end > T.addDays(today, 180)) return { error: 'Bitiş tarihi en fazla 180 gün ileride olabilir.' };
+    if (end > T.addDays(start, 30)) return { error: 'Bir talep en çok 31 takvim gününü kapsayabilir.' };
+  }
+  const overlap = db.prepare(`SELECT id FROM leave_requests WHERE employee_id = ? AND status IN ('pending','approved')
+    AND start_day <= ? AND end_day >= ? LIMIT 1`).get(employee.id, end, start);
+  if (overlap) return { error: 'Bu tarihler bekleyen veya onaylanmış başka bir talebinizle çakışıyor.' };
+  if (panelName === null) {
+    const pending = db.prepare("SELECT count(*) AS n FROM leave_requests WHERE employee_id = ? AND status = 'pending'").get(employee.id);
+    if (pending.n >= 3) return { error: 'En fazla 3 bekleyen talebiniz olabilir.' };
+  }
+  const days = workingDays(start, end, getLocation(employee.location_id));
+  if (!days.length) return { error: 'Seçtiğiniz aralıkta lokasyonunuz için iş günü yok.' };
+  const id = db.prepare(`INSERT INTO leave_requests
+    (employee_id, kind, leave_type, start_day, end_day, work_days, note, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
+    .run(employee.id, type === 'rapor' ? 'rapor' : 'izin', type, start, end, days.length, note.trim() || null, new Date().toISOString()).lastInsertRowid;
+  if (panelName !== null) decideLeaveRequest(id, true, panelName, 'panel');
+  return { ok: true, id };
+}).immediate;
+
+const decideLeaveRequest = db.transaction((id, approve, deciderName, source) => {
+  const status = approve ? 'approved' : 'rejected';
+  const now = new Date().toISOString();
+  const changed = db.prepare(`UPDATE leave_requests SET status = ?, decided_by = ?, decided_at = ?
+    WHERE id = ? AND status = 'pending'`).run(status, deciderName, now, id).changes;
+  if (!changed) {
+    const already = db.prepare('SELECT status, decided_by FROM leave_requests WHERE id = ?').get(id);
+    return { ok: false, already: already || null };
+  }
+  const actor = source + ':' + deciderName;
+  if (approve) {
+    const r = db.prepare(`SELECT r.*, e.location_id FROM leave_requests r JOIN employees e ON e.id = r.employee_id WHERE r.id = ?`).get(id);
+    const ins = db.prepare(`INSERT OR IGNORE INTO leaves (employee_id, day, note, type, request_id, created_by, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?)`);
+    for (const day of workingDays(r.start_day, r.end_day, getLocation(r.location_id))) {
+      ins.run(r.employee_id, day, 'talep #' + id, r.leave_type, id, actor, now);
+    }
+  }
+  logAction(actor, approve ? 'leave_request_approve' : 'leave_request_reject', 'talep #' + id);
+  return { ok: true };
+}).immediate;
+
 module.exports = {
+  leaveLabels,
+  leaveStatuses,
+  validDay,
+  createLeaveRequest,
+  decideLeaveRequest,
   DUPLICATE_WINDOW_MS,
   shiftStartOf,
   getLocation,

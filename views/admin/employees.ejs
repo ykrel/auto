@@ -59,6 +59,7 @@
                     <option value="<%= l.id %>" <%= e.location_id === l.id ? 'selected' : '' %>><%= l.name %></option>
                   <% }); %>
                 </select>
+                <label>İşe giriş <input type="date" name="hire_date" value="<%= e.hire_date || '' %>"></label>
                 <input type="time" name="shift_start" value="<%= e.shift_start || '' %>" title="Kişiye özel mesai başlangıcı (boşsa lokasyonunki)">
                 <select name="status">
                   <option value="active" <%= e.status === 'active' ? 'selected' : '' %>>Aktif</option>

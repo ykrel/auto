@@ -1,0 +1,19 @@
+<%- include('baslik') %>
+<main class="wrap">
+  <h2><%= year %> yılında kullanılan izinler</h2>
+  <% if (!groups.size) { %><p>Aktif personel yok.</p><% } %>
+  <% for (const people of groups.values()) { %>
+    <section class="card">
+      <h2><%= people[0].location || 'Lokasyon belirtilmemiş' %></h2>
+      <% for (const p of people) { %>
+        <h3><%= p.name %></h3>
+        <p><%= Object.entries({ ...leaveLabels, belirtilmemis: 'Tür belirtilmemiş' }).map(([key, label]) => label + ' ' + (p.counts[key] || 0) + ' gün').join(' · ') %></p>
+        <% if (p.balance) { %>
+          <p>İşe giriş <%= T.fmtDateTR(p.hire_date) %> · Kıdem <%= p.balance.years %> yıl<br>
+            Yıllık izin hakkı <%= p.balance.granted %> gün · Son yıldönümünden beri kullanılan <%= p.balance.used %> gün · Kalan <%= p.balance.remaining %> gün</p>
+        <% } else { %><p class="muted">İşe giriş tarihi girilmemiş.</p><% } %>
+      <% } %>
+    </section>
+  <% } %>
+</main>
+<%- include('../partials/foot') %>

@@ -11,7 +11,7 @@
   function $(id) { return document.getElementById(id); }
 
   function show(id) {
-    ['s-loading', 's-nostorage', 's-register', 's-change', 's-pending', 's-action', 's-scan', 's-result', 's-confirm', 's-message']
+    ['s-loading', 's-nostorage', 's-register', 's-change', 's-pending', 's-action', 's-leave', 's-scan', 's-result', 's-confirm', 's-message']
       .forEach(function (s) { $(s).classList.toggle('hidden', s !== id); });
   }
 
@@ -213,6 +213,84 @@
       : '';
     show('s-action');
   }
+
+  // ES5 + Promise (eski tarayicilarda async/await butun sayfayi bozar). Token URL'ye yazilmaz, baslikla gider.
+  function renderLeaves(list, data) {
+    list.textContent = data.talepler.length ? '' : 'Henüz talebiniz yok.';
+    data.talepler.forEach(function (r) {
+      var row = document.createElement('p');
+      var dateLabel = function (day) { return day.split('-').reverse().join('.'); };
+      row.textContent = dateLabel(r.start_day) + ' – ' + dateLabel(r.end_day) + ' · ' + r.tur +
+        ' · ' + r.work_days + ' iş günü · ' + r.durum + ' ';
+      if (r.status === 'pending') {
+        var cancel = document.createElement('button');
+        cancel.type = 'button';
+        cancel.className = 'btn btn-sm btn-ghost';
+        cancel.textContent = 'İptal et';
+        cancel.onclick = function () {
+          if (window.confirm('Bu izin talebini iptal etmek istiyor musunuz?')) {
+            submitLeave('/api/izin/' + r.id + '/iptal', {}, cancel, 'Talebiniz iptal edildi.');
+          }
+        };
+        row.appendChild(cancel);
+      }
+      list.appendChild(row);
+    });
+  }
+
+  function loadLeaves() {
+    var list = $('leave-list');
+    list.textContent = 'Talepler yükleniyor…';
+    return fetch('/api/izin', {
+      credentials: 'same-origin',
+      cache: 'no-store',
+      headers: { 'X-PDKS-Token': loadToken() || '' }
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (!res.ok || !data.talepler) {
+          list.textContent = data.error || 'Talepler yüklenemedi.';
+          return;
+        }
+        renderLeaves(list, data);
+      });
+    }).catch(function () {
+      list.textContent = 'Talepler yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.';
+    });
+  }
+
+  function submitLeave(url, data, button, success) {
+    button.disabled = true;
+    var feedback = $('leave-feedback');
+    var payload = { token: loadToken() };
+    for (var k in data) if (Object.prototype.hasOwnProperty.call(data, k)) payload[k] = data[k];
+    return post(url, payload).then(function (res) {
+      var body = res.body || {};
+      feedback.textContent = body.ok ? success : body.message || body.error || 'İşlem tamamlanamadı.';
+      if (body.ok && url === '/api/izin') $('leave-form').reset();
+      return loadLeaves();
+    }).catch(function () {
+      feedback.textContent = 'Bağlantı hatası. Talep durumunu kontrol edip tekrar deneyin.';
+    }).then(function () {
+      button.disabled = false;
+    });
+  }
+
+  $('leave-open').onclick = function (ev) {
+    ev.preventDefault();
+    $('leave-feedback').textContent = '';
+    show('s-leave');
+    loadLeaves();
+  };
+  $('leave-close').onclick = boot;
+  $('leave-start').onchange = function () {
+    $('leave-end').value = this.value;
+  };
+  $('leave-form').onsubmit = function (ev) {
+    ev.preventDefault();
+    submitLeave('/api/izin', {
+      start: $('leave-start').value, end: $('leave-end').value, type: $('leave-type').value, note: $('leave-note').value
+    }, $('leave-send'), 'Talebiniz iletildi. Onaylanınca burada görünecek.');
+  };
 
   // --- akış ---
   function sendCheckin(token, coords, qr, confirm) {

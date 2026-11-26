@@ -1,0 +1,30 @@
+<%- include('baslik') %>
+<main class="wrap">
+  <h2>Bekleyen talepler (<%= pending.length %>)</h2>
+  <% if (!pending.length) { %><p>Bekleyen izin talebi yok.</p><% } %>
+  <% for (const r of pending) { %>
+    <article class="card">
+      <h3><%= r.name %> · <%= r.location || 'Lokasyon belirtilmemiş' %></h3>
+      <p><%= leaveLabels[r.leave_type] %> · <%= T.fmtDateTR(r.start_day) %> – <%= T.fmtDateTR(r.end_day) %> · <%= r.work_days %> iş günü</p>
+      <% if (r.note) { %><p><%= r.note %></p><% } %>
+      <p class="small muted">Talep #<%= r.id %> · <%= T.fmtDateTime(new Date(r.created_at)) %></p>
+      <div class="inline-form">
+        <% for (const [action, label, question] of [['onayla', 'Onayla', 'Talebi onaylamak istiyor musunuz?'], ['reddet', 'Reddet', 'Talebi reddetmek istiyor musunuz?']]) { %>
+          <form method="post" action="/yonetim/talep/<%= r.id %>/<%= action %>" onsubmit="return confirm('<%= question %>')">
+            <input type="hidden" name="csrf" value="<%= session.csrf %>">
+            <button class="btn <%= action === 'onayla' ? 'btn-ok' : 'btn-danger' %>"><%= label %></button>
+          </form>
+        <% } %>
+      </div>
+    </article>
+  <% } %>
+  <section class="card">
+    <h2>Son kararlar</h2>
+    <% if (!decided.length) { %><p>Henüz sonuçlanmış talep yok.</p><% } %>
+    <% for (const r of decided) { %>
+      <p><strong><%= r.name %></strong> · <%= leaveLabels[r.leave_type] %> · <%= T.fmtDateTR(r.start_day) %> – <%= T.fmtDateTR(r.end_day) %><br>
+        <%= statuses[r.status] %> · <%= r.decided_by %> · <%= T.fmtDateTime(new Date(r.decided_at)) %></p>
+    <% } %>
+  </section>
+</main>
+<%- include('../partials/foot') %>

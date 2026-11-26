@@ -103,6 +103,32 @@ CREATE TABLE IF NOT EXISTS leaves (
   UNIQUE(employee_id, day)
 );
 
+CREATE TABLE IF NOT EXISTS leave_requests (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  employee_id INTEGER NOT NULL REFERENCES employees(id) ON DELETE CASCADE,
+  kind TEXT NOT NULL DEFAULT 'izin' CHECK(kind IN ('izin','rapor')),
+  leave_type TEXT NOT NULL CHECK(leave_type IN ('yillik','mazeret','ucretsiz','rapor')),
+  start_day TEXT NOT NULL,
+  end_day TEXT NOT NULL,
+  work_days INTEGER NOT NULL,
+  note TEXT,
+  status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','approved','rejected','cancelled')),
+  created_at TEXT NOT NULL,
+  decided_by TEXT,
+  decided_at TEXT,
+  file_ref TEXT,
+  tg_msgs TEXT NOT NULL DEFAULT '[]'
+);
+CREATE INDEX IF NOT EXISTS idx_leave_requests_emp_status ON leave_requests(employee_id, status);
+
+CREATE TABLE IF NOT EXISTS panel_links (
+  token TEXT PRIMARY KEY,
+  chat_id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  expires_at TEXT NOT NULL,
+  used_at TEXT
+);
+
 CREATE INDEX IF NOT EXISTS idx_checkins_emp_day ON checkins(employee_id, business_day);
 CREATE INDEX IF NOT EXISTS idx_leaves_day ON leaves(day);
 CREATE INDEX IF NOT EXISTS idx_checkins_ts ON checkins(ts);
@@ -111,6 +137,11 @@ CREATE INDEX IF NOT EXISTS idx_requests_status ON device_requests(status);
 `);
 
 // Sonradan eklenen kolonlar (mevcut veritabanini migrate eder)
+const leaveCols = db.prepare('PRAGMA table_info(leaves)').all().map((c) => c.name);
+if (!leaveCols.includes('type')) db.exec('ALTER TABLE leaves ADD COLUMN type TEXT');
+if (!leaveCols.includes('request_id')) db.exec('ALTER TABLE leaves ADD COLUMN request_id INTEGER REFERENCES leave_requests(id)');
+const employeeCols = db.prepare('PRAGMA table_info(employees)').all().map((c) => c.name);
+if (!employeeCols.includes('hire_date')) db.exec('ALTER TABLE employees ADD COLUMN hire_date TEXT');
 const checkinCols = db.prepare('PRAGMA table_info(checkins)').all().map((c) => c.name);
 if (!checkinCols.includes('excused')) db.exec('ALTER TABLE checkins ADD COLUMN excused INTEGER NOT NULL DEFAULT 0');
 if (!checkinCols.includes('excused_by')) db.exec('ALTER TABLE checkins ADD COLUMN excused_by TEXT');

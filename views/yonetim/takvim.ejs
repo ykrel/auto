@@ -1,0 +1,23 @@
+<%- include('baslik') %>
+<main class="wrap">
+  <section class="card">
+    <h2>İzin takvimi</h2>
+    <form class="filters" method="get">
+      <label>Ay <input type="month" name="ay" value="<%= month %>" required></label>
+      <button class="btn">Göster</button>
+    </form>
+    <% if (!dates.size) { %><p>Bu ay için izin kaydı yok.</p><% } %>
+    <% for (const [day, rows] of dates) { %>
+      <h3><%= T.fmtDateTR(day) %></h3>
+      <ul><% for (const r of rows) { %><li><%= r.employee_name %> · <%= leaveLabels[r.type] || 'Tür belirtilmemiş' %></li><% } %></ul>
+    <% } %>
+  </section>
+  <% if (totals.size) { %><section class="card">
+    <h2>Kişi başı aylık toplam</h2>
+    <% for (const p of totals.values()) { %>
+      <p><strong><%= p.name %> · <%= p.total %> gün</strong><br>
+      <%= [...p.counts].map(([label, count]) => label + ' ' + count + ' gün').join(' · ') %></p>
+    <% } %>
+  </section><% } %>
+</main>
+<%- include('../partials/foot') %>

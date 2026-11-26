@@ -1,0 +1,16 @@
+<%- include('../partials/head', { title }) %>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/yonetim">İzin yönetimi</a>
+    <form method="post" action="/yonetim/cikis">
+      <input type="hidden" name="csrf" value="<%= session.csrf %>">
+      <button class="btn btn-ghost btn-sm">Çıkış</button>
+    </form>
+  </div>
+  <nav class="tabs" aria-label="İzin yönetimi">
+    <% for (const [url, name] of [['/', 'Talepler'], ['/takvim', 'İzin takvimi'], ['/kisiler', 'Kişiler'], ['/izin-ekle', 'İzin ekle']]) { %>
+      <a class="<%= path === url ? 'active' : '' %>" href="/yonetim<%= url %>"><%= name %></a>
+    <% } %>
+  </nav>
+</header>
+<% if (flash) { %><div class="flash" role="status"><%= flash %></div><% } %>
