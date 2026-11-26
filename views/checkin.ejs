@@ -76,12 +76,12 @@
   <section class="state-card hidden" id="s-action">
     <h2 class="center" id="action-name"></h2>
     <button class="btn btn-block" type="button" id="action-btn" style="font-size:24px;padding:20px 0;font-weight:700"></button>
-    <div class="linkline small"><a href="#izin" id="leave-open">İzin iste</a></div>
+    <button class="btn btn-block" type="button" id="leave-open" style="margin-top:28px">İzin talebi aç</button>
     <div id="action-today" class="small muted center" style="margin-top:14px"></div>
   </section>
 
   <section class="state-card hidden" id="s-leave">
-    <h2>İzin iste</h2>
+    <h2>İzin talebi</h2>
     <form id="leave-form">
       <label for="leave-start">Başlangıç tarihi</label>
       <input id="leave-start" type="date" value="<%= T.addDays(T.todayBusinessDay(), 1) %>" required>
