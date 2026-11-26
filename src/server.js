@@ -29,6 +29,8 @@ const BASE_URL = (process.env.BASE_URL || `http://localhost:${PORT}`).replace(/\
 // Cumartesi is yeri erken kapandigi icin esik ayridir.
 const EARLY_EXIT_BEFORE = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE || '') ? process.env.EARLY_EXIT_BEFORE : '18:29';
 const EARLY_EXIT_BEFORE_SAT = /^\d{2}:\d{2}$/.test(process.env.EARLY_EXIT_BEFORE_SAT || '') ? process.env.EARLY_EXIT_BEFORE_SAT : '16:59';
+// Reddedilen okutmada dogruluk payi bu degerin ustundeyse telefon yaklasik konum veriyor sayilir (Android kaba konum ~2 km).
+const COARSE_ACCURACY_M = Number(process.env.COARSE_ACCURACY_M) > 0 ? Number(process.env.COARSE_ACCURACY_M) : 500;
 
 function earlyExitThreshold(businessDayStr, location) {
   // Tam gun tatilde mesai yok, onay sorulmaz; yarim gun tatilde esik tatil bitisinden 1 dk once
@@ -269,7 +271,21 @@ app.post('/api/checkin', rateLimited, (req, res) => {
   if (pos.flagged) {
     if (pos.flag_reason === 'out_of_range') {
       const dist = Math.round(pos.distance);
-      logAction('personel', 'checkin_rejected', `${info.employee.name} / out_of_range / ${dist}m / ${location.name}`);
+      const acc = coords && coords.accuracy != null ? Math.round(coords.accuracy) : null;
+      const accTxt = acc != null ? ` / ±${acc}m` : '';
+      // Telefon yaklasik konum veriyorsa (Android "Hassas konum" / iPhone "Tam Konum" kapali, ya da yalniz baz istasyonu)
+      // personel ne yapacagini bilsin (26.11 Gulay: 1,4 km sabit, dogrulugu dusuk konum).
+      if (acc != null && acc >= COARSE_ACCURACY_M) {
+        logAction('personel', 'checkin_rejected', `${info.employee.name} / coarse_location / ${dist}m${accTxt} / ${location.name}`);
+        return res.status(403).json({
+          state: 'location_rejected',
+          reason: 'coarse_location',
+          distance: dist,
+          accuracy: acc,
+          error: `Telefonunuz konumu yaklaşık veriyor (±${acc >= 1000 ? (acc / 1000).toFixed(1) + ' km' : acc + ' m'}). Telefon ayarlarında tarayıcınızın konum izninde "Hassas konum" (iPhone'da "Tam Konum") açık olmalı. Açıp tekrar deneyin. Kayıt alınmadı.`
+        });
+      }
+      logAction('personel', 'checkin_rejected', `${info.employee.name} / out_of_range / ${dist}m${accTxt} / ${location.name}`);
       return res.status(403).json({
         state: 'location_rejected',
         reason: 'out_of_range',
