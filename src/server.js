@@ -18,6 +18,7 @@ const {
 } = require('./util');
 const { TOKEN_COOKIE, setTokenCookie, resolveToken } = require('./auth');
 const service = require('./service');
+const belge = require('./belge');
 const { qrSlug } = require('./qr');
 const telegram = require('./telegram');
 const adminRouter = require('./admin');
@@ -46,6 +47,42 @@ function earlyExitThreshold(businessDayStr, location) {
 app.set('trust proxy', 1);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '..', 'views'));
+
+const reportClosed = 'Rapor yükleme şu an kapalı.';
+const reportTypes = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif', 'application/pdf']);
+
+// Bu uçta yalnız belge sunucusunun imzaladığı küçük JSON gövdesi okunur.
+app.post('/api/belge/kayit', express.raw({ type: 'application/json', limit: '10kb', inflate: false }), async (req, res, next) => {
+  try {
+    if (!belge.enabled()) return res.status(503).json({ error: reportClosed });
+    if (!Buffer.isBuffer(req.body)) return res.status(415).json({ error: 'JSON gövdesi bekleniyor.' });
+    if (!belge.verifyCallback(req.get('X-Ik-Zaman'), req.get('X-Ik-Imza'), req.body)) {
+      return res.status(401).json({ error: 'Kayıt çağrısı doğrulanamadı.' });
+    }
+    let body;
+    try { body = JSON.parse(req.body.toString('utf8')); }
+    catch { return res.status(400).json({ error: 'Geçersiz JSON.' }); }
+    const ticket = belge.verifyTicket(body?.bilet);
+    if (!ticket) return res.status(400).json({ error: 'Geçersiz yükleme bileti.' });
+    if (Math.floor(Date.now() / 1000) > ticket.x + 600) {
+      return res.status(400).json({ error: 'Yükleme süresi doldu, tekrar deneyin.' });
+    }
+    const file = body.belge;
+    if (!file || typeof file.id !== 'string' || !/^[a-f0-9]{32}$/.test(file.id) ||
+        typeof file.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(file.sha256) ||
+        !Number.isInteger(file.boyut) || file.boyut < 1 || file.boyut > 15 * 1024 * 1024 || !reportTypes.has(file.tur)) {
+      return res.status(400).json({ error: 'Belge bilgileri geçersiz.' });
+    }
+    const result = service.registerReport(ticket, file.id);
+    if (result.error) return res.status(result.status || 400).json({ error: result.error });
+    await telegram.notifyLeaveRequest(result.id);
+    res.status(201).json(result);
+  } catch (e) { next(e); }
+}, (err, req, res, next) => {
+  if (err.status >= 400 && err.status < 500) return res.status(err.status).json({ error: 'Kayıt gövdesi okunamadı.' });
+  next(err);
+});
+
 app.use(express.json({ limit: '32kb' }));
 app.use(express.urlencoded({ extended: false, limit: '64kb' }));
 app.use(cookieParser());
@@ -62,7 +99,7 @@ const ipLimiter = createRateLimiter({ limit: 30, windowMs: 60000 });
 
 function rateLimited(req, res, next) {
   const scope = req.baseUrl === '/api/izin' ? 'izin:' : '';
-  const token = (req.body && req.body.token) || req.cookies[TOKEN_COOKIE];
+  const token = (req.body && req.body.token) || (scope && req.get('X-PDKS-Token')) || req.cookies[TOKEN_COOKIE];
   const result = token ? writeLimiter(scope + 'tok:' + token) : ipLimiter(scope + 'ip:' + (req.ip || 'bilinmiyor'));
   if (!result.ok) {
     res.setHeader('Retry-After', String(result.retryAfter));
@@ -116,7 +153,16 @@ app.get('/api/izin', (req, res) => {
     e.name AS ${sef ? 'ad' : 'acan'} FROM leave_requests r ${party} ORDER BY r.id DESC LIMIT 10`).all(req.employee.id).map((r) => ({
       ...r, tur: service.leaveLabels[r.leave_type], durum: service.leaveStatuses[r.status]
     }));
-  res.json({ sef, ...people, talepler, turler: Object.keys(service.leaveLabels).filter((type) => type !== 'rapor') });
+  res.json({ sef, rapor: belge.enabled(), ...people, talepler, turler: Object.keys(service.leaveLabels).filter((type) => type !== 'rapor') });
+});
+
+app.post('/api/izin/rapor-bilet', (req, res) => {
+  if (!belge.enabled()) return res.status(503).json({ error: reportClosed });
+  const r = service.validateReport(req.employee, req.body);
+  if (r.error) return res.status(400).json(r);
+  const bilet = belge.signTicket({ v: 1, emp: r.employeeId, by: r.openedBy, s: r.start, e: r.end,
+    n: crypto.randomBytes(16).toString('hex'), x: Math.floor(Date.now() / 1000) + 900 });
+  res.json({ bilet, url: process.env.IK_BELGE_URL + '/yukle' });
 });
 
 app.post('/api/izin', async (req, res, next) => {
@@ -161,6 +207,7 @@ app.post('/api/identify', (req, res) => {
   res.json({
     state: info.state,
     izinSef: info.state === 'ok' ? service.isLeaveSupervisor(info.employee.id) : undefined,
+    rapor: info.state === 'ok' ? belge.enabled() : undefined,
     token,
     name: info.employee.name,
     today: checks.map((c) => ({ type: c.type, time: T.fmtTime(new Date(c.ts)), flagged: !!c.flagged }))

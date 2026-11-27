@@ -12,6 +12,7 @@ test('PDKS izin işlemleri', async (t) => {
   const dir = fs.mkdtempSync(path.join(repo, '.test-izin-'));
   let db, server;
   const realFetch = global.fetch;
+  delete process.env.IK_BELGE_SECRET;
   const RealDate = Date;
   t.after(async () => {
     if (server?.listening) await new Promise((done) => server.close(done));
@@ -128,7 +129,7 @@ test('PDKS izin işlemleri', async (t) => {
     assert.equal((await api('/api/izin')).status, 401);
     assert.equal((await api('/api/izin?token=kapali')).status, 403);
     assert.equal((await api('/api/identify', { token: 'ayse' })).body.izinSef, false);
-    assert.deepEqual((await api('/api/izin?token=ayse')).body, { sef: false, talepler: [], turler: ['yillik', 'mazeret', 'ucretsiz'] });
+    assert.deepEqual((await api('/api/izin?token=ayse')).body, { sef: false, rapor: false, talepler: [], turler: ['yillik', 'mazeret', 'ucretsiz'] });
     assert.equal((await http('/api/izin', { headers: { cookie: 'pdks_token=ayse' } })).status, 200);
     assert.equal((await http('/api/izin?token=ayse')).status, 401); // token URL'den kabul edilmez
   });

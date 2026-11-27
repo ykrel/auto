@@ -121,6 +121,11 @@ CREATE TABLE IF NOT EXISTS leave_requests (
 );
 CREATE INDEX IF NOT EXISTS idx_leave_requests_emp_status ON leave_requests(employee_id, status);
 
+CREATE TABLE IF NOT EXISTS belge_nonces (
+  nonce TEXT PRIMARY KEY,
+  created_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS panel_links (
   token TEXT PRIMARY KEY,
   chat_id TEXT NOT NULL,

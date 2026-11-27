@@ -535,12 +535,12 @@ function workingDays(start, end, location) {
   return days;
 }
 
-const createLeaveRequest = db.transaction((employee, input, panelName = null) => {
+function validateLeaveRequest(employee, input, panelName, upload) {
   let openedBy = null;
   if (panelName === null && isLeaveSupervisor(employee.id)) {
     const target = input.employee_id;
     if (target == null || target === '' || target === employee.id || target === String(employee.id)) {
-      return { error: "Kendi izniniz için Kağan Bey'e başvurun." };
+      return { error: upload ? "Kendi raporunuz için Kağan Bey'e başvurun." : "Kendi izniniz için Kağan Bey'e başvurun." };
     }
     if ((typeof target !== 'string' && typeof target !== 'number') || !/^[1-9]\d*$/.test(target)) {
       return { error: 'Geçerli bir personel seçin.' };
@@ -554,11 +554,13 @@ const createLeaveRequest = db.transaction((employee, input, panelName = null) =>
   const today = T.todayBusinessDay();
   if (!validDay(start) || !validDay(end)) return { error: 'Geçerli bir başlangıç ve bitiş tarihi girin.' };
   if (end < start) return { error: 'Bitiş tarihi başlangıçtan önce olamaz.' };
-  if (typeof type !== 'string' || !Object.hasOwn(leaveLabels, type) || (type === 'rapor' && panelName === null)) return { error: 'Geçerli bir izin türü seçin.' };
+  if (typeof type !== 'string' || !Object.hasOwn(leaveLabels, type) || (type === 'rapor' && panelName === null && !upload)) return { error: 'Geçerli bir izin türü seçin.' };
   if (typeof note !== 'string' || note.length > 300) return { error: 'Açıklama en çok 300 karakter olabilir.' };
   if (panelName === null) {
-    if (start < T.addDays(today, -3)) return { error: 'Başlangıç tarihi en fazla 3 gün geriye gidebilir.' };
-    if (end > T.addDays(today, 180)) return { error: 'Bitiş tarihi en fazla 180 gün ileride olabilir.' };
+    const past = upload ? 30 : 3;
+    if (start < T.addDays(today, -past)) return { error: `Başlangıç tarihi en fazla ${past} gün geriye gidebilir.` };
+    if (upload && start > T.addDays(today, 3)) return { error: 'Başlangıç tarihi en fazla 3 gün ileride olabilir.' };
+    if (!upload && end > T.addDays(today, 180)) return { error: 'Bitiş tarihi en fazla 180 gün ileride olabilir.' };
     if (end > T.addDays(start, 30)) return { error: 'Bir talep en çok 31 takvim gününü kapsayabilir.' };
   }
   const overlap = db.prepare(`SELECT id FROM leave_requests WHERE employee_id = ? AND status IN ('pending','approved')
@@ -570,10 +572,40 @@ const createLeaveRequest = db.transaction((employee, input, panelName = null) =>
   }
   const days = workingDays(start, end, getLocation(employee.location_id));
   if (!days.length) return { error: 'Seçtiğiniz aralıkta lokasyonunuz için iş günü yok.' };
-  const id = db.prepare(`INSERT INTO leave_requests
-    (employee_id, opened_by, kind, leave_type, start_day, end_day, work_days, note, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
-    .run(employee.id, openedBy, type === 'rapor' ? 'rapor' : 'izin', type, start, end, days.length, note.trim() || null, new Date().toISOString()).lastInsertRowid;
+  return { employeeId: employee.id, openedBy, type, start, end, workDays: days.length, note: note.trim() || null };
+}
+
+function insertLeaveRequest(r, fileRef = null) {
+  return db.prepare(`INSERT INTO leave_requests
+    (employee_id, opened_by, kind, leave_type, start_day, end_day, work_days, note, file_ref, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+    .run(r.employeeId, r.openedBy, r.type === 'rapor' ? 'rapor' : 'izin', r.type, r.start, r.end,
+      r.workDays, r.note, fileRef, new Date().toISOString()).lastInsertRowid;
+}
+
+const createLeaveRequest = db.transaction((employee, input, panelName = null) => {
+  const request = validateLeaveRequest(employee, input, panelName, false);
+  if (request.error) return request;
+  const id = insertLeaveRequest(request);
   if (panelName !== null) decideLeaveRequest(id, true, panelName, 'panel');
+  return { ok: true, id };
+}).immediate;
+
+function validateReport(employee, { start, end, employee_id }) {
+  return validateLeaveRequest(employee, { start, end, employee_id, type: 'rapor' }, null, true);
+}
+
+const registerReport = db.transaction((ticket, fileRef) => {
+  if (db.prepare('SELECT 1 FROM belge_nonces WHERE nonce = ?').get(ticket.n)) {
+    return { status: 409, error: 'Bu yükleme bileti daha önce kullanıldı.' };
+  }
+  const actor = db.prepare("SELECT id, location_id FROM employees WHERE id = ? AND status = 'active'").get(ticket.by ?? ticket.emp);
+  if (!actor || (ticket.by !== null && !isLeaveSupervisor(actor.id))) return { error: 'Aktif personel veya şef yetkisi doğrulanamadı.' };
+  const request = validateReport(actor, { start: ticket.s, end: ticket.e, employee_id: ticket.emp });
+  if (request.error) return request;
+  const id = insertLeaveRequest(request, fileRef);
+  db.prepare('INSERT INTO belge_nonces(nonce, created_at) VALUES (?, ?)').run(ticket.n, new Date().toISOString());
+  logAction('ik-belge', 'report_upload', 'talep #' + id);
   return { ok: true, id };
 }).immediate;
 
@@ -606,6 +638,8 @@ module.exports = {
   isLeaveSupervisor,
   leaveTeam,
   createLeaveRequest,
+  validateReport,
+  registerReport,
   decideLeaveRequest,
   DUPLICATE_WINDOW_MS,
   shiftStartOf,

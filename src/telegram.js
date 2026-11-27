@@ -22,6 +22,7 @@ const T = require('./time');
 
 const panelAuth = require('./panel-auth');
 const service = require('./service');
+const belge = require('./belge');
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
 const JOIN_CODE = (process.env.TELEGRAM_JOIN_CODE || '').trim();
@@ -100,10 +101,11 @@ function leaveRequest(id) {
 function leaveText(r) {
   const weekdays = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
   const dayLabel = (day) => T.fmtDateTR(day).slice(0, 5) + ' ' + weekdays[T.weekdayOf(day)];
-  let text = `📝 İzin talebi #${r.id}\n${r.name} · ${r.location_name || 'Lokasyon belirtilmemiş'}\n` +
+  let text = `${r.kind === 'rapor' ? '📎 Rapor' : '📝 İzin talebi'} #${r.id}\n${r.name} · ${r.location_name || 'Lokasyon belirtilmemiş'}\n` +
     (r.opened_by != null ? `Açan: ${r.acan} (şef)\n` : '') +
     `${dayLabel(r.start_day)} – ${dayLabel(r.end_day)} (${r.work_days} iş günü)\n${service.leaveLabels[r.leave_type]}`;
   if (r.note) text += '\nNot: ' + r.note;
+  if (r.file_ref) text += '\n📎 Rapor ekli';
   if (r.status === 'cancelled') return text + '\n🚫 İptal edildi — ' + (r.decided_by || 'personel');
   if (r.status === 'approved' || r.status === 'rejected') {
     const when = new Date(r.decided_at);
@@ -113,11 +115,20 @@ function leaveText(r) {
   return text;
 }
 
+function leaveKeyboard(r) {
+  const rows = [];
+  const url = belge.viewUrl(r.file_ref, 30 * 24 * 3600);
+  if (url) rows.push([{ text: '📎 Raporu aç', url }]);
+  if (r.status === 'pending') rows.push([{ text: '✅ Onayla', callback_data: 'izin:onay:' + r.id },
+    { text: '❌ Reddet', callback_data: 'izin:red:' + r.id }]);
+  return rows;
+}
+
 async function editLeaveCopy(r, copy) {
   const bot = copy.bot === 'main' ? MAIN : locationBot(service.getLocationBySlug(copy.bot));
   if (bot && bot.token) {
     await api('editMessageText', { chat_id: copy.chat_id, message_id: copy.message_id,
-      text: leaveText(r), reply_markup: { inline_keyboard: [] } }, bot);
+      text: leaveText(r), reply_markup: { inline_keyboard: leaveKeyboard(r) } }, bot);
   }
 }
 
@@ -130,8 +141,7 @@ async function notifyLeaveRequest(id) {
   const r = leaveRequest(id);
   const bot = botFor(r.location_id);
   if (!bot.token) return;
-  const keyboard = [[{ text: '✅ Onayla', callback_data: 'izin:onay:' + id },
-    { text: '❌ Reddet', callback_data: 'izin:red:' + id }]];
+  const keyboard = leaveKeyboard(r);
   await Promise.all([...panelAuth.approvers()].map(async (chatId) => {
     const sent = await api('sendMessage', { chat_id: chatId, text: leaveText(r), reply_markup: { inline_keyboard: keyboard } }, bot);
     if (!sent || !sent.ok) return;

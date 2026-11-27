@@ -4,6 +4,7 @@ const express = require('express');
 const { db } = require('./db');
 const T = require('./time');
 const service = require('./service');
+const belge = require('./belge');
 const telegram = require('./telegram');
 const auth = require('./panel-auth');
 
@@ -57,6 +58,7 @@ router.get('/', (req, res) => {
     LEFT JOIN locations l ON l.id = e.location_id`;
   const pending = db.prepare(select + " WHERE r.status = 'pending' ORDER BY r.id").all();
   const decided = db.prepare(select + " WHERE r.status != 'pending' ORDER BY r.decided_at DESC, r.id DESC LIMIT 30").all();
+  for (const row of [...pending, ...decided]) row.reportUrl = belge.viewUrl(row.file_ref, 3600);
   res.render('yonetim/talepler', { title: 'Talepler', pending, decided, statuses: service.leaveStatuses });
 });
 

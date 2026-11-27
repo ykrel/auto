@@ -7,6 +7,7 @@
   var LS_KEY = 'pdks_token';
   var COOKIE = 'pdks_token';
   var GEO_TIMEOUT = 12000;
+  var reportMode = false;
 
   function $(id) { return document.getElementById(id); }
 
@@ -97,10 +98,12 @@
     return b;
   }
 
-  function post(url, data) {
+  function post(url, data, token) {
+    var headers = { 'Content-Type': 'application/json' };
+    if (token) headers['X-PDKS-Token'] = token;
     return fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: headers,
       credentials: 'same-origin',
       body: JSON.stringify(data || {})
     }).then(function (res) {
@@ -212,13 +215,15 @@
         }).join(' · ')
       : '';
     setLeaveRole(body.izinSef);
+    $('report-open').classList.toggle('hidden', !body.rapor);
     show('s-action');
   }
 
   // ES5 + Promise (eski tarayicilarda async/await butun sayfayi bozar). Token URL'ye yazilmaz, baslikla gider.
   function setLeaveRole(sef) {
     $('leave-open').textContent = sef ? 'Başkası için izin talebi aç' : 'İzin talebi aç';
-    $('leave-title').textContent = sef ? 'Başkası için izin talebi' : 'İzin talebi';
+    $('report-open').textContent = sef ? 'Başkası için rapor yükle' : 'Rapor yükle';
+    $('leave-title').textContent = reportMode ? 'Rapor yükle' : (sef ? 'Başkası için izin talebi' : 'İzin talebi');
     $('leave-list-title').textContent = sef ? 'Açtığım talepler' : 'Taleplerim';
     $('leave-employee-field').classList.toggle('hidden', !sef);
     $('leave-employee').disabled = !sef;
@@ -262,6 +267,7 @@
           return;
         }
         setLeaveRole(data.sef);
+        $('report-open').classList.toggle('hidden', !data.rapor);
         if (data.sef) {
           var employee = $('leave-employee');
           var selected = employee.value;
@@ -296,22 +302,90 @@
     });
   }
 
-  $('leave-open').onclick = function (ev) {
-    ev.preventDefault();
+  function openLeave(asReport) {
+    reportMode = asReport;
+    setLeaveRole(!$('leave-employee').disabled);
+    $('leave-fields').classList.toggle('hidden', asReport);
+    $('leave-file-field').classList.toggle('hidden', !asReport);
+    $('leave-file').value = '';
+    if (asReport) {
+      // Rapor genelde bugün ya da geçmişte başlar; varsayılan bugün (izin formunda yarın).
+      var d = new Date();
+      var today = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+      $('leave-start').value = today;
+      $('leave-end').value = today;
+    }
+    $('leave-send').textContent = asReport ? 'Raporu gönder' : 'Talebi gönder';
     $('leave-feedback').textContent = '';
     show('s-leave');
     loadLeaves();
-  };
+  }
+
+  function uploadFile(ticket, file, feedback) {
+    return new Promise(function (resolve, reject) {
+      var destination = document.createElement('a');
+      destination.href = ticket.url;
+      if (!/^https?:\/\//i.test(ticket.url) || destination.host === location.host) return reject();
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', ticket.url);
+      xhr.setRequestHeader('X-Bilet', ticket.bilet);
+      xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+      feedback.textContent = 'Yükleniyor… %0';
+      xhr.upload.onprogress = function (event) {
+        if (event.lengthComputable && event.total) {
+          feedback.textContent = 'Yükleniyor… %' + Math.round(event.loaded * 100 / event.total);
+        }
+      };
+      xhr.onload = function () {
+        if (xhr.status === 201) return resolve();
+        var body;
+        try { body = JSON.parse(xhr.responseText); } catch (e) { /* JSON yanıtı yok */ }
+        reject(body && body.error);
+      };
+      xhr.onerror = xhr.onabort = xhr.ontimeout = function () { reject(); };
+      xhr.send(file);
+    });
+  }
+
+  function submitReport(data) {
+    var button = $('leave-send');
+    var feedback = $('leave-feedback');
+    var file = $('leave-file').files[0];
+    if (!file) { feedback.textContent = "Raporun fotoğrafını ya da PDF'ini seçin."; return; }
+    if (file.size > 15 * 1024 * 1024) { feedback.textContent = 'Dosya çok büyük (en çok 15 MB).'; return; }
+    button.disabled = true;
+    $('leave-close').disabled = true;
+    feedback.textContent = '';
+    var failure = 'Yükleme başarısız, tekrar deneyin.';
+    post('/api/izin/rapor-bilet', data, loadToken()).then(function (res) {
+      if (res.status !== 200 || !res.body.bilet || !res.body.url) return Promise.reject(res.body.error);
+      return uploadFile(res.body, file, feedback);
+    }).then(function () {
+      feedback.textContent = 'Raporunuz gönderildi.';
+      $('leave-form').reset();
+      return loadLeaves();
+    }).catch(function (error) {
+      feedback.textContent = typeof error === 'string' && error ? error : failure;
+    }).then(function () {
+      button.disabled = false;
+      $('leave-close').disabled = false;
+    });
+  }
+
+  $('leave-open').onclick = function () { openLeave(false); };
+  $('report-open').onclick = function () { openLeave(true); };
   $('leave-close').onclick = boot;
   $('leave-start').onchange = function () {
     $('leave-end').value = this.value;
   };
   $('leave-form').onsubmit = function (ev) {
     ev.preventDefault();
-    var data = {
-      start: $('leave-start').value, end: $('leave-end').value, type: $('leave-type').value, note: $('leave-note').value
-    };
+    if ($('leave-send').disabled) return;
+    var data = { start: $('leave-start').value, end: $('leave-end').value };
     if (!$('leave-employee').disabled) data.employee_id = $('leave-employee').value;
+    if (reportMode) return submitReport(data);
+    data.type = $('leave-type').value;
+    data.note = $('leave-note').value;
     submitLeave('/api/izin', data, $('leave-send'), 'Talebiniz iletildi. Onaylanınca burada görünecek.');
   };
 

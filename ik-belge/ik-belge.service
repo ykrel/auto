@@ -1,0 +1,28 @@
+[Unit]
+Description=ik-belge (PDKS rapor ve özlük belgeleri)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ik-belge
+Group=ik-belge
+WorkingDirectory=/srv/ik-belge/app
+EnvironmentFile=/etc/ik-belge.env
+ExecStart=/usr/local/bin/node server.js
+Restart=always
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ReadWritePaths=/srv/ik-belge/data
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryMax=300M
+
+[Install]
+WantedBy=multi-user.target
